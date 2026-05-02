@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assessment Day Playbook: What Actually Happens — Methodical Security</title>
+  <meta name="description" content="An hour-by-hour walkthrough of what happens during a CMMC Level 2 C3PAO assessment — pre-assessment, opening conference, daily structure, interviews, evidence walkthroughs, findings, and closing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .day-block { background:#fff; border:1px solid var(--border); border-radius:8px; padding:18px 22px; margin:14px 0; border-left:4px solid var(--blue); }
+    .day-block h3 { margin:0 0 4px; color:var(--navy); }
+    .day-block .day-meta { font-size:.72rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+    .day-block ul { margin:8px 0 0 18px; }
+    .day-block li { font-size:.92rem; line-height:1.7; margin-bottom:6px; color:var(--text); }
+    .schedule-table { width:100%; border-collapse:collapse; margin:14px 0 22px; font-size:.86rem; }
+    .schedule-table th, .schedule-table td { padding:10px 12px; border:1px solid var(--border); text-align:left; vertical-align:top; }
+    .schedule-table thead th { background:var(--navy); color:#fff; font-weight:600; font-size:.76rem; text-transform:uppercase; letter-spacing:.05em; }
+    .schedule-table tbody tr:nth-child(even) { background:#f8fafc; }
+    .schedule-table td.time { white-space:nowrap; font-family:monospace; font-size:.82rem; color:var(--navy); font-weight:600; }
+    .interview-prep { background:var(--surface); border-radius:8px; padding:16px 22px; margin:14px 0; }
+    .interview-prep h4 { margin:0 0 8px; color:var(--navy); font-size:.95rem; }
+    .interview-prep ul { margin:6px 0 0 20px; }
+    .interview-prep li { font-size:.92rem; line-height:1.7; margin-bottom:6px; color:var(--text); }
+    .question-bank { background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:16px 22px; margin:14px 0; }
+    .question-bank h4 { margin:0 0 8px; color:#1e40af; font-size:.95rem; }
+    .question-bank ul { margin:6px 0 0 20px; }
+    .question-bank li { font-size:.9rem; line-height:1.7; margin-bottom:8px; color:var(--text); font-style:italic; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="guide.html">CMMC Guide</a></li>
+    </ul>
+    <div></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="resources.html">Resources</a><span>›</span>
+        <span style="color:rgba(255,255,255,.7)">Assessment Day Playbook</span>
+      </div>
+      <span class="eyebrow">The Assessment · 17-minute read · Operational</span>
+      <h1>Assessment Day Playbook</h1>
+      <p>An honest walkthrough of what actually happens during a CMMC Level 2 C3PAO assessment — what assessors do hour by hour, who needs to be available, what they ask, how findings emerge, and what you can do in the moment to handle them well.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="guide-layout">
+
+      <aside class="guide-sidebar">
+        <div style="font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;">On this page</div>
+        <nav class="guide-sidebar-nav">
+          <a href="#overview" class="active">Assessment Structure</a>
+          <a href="#pre-assessment">Pre-Assessment Phase</a>
+          <a href="#day-zero">Day Zero: Opening</a>
+          <a href="#daily-rhythm">The Daily Rhythm</a>
+          <a href="#interviews">Interviews by Family</a>
+          <a href="#observations">Technical Observations</a>
+          <a href="#findings">How Findings Emerge</a>
+          <a href="#closing">Closing Conference</a>
+          <a href="#post">Post-Assessment</a>
+          <a href="#preparation">Preparing Your Team</a>
+          <a href="#references">References</a>
+        </nav>
+      </aside>
+
+      <article class="guide-content">
+
+        <h2 id="overview">Assessment Structure</h2>
+        <p>A Level 2 C3PAO assessment for a small to mid-size contractor typically runs 1–3 weeks of fieldwork preceded by 2–4 weeks of document submission and assessor preparation, and followed by 4–8 weeks of report drafting and certification decision. The fieldwork itself is the most operationally intense phase — when most of your team's time is engaged with the assessors.</p>
+        <p>The fieldwork follows a predictable structure: opening conference, document walkthroughs, interviews organized by control family, technical observations of your actual environment, daily status meetings, findings discussions, and a closing conference. Within that structure, every C3PAO has their own rhythm; the patterns below are typical but not universal.</p>
+        <p>The assessment is governed by the <a href="https://cyberab.org/Portals/0/Documents/Process-Docs/CAP_v2.0_(Public_Release).pdf" target="_blank" rel="noopener noreferrer">CMMC Assessment Process (CAP)</a>, the Cyber AB's documented methodology that C3PAOs are expected to follow. Familiarity with the CAP helps you anticipate what assessors will do and why.</p>
+
+        <h2 id="pre-assessment">Pre-Assessment Phase</h2>
+        <p>The pre-assessment phase begins after SOW signing and ends at the opening conference. The assessor team uses this time to develop a scoping confirmation, prepare their interview question sets, and identify the evidence they want to walk through. The contractor uses it to finalize document submissions and prepare personnel.</p>
+
+        <div class="day-block">
+          <div class="day-meta">Pre-Assessment · 2–4 weeks before fieldwork</div>
+          <h3>What the assessor team is doing</h3>
+          <ul>
+            <li>Reviewing your SSP, POA&amp;M, and supporting documentation submitted via secure transfer</li>
+            <li>Confirming the in-scope environment matches the SOW scope</li>
+            <li>Mapping each of the 110 requirements to evidence sources you've identified</li>
+            <li>Identifying gaps where the SSP statement and the supporting evidence do not align</li>
+            <li>Drafting interview question sets for each control family</li>
+            <li>Coordinating logistics: site visit dates, conference room, network access, escort procedures</li>
+            <li>Identifying the personnel they need to interview</li>
+          </ul>
+        </div>
+
+        <div class="day-block">
+          <div class="day-meta">Pre-Assessment · contractor preparation</div>
+          <h3>What you should be doing</h3>
+          <ul>
+            <li>Completing any final document or evidence submissions</li>
+            <li>Briefing personnel who will be interviewed about the assessment process and their specific control family</li>
+            <li>Confirming logistics: room reservations, network access for assessors, badge/escort arrangements, secure storage for assessor laptops if on-site</li>
+            <li>Designating an internal Assessment Coordinator — a single point of contact responsible for fielding assessor requests, coordinating evidence retrieval, and ensuring interviewees are available on time</li>
+            <li>Conducting a final internal walkthrough of high-weight controls (5-point and 3-point requirements in the DoD Assessment Methodology) to confirm evidence is current and accessible</li>
+            <li>Confirming that all referenced policies actually exist and are accessible — assessors will ask for any policy your SSP cites</li>
+          </ul>
+        </div>
+
+        <div class="callout amber">
+          <p><strong>Pre-assessment surprises are normal.</strong> The assessor team almost always identifies gaps during document review — a referenced policy that isn't producible, an SSP statement that contradicts the evidence package, an asset inventory that's stale. Treat these as opportunities to remediate before the formal fieldwork begins; assessors will tell you what they've found and you can usually address it before findings are formally recorded.</p>
+        </div>
+
+        <h2 id="day-zero">Day Zero: Opening Conference</h2>
+        <p>The first day of fieldwork begins with an opening conference — typically 60–90 minutes — that establishes the working agreement for the rest of the assessment.</p>
+
+        <table class="schedule-table">
+          <thead>
+            <tr><th>Time</th><th>Activity</th><th>Participants</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="time">09:00</td><td>Introductions, assessor team and contractor team</td><td>Lead assessor, all C3PAO assessors, contractor System Owner, ISSO, key SMEs, Assessment Coordinator</td></tr>
+            <tr><td class="time">09:15</td><td>Confirmation of scope as documented in SSP and SOW</td><td>Lead assessor, System Owner</td></tr>
+            <tr><td class="time">09:30</td><td>Walkthrough of assessment schedule, interview times, evidence approach</td><td>Lead assessor, Assessment Coordinator</td></tr>
+            <tr><td class="time">10:00</td><td>Logistics: working space, network access, escort procedures, daily status meeting timing</td><td>Assessment Coordinator, lead assessor</td></tr>
+            <tr><td class="time">10:30</td><td>Q&amp;A; confirmation of any pre-assessment open items</td><td>All</td></tr>
+          </tbody>
+        </table>
+
+        <p>The opening conference is rarely contentious — it's an alignment session. The most useful contributions from the contractor side are confirming who handles what topic, agreeing on a daily status meeting time, and surfacing any logistical concerns before fieldwork begins. Discussion of specific controls or findings is deferred to the topical sessions.</p>
+
+        <h2 id="daily-rhythm">The Daily Rhythm</h2>
+        <p>After the opening, each day follows a predictable structure. A typical day during a 5-day fieldwork engagement:</p>
+
+        <table class="schedule-table">
+          <thead>
+            <tr><th>Time</th><th>Activity</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="time">08:30</td><td>Daily kickoff (15 min)</td><td>Assessment Coordinator and lead assessor confirm the day's interviews, evidence requests, and any blocking issues</td></tr>
+            <tr><td class="time">09:00</td><td>First interview block (90 min)</td><td>Typically focused on one control family, with the family owner and SMEs</td></tr>
+            <tr><td class="time">10:30</td><td>Evidence walkthrough (60 min)</td><td>Assessor reviews specific evidence with the SME — opening configurations, looking at logs, reading policies</td></tr>
+            <tr><td class="time">11:30</td><td>Buffer / open evidence requests (30 min)</td><td>Coordinator collects items the assessor needs but doesn't have yet</td></tr>
+            <tr><td class="time">12:00</td><td>Lunch (assessors typically work through lunch on their own; do not "host" them)</td><td></td></tr>
+            <tr><td class="time">13:00</td><td>Second interview block (90 min)</td><td>Different control family, different SMEs</td></tr>
+            <tr><td class="time">14:30</td><td>Technical observation (60–90 min)</td><td>Assessor watches a sysadmin perform an operational task — review audit logs, run a vulnerability scan report, demonstrate access provisioning</td></tr>
+            <tr><td class="time">16:00</td><td>Daily status meeting (30 min)</td><td>Lead assessor walks through what was covered, what's open, what's needed for tomorrow. Findings are NOT typically presented here as final — they emerge through discussion.</td></tr>
+            <tr><td class="time">16:30</td><td>Coordinator wrap (30 min)</td><td>Internal: review evidence requests for tomorrow, brief tomorrow's interviewees, address any concerns</td></tr>
+          </tbody>
+        </table>
+
+        <p>The pattern repeats for each day of fieldwork, with different control families each day. A 14-control-family assessment running 5 days will typically cover 2–3 families per day, with the high-weight families (Access Control, Identification &amp; Authentication, System &amp; Communications Protection) consuming more time.</p>
+
+        <h2 id="interviews">Interviews by Control Family</h2>
+        <p>Interviews are the primary mechanism by which assessors test your SSP statements against operational reality. Each interview pairs an assessor with the contractor SME for a control family. The format is conversational, structured around the requirements in that family, and typically lasts 60–120 minutes per family.</p>
+
+        <p>What assessors ask in interviews — illustrative for several high-weight families:</p>
+
+        <div class="question-bank">
+          <h4>Access Control (AC) — typical assessor questions</h4>
+          <ul>
+            <li>"Walk me through how a new user gets access to a CUI system. Who initiates the request? Who approves it? Who provisions the account?"</li>
+            <li>"Show me your most recent quarterly access review. How were terminated employees identified?"</li>
+            <li>"How do privileged users access in-scope systems? What additional controls apply to those accounts?"</li>
+            <li>"What happens when someone changes roles within the company — do their access permissions automatically update, or is there a manual step?"</li>
+            <li>"Show me how a user with mobile access connects to the in-scope environment. Walk me through the conditional access policy."</li>
+          </ul>
+        </div>
+
+        <div class="question-bank">
+          <h4>Identification &amp; Authentication (IA) — typical assessor questions</h4>
+          <ul>
+            <li>"Walk me through your MFA enrollment process. How do you confirm a user is who they claim to be before issuing a token?"</li>
+            <li>"Show me MFA being enforced. What happens if a user attempts to authenticate without a second factor?"</li>
+            <li>"How are service accounts authenticated? What protections apply to credentials stored in scripts or applications?"</li>
+            <li>"What's your password policy? Show me where it's enforced technically — not just in the policy document."</li>
+            <li>"How are device certificates managed for systems that authenticate without a user — printers, IoT devices, automation systems?"</li>
+          </ul>
+        </div>
+
+        <div class="question-bank">
+          <h4>Audit &amp; Accountability (AU) — typical assessor questions</h4>
+          <ul>
+            <li>"What audit events are logged across in-scope systems? Show me a sample of recent log records."</li>
+            <li>"How long are audit logs retained? Show me logs from at least 12 months ago."</li>
+            <li>"How do you protect audit logs from unauthorized modification? Who can delete or alter them?"</li>
+            <li>"How frequently do you review audit logs for anomalies? Show me records of the most recent review."</li>
+            <li>"How do you correlate events across systems? Walk me through a scenario where you traced an incident across multiple systems."</li>
+          </ul>
+        </div>
+
+        <div class="question-bank">
+          <h4>System &amp; Communications Protection (SC) — typical assessor questions</h4>
+          <ul>
+            <li>"Show me your network architecture diagram. Walk me through how CUI flows from external entry to internal storage."</li>
+            <li>"How is CUI encrypted in transit between in-scope systems? Show me the cryptographic configuration."</li>
+            <li>"Show me how CUI is encrypted at rest. What FIPS-validated cryptographic modules are in use?"</li>
+            <li>"How is your network segmented between CUI systems and general-use systems? Show me the firewall rules."</li>
+            <li>"Walk me through what happens when an in-scope user accesses a publicly-accessible site. What controls protect against malicious downloads?"</li>
+          </ul>
+        </div>
+
+        <div class="interview-prep">
+          <h4>How to prepare an SME for interview</h4>
+          <ul>
+            <li><strong>Review the relevant SSP sections.</strong> The SME should be able to discuss what the SSP says about their control family, in their own words, without reading from the document.</li>
+            <li><strong>Identify the evidence in advance.</strong> For each requirement in the family, know where the supporting evidence lives and have it accessible during the interview.</li>
+            <li><strong>Practice "show me" responses.</strong> Most assessor questions follow a "describe it, then show me" pattern. The SME should be ready to demonstrate live in the system, not just describe.</li>
+            <li><strong>Don't volunteer beyond the question.</strong> Answer what's asked, accurately and completely. Volunteering additional context occasionally helps; volunteering speculation or unrelated topics expands the scope of inquiry unhelpfully.</li>
+            <li><strong>If you don't know, say so.</strong> "I'm not sure — let me check and get back to you within an hour" is a perfectly acceptable answer. Guessing or fabricating is the worst possible response.</li>
+            <li><strong>Have a back-up.</strong> If the primary SME is out sick or otherwise unavailable, who can step in? Identify and brief the back-up before fieldwork begins.</li>
+          </ul>
+        </div>
+
+        <h2 id="observations">Technical Observations</h2>
+        <p>Beyond interviews, assessors will conduct technical observations — sessions where they watch a sysadmin or SME perform an operational task in the live environment. Common observations:</p>
+        <ul>
+          <li><strong>Access provisioning workflow:</strong> Assessor watches the new-user onboarding from request to account creation</li>
+          <li><strong>Audit log review:</strong> Assessor watches a sysadmin pull and review the most recent audit logs</li>
+          <li><strong>Vulnerability scan execution:</strong> Assessor watches a vulnerability scan run, the results processed, and the remediation tracking</li>
+          <li><strong>Configuration baseline verification:</strong> Assessor watches a system configuration compared against the documented baseline</li>
+          <li><strong>Backup restoration:</strong> Assessor watches a file restored from backup to demonstrate the backup is functional</li>
+          <li><strong>Incident response tabletop:</strong> Assessor walks through a hypothetical incident with the IR team to test the documented procedure</li>
+        </ul>
+        <p>Observations let the assessor confirm that what's documented is what actually happens. The risk of an observation is that a process the team thinks works smoothly turns out to fail in practice — a vulnerability scan that errors out, a backup that won't restore, a sysadmin who can't find the audit log review documentation. Run the observation activities yourself before the assessment to surface these issues.</p>
+
+        <h2 id="findings">How Findings Emerge</h2>
+        <p>Findings rarely arrive as surprises in the closing conference. They emerge through the daily rhythm — usually first as a question or concern raised in an interview or evidence walkthrough, then as an explicit "this looks like a finding" comment in the daily status meeting, then as a documented finding in the closing conference and the ROC.</p>
+        <p>When a potential finding emerges, you have several options:</p>
+        <ul>
+          <li><strong>Provide additional evidence.</strong> If the assessor's concern stems from incomplete documentation, providing the missing artifact may resolve the finding before it's documented. Move quickly — within the same day.</li>
+          <li><strong>Clarify a misinterpretation.</strong> If the assessor has misread a control or its evidence, walk them through your understanding. The lead assessor can adjust the interpretation if your clarification is supported by the evidence.</li>
+          <li><strong>Acknowledge the gap.</strong> If the finding is real, acknowledge it cleanly. Do not argue or push back when the gap genuinely exists. Acknowledged findings are usually treated more favorably than disputed ones.</li>
+          <li><strong>Record it as a POA&amp;M item.</strong> A finding that can be added to your POA&amp;M with a credible remediation plan does not necessarily prevent certification. POA&amp;M eligibility is narrow: only <strong>1-point</strong> requirements may be on POA&amp;M, plus the single explicit exception of <strong>SC.L2-3.13.11 (CUI Encryption)</strong> when encryption is employed but not FIPS-validated. Of the 110 requirements, <strong>47 are POA&amp;M-eligible</strong>; the contractor must still achieve a SPRS score of <strong>88 or higher</strong> to qualify for conditional certification. 5-point requirements (and 3-point requirements other than the SC.L2-3.13.11 exception) must be fully implemented at certification — they cannot be deferred.</li>
+        </ul>
+        <p>What does <em>not</em> work: arguing with the lead assessor about whether something is a finding once they've made the determination, attempting to escalate to the C3PAO leadership during fieldwork, or attempting to renegotiate the scope mid-engagement. The assessor team has process autonomy; their findings stand unless overturned by the C3PAO's QA or by the CMMC PMO.</p>
+
+        <h2 id="closing">Closing Conference</h2>
+        <p>The closing conference is the final session of fieldwork — typically 60–90 minutes on the last day. The lead assessor walks through:</p>
+        <ul>
+          <li>A summary of what was assessed and how</li>
+          <li>The findings identified during the fieldwork, with brief justifications</li>
+          <li>Recommendations and next steps</li>
+          <li>The timeline for ROC drafting and delivery</li>
+          <li>The process for the contractor's factual review of the draft ROC</li>
+        </ul>
+        <p>The closing conference is not a forum for negotiating findings. The findings presented have already been discussed in the daily meetings; the closing is the formal record. Listen carefully, take notes, and reserve substantive responses for the factual review of the draft ROC.</p>
+
+        <h2 id="post">Post-Assessment</h2>
+        <p>After fieldwork ends, the lead assessor drafts the Report on Conformity over 2–4 weeks. The contractor receives a draft for factual review — an opportunity to identify factual errors (a system name misspelled, an evidence reference mis-cited) but not to dispute findings. The C3PAO's internal QA reviews the draft, then the final ROC is delivered to the contractor and submitted to the CMMC PMO with a certification recommendation.</p>
+        <p>Three possible outcomes:</p>
+        <ul>
+          <li><strong>Recommended for certification:</strong> All 110 requirements met (or any open items appropriately on POA&amp;M within rules). Certification granted by the PMO; valid for three years.</li>
+          <li><strong>Conditional certification:</strong> Some requirements not fully met, but on POA&amp;M with credible remediation plans. Certification granted conditionally with a 180-day window to close POA&amp;M items.</li>
+          <li><strong>Not recommended for certification:</strong> Material gaps that cannot be POA&amp;M-resolved. Contractor must remediate and re-engage for assessment.</li>
+        </ul>
+        <p>For the operational picture after certification — annual affirmations, change management, the three-year recertification — see the <a href="maintaining-certification.html">Maintaining Your Certification</a> guide.</p>
+
+        <h2 id="preparation">Preparing Your Team</h2>
+        <p>The assessment is as much a test of your organization's ability to articulate and demonstrate its security posture as it is a test of the controls themselves. A well-implemented control that the responsible SME cannot describe or demonstrate often produces a finding anyway. Preparation focuses on the people as much as the systems.</p>
+        <ul>
+          <li><strong>Identify each control family owner.</strong> One named person per family who can speak to the implementation. They do not have to be the implementer — they have to be able to describe and demonstrate.</li>
+          <li><strong>Conduct a mock interview cycle.</strong> Two to four weeks before fieldwork, run mock interviews with each family owner. Either internally (your ISSO or SSP author plays the assessor) or with a third-party readiness reviewer. Document the gaps surfaced.</li>
+          <li><strong>Pre-stage evidence.</strong> For each requirement, confirm the evidence is current, accessible from the assessment work area, and producible within minutes — not hours.</li>
+          <li><strong>Designate an Assessment Coordinator.</strong> One person who sits with the assessors throughout fieldwork, fields requests, escalates as needed, and keeps the contractor side organized. This role is typically the ISSO or a senior IT/compliance lead.</li>
+          <li><strong>Brief executive leadership.</strong> The System Owner and Authorizing Official may be interviewed. They should be prepared to speak to their security responsibilities, the SSP they signed, and the program they are accountable for. Executive interviews where the executive cannot articulate basic security commitments are common findings.</li>
+          <li><strong>Schedule conservatively.</strong> Interviews and observations take longer than planned. Build buffer time into the schedule. Plan for the assessment week to be a full work week for the assessment team — postpone non-critical organizational activity.</li>
+          <li><strong>Maintain composure.</strong> The assessment is intense but not adversarial. The lead assessor's job is to evaluate fairly and document accurately. Treat the team professionally; emotional or defensive reactions to questions tend to expand inquiry rather than resolve it.</li>
+        </ul>
+
+        <h2 id="references">Authoritative References</h2>
+        <div class="ref-grid">
+          <a href="https://cyberab.org/Portals/0/Documents/Process-Docs/CAP_v2.0_(Public_Release).pdf" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">CMMC Assessment Process (CAP) v2.0</div>
+            <div class="ref-card-desc">The Cyber AB's documented assessment methodology — what C3PAOs are supposed to follow during fieldwork</div>
+          </a>
+          <a href="https://csrc.nist.gov/publications/detail/sp/800-171a/final" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST SP 800-171A</div>
+            <div class="ref-card-desc">Assessment procedures for each 800-171 requirement — what the assessor is checking against</div>
+          </a>
+          <a href="https://www.acq.osd.mil/asda/dpc/cp/cyber/docs/safeguarding/NIST-SP-800-171-Assessment-Methodology-Version-1.2.1-20200916.pdf" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DoD Assessment Methodology v1.2.1</div>
+            <div class="ref-card-desc">Defines point weights for each requirement; high-weight requirements receive more assessor attention</div>
+          </a>
+          <a href="https://dodcio.defense.gov/CMMC/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DoD CIO CMMC Program Office</div>
+            <div class="ref-card-desc">Authoritative source for certification decisions and the relationship between C3PAO recommendations and PMO action</div>
+          </a>
+          <a href="https://cyberab.org/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">The Cyber AB</div>
+            <div class="ref-card-desc">CMMC Accreditation Body — assessor certification rules, complaint procedures, and methodology updates</div>
+          </a>
+          <a href="https://csrc.nist.gov/publications/detail/sp/800-171/rev-2/final" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST SP 800-171 Rev 2</div>
+            <div class="ref-card-desc">The 110 requirements being assessed</div>
+          </a>
+        </div>
+
+        <div class="callout green">
+          <p><strong>Related resources:</strong> Before the assessment, audit your <a href="evidence-library.html" style="color:var(--blue);font-weight:600;">evidence library</a> and confirm your <a href="policy-library.html" style="color:var(--blue);font-weight:600;">policy library</a> is complete. After the assessment, see <a href="maintaining-certification.html" style="color:var(--blue);font-weight:600;">Maintaining Your Certification</a>.</p>
+        </div>
+
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+        <p>Technical resources for DIB contractors navigating CMMC 2.0 Level 2 compliance.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html">CMMC 2.0 Guide</a></li>
+          <li><a href="resources.html#architecture">Architecture &amp; Scoping</a></li>
+          <li><a href="resources.html#controls">Control Family Guides</a></li>
+          <li><a href="resources.html#ssp">SSP &amp; POA&amp;M</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Key Topics</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html#who-needs-it">Who Needs to Comply</a></li>
+          <li><a href="guide.html#c3pao">C3PAO vs. Self-Assessment</a></li>
+          <li><a href="guide.html#sprs">SPRS Scoring</a></li>
+          <li><a href="guide.html#nist">110 Controls Reference</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resources.html">All Resources</a></li>
+          <li><a href="guide.html">CMMC Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Methodical Security LLC. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

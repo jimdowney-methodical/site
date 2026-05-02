@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing Your SSP: Section by Section — Methodical Security</title>
+  <meta name="description" content="A section-by-section walkthrough of writing a System Security Plan for CMMC Level 2 — what each section must contain, what assessors look for, and common mistakes to avoid.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="guide.html">CMMC Guide</a></li>
+    </ul>
+    <div></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="resources.html">Resources</a><span>›</span>
+        <span style="color:rgba(255,255,255,.7)">Writing Your SSP</span>
+      </div>
+      <span class="eyebrow">SSP Guide · 14-minute read · Based on NIST SP 800-18 &amp; CMMC Level 2</span>
+      <h1>Writing Your SSP: Section by Section</h1>
+      <p>A structured walkthrough of every required section in a CMMC Level 2 System Security Plan — what to write, what assessors verify, and the mistakes that cause the most assessment failures.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="guide-layout">
+
+      <!-- Sidebar -->
+      <aside class="guide-sidebar">
+        <div style="font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;">On this page</div>
+        <nav class="guide-sidebar-nav">
+          <a href="#overview" class="active">What Makes a Good SSP</a>
+          <a href="#s1">1. System Overview</a>
+          <a href="#s2">2. System Boundary</a>
+          <a href="#s3">3. System Environment</a>
+          <a href="#s4">4. Operational Environment &amp; CUI Flow</a>
+          <a href="#s5">5. Roles &amp; Responsibilities</a>
+          <a href="#s6">6. Control Implementation Statements</a>
+          <a href="#s7">7. Inheritance &amp; Shared Responsibility</a>
+          <a href="#s8">8. Interconnections &amp; External Systems</a>
+          <a href="#s9">9. Attachments</a>
+          <a href="#standards">Authoritative Standards</a>
+          <a href="#next-steps">Next Steps</a>
+        </nav>
+      </aside>
+
+      <!-- Content -->
+      <article class="guide-content">
+
+        <h2 id="overview">What Makes a Good SSP</h2>
+        <p>The <strong>System Security Plan (SSP)</strong> is the central document of your CMMC program. It is not a checkbox — it is the authoritative description of your environment and your security implementation. During a C3PAO assessment, assessors use your SSP as the baseline for every interview, observation, and evidence review they conduct. If your SSP says you do something, they will look for proof. If your SSP omits something you actually do, that creates confusion. If your SSP describes something you don't actually do, that is a finding.</p>
+        <p>A well-written SSP is accurate, specific, and environment-specific. Generic boilerplate text — describing industry-standard practices that are not actually implemented in your environment — is the single most common cause of C3PAO assessment failures. Write what is true, not what sounds good.</p>
+        <div class="callout">
+          <p><strong>The governing standard:</strong> CMMC Level 2 SSPs should be structured in accordance with <a href="https://csrc.nist.gov/publications/detail/sp/800-18/rev-1/final" target="_blank" rel="noopener noreferrer">NIST SP 800-18 Revision 1, "Guide for Developing Security Plans for Federal Information Systems."</a> The DoD has also published a CMMC SSP template available through the <a href="https://dodcio.defense.gov/CMMC/" target="_blank" rel="noopener noreferrer">CMMC Program Office</a> that maps directly to NIST 800-171 Rev 2 requirements. Use both.</p>
+        </div>
+
+        <h2 id="s1">Section 1: System Overview</h2>
+        <p>The system overview introduces your environment to any reader — including an assessor who has never seen your organization before. It must be specific enough that the reader understands exactly what system they are evaluating.</p>
+        <h3>What It Must Contain</h3>
+        <ul>
+          <li><strong>System name and abbreviation</strong> — the official name used throughout the SSP and by your organization</li>
+          <li><strong>System purpose</strong> — what the system does in operational terms, and why CUI exists in it</li>
+          <li><strong>CUI categories handled</strong> — specific categories from the <a href="https://www.archives.gov/cui/registry/category-list" target="_blank" rel="noopener noreferrer">NARA CUI Registry</a> (e.g., Technical Data, Export Controlled, Procurement and Acquisition) with a brief description of how each enters the environment</li>
+          <li><strong>Federal contracts supported</strong> — a list of contract numbers or programs whose CUI flows through this system (you do not need to include classified contract identifiers)</li>
+          <li><strong>System categorization</strong> — the sensitivity level of the CUI handled, based on your organization's CUI inventory</li>
+          <li><strong>Assessment date</strong> — when this version of the SSP was last reviewed and approved</li>
+        </ul>
+        <h3>What Assessors Look For</h3>
+        <p>Assessors want to confirm that the system you've described matches the system they're observing. They will ask: Does the stated purpose align with what personnel actually use the system for? Are all CUI categories accounted for? If engineers are also using this system to handle ITAR-controlled technical data but the SSP only mentions "Procurement CUI," that is a scope gap — and it invalidates much of your control documentation.</p>
+        <h3>Common Mistakes</h3>
+        <ul>
+          <li><strong>Vague system names:</strong> "Company IT Systems" is not a system name. If you have scoped your SSP to a specific environment — a CUI enclave, a set of workstations and servers — name that environment precisely and consistently throughout the document.</li>
+          <li><strong>Incomplete CUI categories:</strong> Organizations frequently list only the CUI categories they're most familiar with and miss others. Do a complete CUI inventory using the NARA registry before drafting this section.</li>
+        </ul>
+
+        <h2 id="s2">Section 2: System Boundary &amp; Authorization Boundary</h2>
+        <p>The system boundary defines what is inside the scope of your SSP and what is outside. This is arguably the most important section, because it determines which systems and controls are subject to assessment. A boundary that is too broad makes compliance harder; a boundary that is too narrow — that excludes systems that actually handle CUI — is a finding.</p>
+        <h3>What It Must Contain</h3>
+        <ul>
+          <li><strong>A written boundary statement</strong> describing what is in scope: which buildings, networks, systems, cloud environments, and user populations are covered</li>
+          <li><strong>What is explicitly out of scope</strong> and why — for example, an HR system that never touches CUI, or a guest Wi-Fi network that is physically isolated from CUI systems</li>
+          <li><strong>A high-level network boundary diagram</strong> showing the perimeter of the authorization boundary: where CUI enters, where it exits, and how internal zones relate to each other</li>
+          <li><strong>A statement about sub-enclaves or separate environments</strong> if your organization uses multiple network segments</li>
+        </ul>
+        <h3>What Assessors Look For</h3>
+        <p>Assessors will compare your boundary diagram against what they observe in your environment — firewall rules, Active Directory organizational units, cloud account structures, and physical access logs. They are particularly focused on whether any CUI can flow to systems outside the defined boundary without controls you've documented. An email gateway that forwards external messages to personal email, a backup system that replicates to an uncovered cloud account, or a contractor VPN that bypasses your documented controls are all boundary violations.</p>
+        <h3>Common Mistakes</h3>
+        <ul>
+          <li><strong>Omitting cloud services:</strong> If personnel access CUI using Microsoft 365, Google Workspace, a cloud storage service, or a SaaS application, those services are inside your boundary unless you can demonstrate CUI never enters them. "We told employees not to put CUI in Dropbox" is not a boundary control.</li>
+          <li><strong>Boundary diagrams that don't match reality:</strong> Diagrams are often drawn once and never updated. The diagram in your SSP must reflect your current network architecture, not the one from three years ago.</li>
+        </ul>
+
+        <h2 id="s3">Section 3: System Environment</h2>
+        <p>The system environment section is your hardware, software, and cloud services inventory — a factual accounting of every component within the authorization boundary.</p>
+        <h3>What It Must Contain</h3>
+        <ul>
+          <li><strong>Hardware inventory:</strong> Servers (physical and virtual), workstations, laptops, networking equipment (switches, routers, firewalls, WAPs), printers, and any other endpoint within the boundary — with make, model, and operating system</li>
+          <li><strong>Software inventory:</strong> All operating systems, applications, and utilities installed on in-scope systems — including version numbers</li>
+          <li><strong>Cloud services:</strong> Every SaaS, PaaS, or IaaS service used within the boundary, with provider name, service name, and the CUI handling purpose</li>
+          <li><strong>System interconnections summary:</strong> A brief reference to Section 8 for detailed interconnection information</li>
+          <li><strong>Baseline configuration reference:</strong> A pointer to your secure baseline configuration documentation (Configuration Management)</li>
+        </ul>
+        <h3>What Assessors Look For</h3>
+        <p>Assessors will spot-check your inventory against what they discover during technical review. If they find systems that aren't in your hardware inventory, or software that isn't in your software inventory, this is a Configuration Management (CM) finding. Your inventory must be current — not a snapshot from your last annual review.</p>
+        <h3>Common Mistakes</h3>
+        <ul>
+          <li><strong>Missing cloud services:</strong> Cloud services — especially SaaS tools adopted informally by employees — are routinely omitted. Conduct a thorough discovery, including DNS query logs and IT purchasing records, before finalizing this section.</li>
+          <li><strong>No version numbers:</strong> An inventory that lists "Windows 10" without build numbers, or "Apache" without a version, is insufficient. Assessors need to verify patch currency, and you can't do that without versions.</li>
+        </ul>
+
+        <h2 id="s4">Section 4: Operational Environment &amp; CUI Flow</h2>
+        <p>This section describes how CUI actually moves through your environment — how it arrives, how it's processed, where it's stored, and how it departs. It establishes the trust zones that form the foundation of your security architecture.</p>
+        <h3>What It Must Contain</h3>
+        <ul>
+          <li><strong>Data flow diagrams:</strong> Visual representations of how CUI enters the environment (email, secure file transfer, vendor portals), moves between internal systems, and exits (outbound transmissions, contractor sharing, archival)</li>
+          <li><strong>Trust zone definitions:</strong> A description of each network zone — CUI enclave, administrative network, DMZ, guest network — with the security controls applied at each zone boundary</li>
+          <li><strong>CUI storage locations:</strong> A specific list of where CUI at rest resides: file servers, databases, SharePoint sites, cloud storage, email systems, endpoint local drives</li>
+          <li><strong>CUI transmission methods:</strong> How CUI moves in transit — encrypted email, SFTP, VPN tunnels, secure web portals — and what encryption standards are applied</li>
+          <li><strong>CUI disposal:</strong> How CUI is destroyed or sanitized when no longer needed</li>
+        </ul>
+        <h3>What Assessors Look For</h3>
+        <p>Data flow diagrams must be technically accurate at the protocol level. Assessors will follow CUI through your environment during the assessment — tracing an actual email from external receipt through internal processing to storage — and compare what they observe against your diagram. Trust zone boundaries must be enforced by actual technical controls (firewall rules, VLAN configurations, access control lists), not just policy statements.</p>
+        <h3>Common Mistakes</h3>
+        <ul>
+          <li><strong>Omitting email as a CUI flow:</strong> Email is frequently the primary channel through which CUI enters a contractor environment. If your data flow diagram shows CUI only arriving via a secure portal but assessors find that program managers routinely receive CUI attachments via standard SMTP, your diagram is inaccurate.</li>
+          <li><strong>Trust zones without enforcement:</strong> Stating that your CUI systems are on a separate VLAN means nothing unless you can demonstrate that the VLAN configuration is actually enforced and that there is no uncontrolled path between the CUI VLAN and general-use network segments.</li>
+        </ul>
+
+        <h2 id="s5">Section 5: Roles &amp; Responsibilities</h2>
+        <p>This section identifies who is accountable for security within your environment and what each role is responsible for. CMMC assessors want to see that security responsibilities are assigned to named individuals or defined positions — not left undefined or assumed to belong to "IT."</p>
+        <h3>What It Must Contain</h3>
+        <ul>
+          <li><strong>System Owner:</strong> The individual with authority and accountability for the system — typically a senior executive. The System Owner approves the SSP and is responsible for ensuring controls are implemented.</li>
+          <li><strong>Information System Security Officer (ISSO):</strong> The individual who manages day-to-day security operations of the system. For small organizations, this may be the same person as the IT lead, but the role must be defined.</li>
+          <li><strong>System Administrator(s):</strong> Those with privileged access who manage hardware, software, and configurations within the boundary</li>
+          <li><strong>General Users:</strong> The population of non-privileged users who access CUI within the system</li>
+          <li><strong>Authorizing Official (AO):</strong> For CMMC purposes, this is typically the senior official who signs the SPRS attestation</li>
+          <li><strong>Role-specific security responsibilities:</strong> For each role, a list of specific security duties — not generic statements like "follows security policies" but specific actions: "reviews audit logs weekly," "approves access requests for privileged accounts," "conducts annual security training"</li>
+        </ul>
+        <h3>What Assessors Look For</h3>
+        <p>Assessors will interview personnel in these roles. If the System Owner cannot describe their security responsibilities, or if the ISSO cannot explain how they monitor security controls, that is a finding — regardless of what the SSP says. The roles and responsibilities section must reflect actual organizational practice, with actual named individuals who understand what they're supposed to do.</p>
+        <h3>Common Mistakes</h3>
+        <ul>
+          <li><strong>Leaving roles vacant or undefined:</strong> An SSP that says "ISSO: TBD" or assigns security responsibilities to a role that doesn't exist in the organization is unacceptable. Every defined role must have a named individual or, at minimum, a named position currently filled by an identified person.</li>
+          <li><strong>Assigning all responsibilities to one person:</strong> While small organizations may have limited staff, concentrating all security roles in a single individual creates both a practical risk and a documentation problem. If your sole IT person is the System Owner, ISSO, and System Administrator simultaneously, document how segregation of duty conflicts are mitigated.</li>
+        </ul>
+
+        <h2 id="s6">Section 6: Control Implementation Statements</h2>
+        <p>This is the core of your SSP — and the section that receives the most scrutiny during assessment. For each of the 110 NIST SP 800-171 Rev 2 requirements, you must write a specific statement describing exactly how your organization implements that requirement.</p>
+        <h3>What It Must Contain</h3>
+        <p>For each requirement, your implementation statement must address:</p>
+        <ul>
+          <li><strong>What you do:</strong> The specific technical or procedural control implemented (not what NIST says to do — what <em>you</em> actually do)</li>
+          <li><strong>How you do it:</strong> The specific tools, configurations, procedures, or mechanisms used</li>
+          <li><strong>Where it applies:</strong> Which systems, locations, or user populations the control applies to within the boundary</li>
+          <li><strong>Who is responsible:</strong> Which role owns the implementation and ongoing maintenance of the control</li>
+          <li><strong>Evidence of implementation:</strong> A reference to the artifact or evidence that demonstrates the control is in place (policy document, configuration screenshot, audit report, training record)</li>
+        </ul>
+        <div class="callout amber">
+          <p><strong>One statement per requirement — no exceptions.</strong> NIST SP 800-171 Rev 2 has 110 requirements. Your SSP must address all 110, either as implemented controls or as open items in your POA&amp;M. Requirements with no implementation statement and no POA&amp;M entry will be treated as not implemented — a point deduction in your SPRS score and a finding in your C3PAO assessment.</p>
+        </div>
+        <h3>What Assessors Look For</h3>
+        <p>Assessors cross-reference each implementation statement against observed evidence. For an Access Control requirement like AC.1.001 ("Limit information system access to authorized users"), an assessor will look for Active Directory or IAM configuration showing that only authorized accounts exist, that accounts are reviewed periodically, and that terminated employees are removed promptly. If your SSP says "access is reviewed quarterly" but no quarterly review records exist, the control is deficient.</p>
+        <p>For high-value requirements — those weighted 3 or 5 points in the DoD Assessment Methodology — assessors apply additional scrutiny. The following families carry disproportionate SPRS weight and must have especially detailed, evidence-backed implementation statements:</p>
+        <ul>
+          <li>Access Control (AC) — 22 requirements, many with 3–5 point weights</li>
+          <li>Identification &amp; Authentication (IA) — MFA requirements carry the highest individual weights</li>
+          <li>System &amp; Communications Protection (SC) — encryption and network boundary requirements</li>
+          <li>Audit &amp; Accountability (AU) — logging requirements are frequently deficient and heavily weighted</li>
+        </ul>
+        <h3>Common Mistakes</h3>
+        <ul>
+          <li><strong>Copying NIST requirement text as the implementation statement:</strong> Writing "We limit system access to authorized users, processes acting on behalf of authorized users, and devices" verbatim from NIST tells an assessor nothing about what you actually do. Your statement must describe your specific implementation.</li>
+          <li><strong>Writing aspirational statements:</strong> "Access will be reviewed periodically" is not an implementation statement. "The IT administrator reviews Active Directory user accounts against the HR termination report on the last business day of each quarter; records are maintained in the Access Review SharePoint folder" is. Write what you do, not what you intend to do.</li>
+        </ul>
+
+        <h2 id="s7">Section 7: Inheritance &amp; Shared Responsibility</h2>
+        <p>When your organization uses cloud services or other external providers, some security controls may be partially or fully implemented by those providers rather than by your organization directly. This is called control inheritance, and it must be explicitly documented.</p>
+        <h3>What It Must Contain</h3>
+        <ul>
+          <li><strong>A list of all cloud and external service providers</strong> within the authorization boundary, including service names and account identifiers</li>
+          <li><strong>For each provider: which NIST 800-171 requirements are fully inherited, which are shared, and which remain solely your organization's responsibility</strong></li>
+          <li><strong>The provider's authorization status:</strong> Is the provider FedRAMP Authorized? At what impact level? If the provider is not FedRAMP authorized, how have you validated their security posture? (A SOC 2 Type II report, contractual security requirements, or a provider security assessment may be relevant.)</li>
+          <li><strong>Responsibility matrix:</strong> A table mapping each provider to the specific controls for which they bear responsibility</li>
+        </ul>
+        <div class="callout">
+          <p><strong>FedRAMP and CMMC:</strong> For cloud services that store, process, or transmit CUI, DoD policy generally requires that the cloud service meet the <a href="https://www.fedramp.gov" target="_blank" rel="noopener noreferrer">FedRAMP Moderate baseline</a> or an equivalent standard. If you use a non-FedRAMP-authorized cloud service for CUI, you must document the compensating controls and risk acceptance. This is an area of heightened assessor scrutiny.</p>
+        </div>
+        <h3>What Assessors Look For</h3>
+        <p>Assessors will look for inherited control documentation — typically a FedRAMP package summary, customer responsibility matrix (CRM), or equivalent document from the provider. They want to see that your organization understands which controls are your responsibility and has implemented them. Saying "Microsoft handles security for Office 365" without specifying which controls Microsoft covers and which you must configure yourself is insufficient.</p>
+        <h3>Common Mistakes</h3>
+        <ul>
+          <li><strong>Assuming all cloud controls are inherited:</strong> Cloud providers operate on a shared responsibility model. Physical security, infrastructure, and hypervisor-level controls may be inherited — but identity configuration, access control policies, audit logging, and data classification are almost always your responsibility, even in a cloud-hosted environment.</li>
+          <li><strong>No documentation of provider authorization:</strong> If your cloud provider is FedRAMP authorized, include the package identifier. If they're not, document how you assessed and accepted the risk of using a non-authorized service for CUI.</li>
+        </ul>
+
+        <h2 id="s8">Section 8: Interconnections &amp; External Systems</h2>
+        <p>Every external system that your in-scope environment exchanges data with — whether CUI is transmitted or not — must be documented here. An interconnection is any point where your authorization boundary connects to a system outside your control.</p>
+        <h3>What It Must Contain</h3>
+        <ul>
+          <li><strong>For each interconnection:</strong> the external system name, owner, and purpose of the connection; the data types exchanged (including whether CUI is transmitted); the technical method (VPN, API, SFTP, HTTPS, email relay); the security controls governing the connection; and who authorized the interconnection</li>
+          <li><strong>Interconnection Security Agreements (ISAs):</strong> References to any formal agreements governing the security requirements of each connection</li>
+          <li><strong>Government systems:</strong> Any connections to DoD or other federal agency systems — DISA systems, government-furnished equipment networks, prime contractor systems</li>
+          <li><strong>Third-party service provider connections:</strong> Managed service providers, IT support firms with remote access, or subcontractors with system-to-system connections</li>
+        </ul>
+        <h3>What Assessors Look For</h3>
+        <p>Assessors compare your interconnection list against firewall logs, network flow data, and DNS records to find undocumented connections. An unmanaged remote access connection — a technician using a personal laptop with a remote desktop tool to access in-scope systems — is an undocumented interconnection and an access control finding. VPN configurations, remote monitoring tools, and any "phone home" software on in-scope systems are all subject to review.</p>
+        <h3>Common Mistakes</h3>
+        <ul>
+          <li><strong>Omitting managed service provider connections:</strong> If an MSP manages your infrastructure and has remote access to your systems, that is an interconnection. It must be documented, and the MSP's security practices must be addressed — either through a contractual requirement, an ISA, or a security assessment of the MSP's environment.</li>
+          <li><strong>Listing connections without security details:</strong> "VPN to Prime Contractor" is not sufficient. Document the VPN protocol, the encryption standard, who on each end can initiate and terminate the connection, what data types are transmitted, and what access controls are in place at the termination point on your side.</li>
+        </ul>
+
+        <h2 id="s9">Section 9: Attachments</h2>
+        <p>The attachments section pulls together all the supporting artifacts that evidence your implementation. A well-organized attachment package transforms your SSP from a text document into a verifiable compliance record.</p>
+        <h3>What It Must Contain</h3>
+        <ul>
+          <li><strong>Network architecture diagrams:</strong> Detailed topology diagrams showing all in-scope systems, their IP ranges, network segments, firewall locations, and interconnections — current as of the SSP date</li>
+          <li><strong>Hardware inventory:</strong> The complete asset inventory from Section 3, formatted as a table with system name, make/model, OS, IP address, location, and custodian</li>
+          <li><strong>Software inventory:</strong> Complete list of approved software with versions and the systems on which each is installed</li>
+          <li><strong>Policy and procedure documents:</strong> References or copies of all security policies cited in control implementation statements — Acceptable Use Policy, Access Control Policy, Incident Response Plan, Configuration Management Plan, etc.</li>
+          <li><strong>User roster:</strong> A current list of authorized users with their roles, access levels, and MFA enrollment status</li>
+          <li><strong>POA&amp;M cross-reference:</strong> A table mapping any not-yet-implemented requirements to their POA&amp;M entries</li>
+        </ul>
+        <h3>What Assessors Look For</h3>
+        <p>Attachments must be current. Diagrams dated two years ago, policies that haven't been reviewed in three years, or hardware inventories with systems that no longer exist all signal that your SSP is not actively maintained — which itself is a Security Assessment (CA) finding. Every attachment should carry a "last updated" date.</p>
+        <h3>Common Mistakes</h3>
+        <ul>
+          <li><strong>Policies that are referenced but don't exist:</strong> Implementation statements frequently cite policies by name — "per the Acceptable Use Policy" or "per the Incident Response Plan" — but no such document exists in the attachment package or document management system. Every cited policy must exist and must be producible on demand.</li>
+          <li><strong>Diagrams at the wrong level of detail:</strong> A high-level "boxes and arrows" diagram that doesn't show IP ranges, VLANs, firewall rules, or trust zone boundaries gives an assessor very little to work with. Assessors need enough detail to evaluate your network segmentation and boundary protection controls — which means Layer 2/3 topology, not just application-layer architecture.</li>
+        </ul>
+
+        <h2 id="standards">Authoritative Standards for SSP Development</h2>
+        <div class="ref-grid">
+          <a href="https://csrc.nist.gov/publications/detail/sp/800-18/rev-1/final" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST SP 800-18 Rev 1</div>
+            <div class="ref-card-desc">Guide for Developing Security Plans for Federal Information Systems — the authoritative template and structural standard for SSP authoring</div>
+          </a>
+          <a href="https://csrc.nist.gov/publications/detail/sp/800-171/rev-2/final" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST SP 800-171 Rev 2</div>
+            <div class="ref-card-desc">The 110 requirements your SSP must address — each requirement corresponds to at least one control implementation statement</div>
+          </a>
+          <a href="https://csrc.nist.gov/publications/detail/sp/800-171a/final" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST SP 800-171A</div>
+            <div class="ref-card-desc">Assessment procedures for each 800-171 requirement — write your implementation statements with these assessment objectives in mind</div>
+          </a>
+          <a href="https://dodcio.defense.gov/CMMC/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DoD CMMC SSP Template</div>
+            <div class="ref-card-desc">The DoD's official SSP template for CMMC Level 2, available through the CMMC Program Office — use this as your starting structure</div>
+          </a>
+          <a href="https://www.acq.osd.mil/asda/dpc/cp/cyber/docs/safeguarding/NIST-SP-800-171-Assessment-Methodology-Version-1.2.1-20200916.pdf" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DoD Assessment Methodology v1.2.1</div>
+            <div class="ref-card-desc">Defines point weights for each requirement — prioritize high-weight controls for detailed implementation statements</div>
+          </a>
+          <a href="https://www.fedramp.gov/documents/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">FedRAMP Customer Responsibility Matrix</div>
+            <div class="ref-card-desc">Templates from FedRAMP-authorized cloud providers showing which controls are inherited vs. customer-responsible — essential for Section 7</div>
+          </a>
+        </div>
+
+        <h2 id="next-steps">After Your SSP: Maintaining and Improving It</h2>
+        <p>An SSP is not a one-time deliverable. CMMC requires that your SSP be reviewed and updated at least annually, and whenever significant changes occur to your system, environment, or security posture. Every change to your authorization boundary, every new cloud service adopted, every organizational change affecting security roles — all of these require an SSP update.</p>
+        <p>Treat your SSP as a living operational document, not a compliance artifact filed away after submission. Organizations that maintain accurate, current SSPs consistently perform better in assessments because their documentation reflects reality.</p>
+        <div class="callout green">
+          <p><strong>Related resources:</strong> Once your SSP is drafted, the next step is calculating and submitting your SPRS score. See our guide on <a href="sprs-submission.html" style="color:var(--blue);font-weight:600;">Submitting Your SPRS Score</a>, and explore the full <a href="resources.html" style="color:var(--blue);font-weight:600;">resource library</a> for control family implementation guides.</p>
+        </div>
+
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+        <p>Technical resources for DIB contractors navigating CMMC 2.0 Level 2 compliance.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html">CMMC 2.0 Guide</a></li>
+          <li><a href="resources.html#controls">Control Family Guides</a></li>
+          <li><a href="resources.html#ssp">SSP &amp; POA&amp;M</a></li>
+          <li><a href="resources.html#oscal">Automation &amp; OSCAL</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Key Topics</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html#who-needs-it">Who Needs to Comply</a></li>
+          <li><a href="guide.html#c3pao">C3PAO vs. Self-Assessment</a></li>
+          <li><a href="guide.html#sprs">SPRS Scoring</a></li>
+          <li><a href="guide.html#nist">110 Controls Reference</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resources.html">All Resources</a></li>
+          <li><a href="guide.html">CMMC Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Methodical Security LLC. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

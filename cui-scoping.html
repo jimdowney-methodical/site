@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CUI Scoping Methodology: Finding Where Your CUI Actually Lives — Methodical Security</title>
+  <meta name="description" content="A practical methodology for inventorying Controlled Unclassified Information across a defense contractor's environment — the foundation of every CMMC scope, SSP boundary, and enclave decision.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .inventory-table { width:100%; border-collapse:collapse; margin:14px 0 22px; font-size:.86rem; }
+    .inventory-table th, .inventory-table td { padding:10px 12px; border:1px solid var(--border); text-align:left; vertical-align:top; }
+    .inventory-table thead th { background:var(--navy); color:#fff; font-weight:600; font-size:.76rem; text-transform:uppercase; letter-spacing:.05em; }
+    .inventory-table tbody tr:nth-child(even) { background:#f8fafc; }
+    .shadow-list { background:#fffbeb; border:1px solid var(--amber); border-radius:8px; padding:16px 22px; margin:16px 0; }
+    .shadow-list h4 { margin:0 0 8px; color:#92400e; font-size:.95rem; }
+    .shadow-list ul { margin:6px 0 0 20px; }
+    .shadow-list li { color:var(--text); font-size:.92rem; line-height:1.7; margin-bottom:6px; }
+    .field-list { background:var(--surface); border-radius:8px; padding:16px 22px; margin:14px 0; }
+    .field-list h4 { margin:0 0 8px; color:var(--navy); font-size:.95rem; }
+    .field-list ol { margin:6px 0 0 20px; }
+    .field-list li { font-size:.92rem; line-height:1.7; margin-bottom:6px; color:var(--text); }
+    .field-list strong { color:var(--navy); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="guide.html">CMMC Guide</a></li>
+    </ul>
+    <div></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="resources.html">Resources</a><span>›</span>
+        <span style="color:rgba(255,255,255,.7)">CUI Scoping</span>
+      </div>
+      <span class="eyebrow">Pre-Assessment · 14-minute read · Foundational</span>
+      <h1>CUI Scoping Methodology</h1>
+      <p>Before you write an SSP, choose an enclave platform, or run a self-assessment, you have to know where your CUI actually lives. This is the inventory exercise that nearly every contractor underestimates — and that drives every downstream scoping, architecture, and remediation decision.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="guide-layout">
+
+      <aside class="guide-sidebar">
+        <div style="font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;">On this page</div>
+        <nav class="guide-sidebar-nav">
+          <a href="#why-first" class="active">Why Scoping Comes First</a>
+          <a href="#terminology">CUI vs. CDI vs. FCI</a>
+          <a href="#nara">Reading the NARA Registry</a>
+          <a href="#contract-driven">Start From Your Contracts</a>
+          <a href="#five-questions">The Five Inventory Questions</a>
+          <a href="#shadow-cui">The Shadow CUI Problem</a>
+          <a href="#documenting">Documenting the Inventory</a>
+          <a href="#to-boundary">From Inventory to Boundary</a>
+          <a href="#pitfalls">Common Pitfalls</a>
+          <a href="#references">Authoritative References</a>
+        </nav>
+      </aside>
+
+      <article class="guide-content">
+
+        <h2 id="why-first">Why Scoping Comes First</h2>
+        <p>Every CMMC compliance decision downstream of CUI scoping depends on knowing what CUI you have. The architecture choice (whole-org compliance versus enclave) hinges on how much CUI you handle and how concentrated it is. The SSP boundary statement is a written description of where your CUI lives. The cost of remediation scales directly with the count of in-scope systems. The cost of the C3PAO assessment scales with the count of in-scope users, applications, and network segments.</p>
+        <p>An incomplete CUI inventory invalidates everything that follows. If you scope your enclave to a 10-person engineering team but program managers in a different department also receive CUI by email, your enclave does not actually contain all your CUI — and your SSP, your remediation plan, and your assessor's findings will all reflect that gap.</p>
+        <p>The good news: scoping is one of the few CMMC activities that is genuinely free. It costs time and discipline, not money. Done well, it can be the single largest cost-saving step in your entire compliance program — by ruling things <em>out</em> of scope as well as identifying what's <em>in</em>.</p>
+
+        <h2 id="terminology">CUI vs. CDI vs. FCI: Resolve the Terms First</h2>
+        <p>Three overlapping terms appear in the regulations and trip up nearly every new reader. Resolve them before you start the inventory.</p>
+        <ul>
+          <li><strong>Federal Contract Information (FCI):</strong> Information not intended for public release, provided by or generated for the government under a contract. Broadest and least sensitive of the three. Triggers FAR 52.204-21 and CMMC Level 1.</li>
+          <li><strong>Controlled Unclassified Information (CUI):</strong> Government-created or government-owned information requiring safeguarding under a law, regulation, or government-wide policy. Categories are enumerated in the NARA CUI Registry. Triggers DFARS 252.204-7012 and CMMC Level 2.</li>
+          <li><strong>Covered Defense Information (CDI):</strong> The DFARS-specific subset of CUI. Defined in DFARS 252.204-7012 as unclassified controlled technical information or other CUI marked or otherwise identified in a contract that is collected, developed, received, transmitted, used, or stored in support of contract performance. <em>All CDI is CUI; not all CUI is CDI</em> (CUI on a non-DoD contract isn't called CDI).</li>
+        </ul>
+        <p>For practical CMMC scoping work, treat any CUI you receive in connection with a DoD contract as CDI. The scoping exercise below applies to both terms.</p>
+
+        <h2 id="nara">Reading the NARA Registry as a Discovery Tool</h2>
+        <p>The <a href="https://www.archives.gov/cui/registry/category-list" target="_blank" rel="noopener noreferrer">NARA CUI Registry</a> is the authoritative list of CUI categories — over 100 categories grouped into 20 organizational indexes (Defense, Critical Infrastructure, Export Control, Privacy, Procurement and Acquisition, etc.). Most contractors approach it as a reference; treat it instead as a discovery tool.</p>
+        <p>Read every category in every index that could plausibly relate to your work. The categories most relevant to defense contractors include:</p>
+        <ul>
+          <li><strong>Controlled Technical Information (CTI):</strong> Technical information with military or space application that is subject to controls on access, use, reproduction, modification, performance, display, release, disclosure, or dissemination. The most common CUI category for engineering and manufacturing contractors.</li>
+          <li><strong>Defense Information:</strong> Information about military operations, plans, or capabilities that does not rise to the level of classification.</li>
+          <li><strong>Export Controlled (EXPT):</strong> Information subject to ITAR or EAR. Carries US-person access restrictions in addition to CUI safeguarding. See the <a href="itar-ear-controls.html">ITAR/EAR controls guide</a>.</li>
+          <li><strong>Procurement and Acquisition:</strong> Source selection information, sealed bid information, and proprietary contractor information received during acquisition.</li>
+          <li><strong>Critical Infrastructure (PCII, CEII):</strong> Protected Critical Infrastructure Information and Critical Energy Infrastructure Information — relevant for contractors supporting defense facilities, energy, or transportation.</li>
+          <li><strong>Privacy (PII categories):</strong> Personnel records, medical records, and similar information often present incidentally in contractor environments.</li>
+        </ul>
+        <p>Walk through the registry with the people in your organization who actually handle the work — engineers, program managers, contracts staff, HR. Ask them to identify what they receive and create. The registry will surface categories you would not have thought to look for.</p>
+
+        <h2 id="contract-driven">Start From Your Contracts</h2>
+        <p>The most reliable starting point for a CUI inventory is your contracts themselves. Every DoD contract under DFARS 252.204-7012 names the CUI categories the contractor will handle. The contract tells you what the government expects you to be safeguarding.</p>
+        <p>For each active and recent DoD contract:</p>
+        <ol>
+          <li>Identify the CUI categories named in the contract or its attachments (DD-254, statement of work, security classification guide)</li>
+          <li>Identify the deliverables the contract requires you to produce — those deliverables will themselves be CUI in most cases</li>
+          <li>Identify the data the government will provide you (technical data packages, drawings, source selection information, etc.) — these are CUI on receipt</li>
+          <li>Note any flow-down obligations to subcontractors handling that CUI (see the <a href="dfars-flow-down.html">DFARS flow-down guide</a>)</li>
+        </ol>
+        <p>Build a contract-by-contract table: contract number, CUI categories handled, government data inputs, contractor data outputs, points of contact for each, and the prime if you are the sub. This table becomes the spine of your CUI inventory and feeds directly into your SSP system overview section.</p>
+
+        <h2 id="five-questions">The Five Inventory Questions</h2>
+        <p>For each CUI category identified in the contract review, work through five questions. Together they produce the inventory artifact that downstream activities depend on.</p>
+
+        <div class="field-list">
+          <h4>1. Who creates or receives this CUI?</h4>
+          <ol>
+            <li><strong>People:</strong> Specific named individuals or roles (program manager X, the engineering team, the contracts office). Not "the company."</li>
+            <li><strong>Systems:</strong> Where data first enters your environment — email gateway, vendor portal, file transfer system, physical mail intake.</li>
+            <li><strong>External parties:</strong> The prime, the government, the customer organization, an upstream subcontractor.</li>
+          </ol>
+        </div>
+
+        <div class="field-list">
+          <h4>2. Where is it stored?</h4>
+          <ol>
+            <li><strong>Primary storage:</strong> The system of record — file server, SharePoint, cloud storage, ERP, CAD/PLM system.</li>
+            <li><strong>Working copies:</strong> User endpoints (laptops, workstations), local OneDrive folders, USB drives.</li>
+            <li><strong>Backups and archives:</strong> Backup systems, replication targets, long-term archives.</li>
+            <li><strong>Email:</strong> Inboxes, sent folders, attachments. Email is the most-overlooked CUI repository.</li>
+            <li><strong>Hardcopy:</strong> Printed drawings, contract files, lab notebooks.</li>
+          </ol>
+        </div>
+
+        <div class="field-list">
+          <h4>3. Who can access it?</h4>
+          <ol>
+            <li><strong>Current authorized users:</strong> The named user list with access to each storage location.</li>
+            <li><strong>System administrators:</strong> Who can read CUI in the course of administering the systems.</li>
+            <li><strong>External access:</strong> Contractors, MSPs, cloud admin, support staff with access.</li>
+            <li><strong>Inherited access:</strong> Users who don't currently have access but could grant themselves access (privileged accounts, group memberships).</li>
+          </ol>
+        </div>
+
+        <div class="field-list">
+          <h4>4. How does it leave?</h4>
+          <ol>
+            <li><strong>Outbound to the government or prime:</strong> Deliverables, status reports, drawings sent for review.</li>
+            <li><strong>Outbound to subcontractors:</strong> CUI flowed down for subcontractor performance.</li>
+            <li><strong>Outbound to vendors and tools:</strong> Cloud services, analytics tools, anywhere CUI moves to support a workflow.</li>
+            <li><strong>Disposal:</strong> When and how is CUI destroyed when no longer needed.</li>
+          </ol>
+        </div>
+
+        <div class="field-list">
+          <h4>5. How is it labeled?</h4>
+          <ol>
+            <li><strong>Banner markings:</strong> Whether documents arrive with proper CUI banner markings (and whether your team knows to apply them on creation).</li>
+            <li><strong>Category designators:</strong> Which CUI categories are noted on the marking (CUI//SP-CTI, CUI//SP-EXPT, etc.).</li>
+            <li><strong>Distribution statements:</strong> For technical data, which DoD distribution statement applies (Distribution A through F).</li>
+          </ol>
+        </div>
+
+        <p>Work these questions for each CUI category your contracts identify. The result is a structured inventory: for each category of CUI, who handles it, where it lives, who has access, how it moves, and how it's labeled. This inventory is the prerequisite for every downstream activity.</p>
+
+        <h2 id="shadow-cui">The Shadow CUI Problem</h2>
+        <p>Beyond the CUI you receive directly, most contractors create or accumulate CUI in ways that no contract review or system inventory will surface. This is shadow CUI — and finding it is the part of scoping that requires the most discipline.</p>
+
+        <div class="shadow-list">
+          <h4>Shadow CUI patterns to look for</h4>
+          <ul>
+            <li><strong>Email forwards and replies.</strong> A contract specialist forwards a CUI document to a colleague who is on a different DL than the original recipient list. The recipient was not authorized; the email server now holds CUI in two inboxes plus the audit log.</li>
+            <li><strong>Engineering working files.</strong> A CAD file received as a design input is opened, modified, and saved with a new name in a project folder. The project folder may not be classified as a CUI repository.</li>
+            <li><strong>Screenshots and clippings.</strong> A program manager takes a screenshot of a CUI document for a presentation. The screenshot is saved to local storage and embedded in PowerPoint.</li>
+            <li><strong>Reports derived from CUI.</strong> Status reports, dashboards, and analyses that aggregate or summarize CUI inputs may themselves be CUI even if the report format looks innocuous.</li>
+            <li><strong>Cached and rendered files.</strong> When a user opens a CUI attachment, copies are cached in temp folders, browser caches, application working directories. These survive after the user thinks they've closed the file.</li>
+            <li><strong>Mobile device sync.</strong> Email sync to phones, OneDrive sync to iPads, automatic photo backup of screenshots — every sync extends the CUI footprint to a new device.</li>
+            <li><strong>Voicemail and call recordings.</strong> A program manager leaves a voicemail discussing CUI specifics. The voicemail platform now holds CUI.</li>
+            <li><strong>Conversation transcripts.</strong> Meeting recordings, transcription services, and AI-assistant call summaries may capture CUI verbatim.</li>
+            <li><strong>Test, dev, and training environments.</strong> CUI files copied into a non-production environment for testing, training, or development. Frequently outside the CUI boundary.</li>
+            <li><strong>Vendor and consultant files.</strong> CUI shared with outside counsel, an outside consultant, an auditor, or an investor under NDA — all of which create CUI footprints outside your environment.</li>
+          </ul>
+        </div>
+
+        <p>Surfacing shadow CUI requires a combination of interview-based discovery (asking users what they actually do with CUI), technical discovery (DLP scans of file shares and email, search across endpoints, cloud storage audits), and process review (workflow walkthroughs). It is worth doing before — not after — you finalize your CUI boundary.</p>
+
+        <h2 id="documenting">Documenting the Inventory</h2>
+        <p>The CUI inventory is a working artifact, not a one-time deliverable. Document it in a form that can be maintained and reviewed.</p>
+
+        <table class="inventory-table">
+          <thead>
+            <tr><th>Field</th><th>Purpose</th><th>Example</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>CUI category</td><td>Maps to NARA registry</td><td>Controlled Technical Information (CTI)</td></tr>
+            <tr><td>Source contract(s)</td><td>Establishes the safeguarding obligation</td><td>FA8000-25-D-1234</td></tr>
+            <tr><td>Description</td><td>What the data actually is, in plain language</td><td>Engineering drawings for the X-100 propulsion subsystem</td></tr>
+            <tr><td>Origin</td><td>How it enters the environment</td><td>Receipt by program manager via Kiteworks transfer from prime</td></tr>
+            <tr><td>Storage locations</td><td>Where it resides at rest</td><td>SharePoint X-100 site (primary); user OneDrive (working copies); engineering file server (master copies)</td></tr>
+            <tr><td>Authorized users</td><td>Specific named individuals or roles</td><td>X-100 engineering team (12 named users); program manager; contracts officer</td></tr>
+            <tr><td>Outbound destinations</td><td>Where copies leave to</td><td>Subcontractor Y via Kiteworks; prime via Kiteworks; archive after contract close</td></tr>
+            <tr><td>Marking status</td><td>Whether banner markings are applied</td><td>Marked on receipt; markings preserved on derivative works per CTI policy</td></tr>
+            <tr><td>Disposition</td><td>When and how it is destroyed</td><td>Retained for contract life + 6 years per FAR 4.703; destroyed by NIST 800-88 sanitization</td></tr>
+            <tr><td>Last verified</td><td>Date the inventory entry was confirmed accurate</td><td>2026-04-15</td></tr>
+          </tbody>
+        </table>
+
+        <p>One row per CUI category, per contract (or per program if the categories are shared across contracts). Update the inventory at least annually, and whenever a new CUI source enters your environment.</p>
+
+        <div class="callout">
+          <p><strong>The inventory feeds the SSP.</strong> Section 1 (System Overview) of your SSP describes the CUI categories handled. Section 2 (Boundary) describes where they live. Section 4 (CUI Flow) describes how they move. Your inventory is the source of truth for all three sections — see the <a href="ssp-guide.html">SSP guide</a> for the documentation requirements.</p>
+        </div>
+
+        <h2 id="to-boundary">From Inventory to Boundary</h2>
+        <p>The CUI inventory drives the boundary decision. With the inventory in hand, ask:</p>
+        <ul>
+          <li><strong>How concentrated is the CUI?</strong> If most CUI lives in a small set of systems used by a small set of people, an enclave is feasible. If CUI is scattered across the enterprise (every engineer's laptop, the general SharePoint, the corporate email system), enclaving is harder and a whole-org compliance approach may be more honest.</li>
+          <li><strong>Can the boundary be enforced?</strong> An enclave is only as strong as the controls preventing CUI from crossing it. If shadow CUI patterns suggest CUI routinely crosses to personal email, BYOD, or commercial cloud, the boundary will not hold.</li>
+          <li><strong>What scope reduction is realistic?</strong> A common error is assuming an enclave will reduce scope by 90% when in practice it reduces it by 40% because half the organization continues to receive CUI by email. Build the inventory before estimating the scope reduction.</li>
+        </ul>
+        <p>Once the inventory is solid, move to architecture: see the <a href="enclave-architecture.html">enclave architecture guide</a> for the patterns and tradeoffs in detail.</p>
+
+        <h2 id="pitfalls">Common Pitfalls</h2>
+        <ul>
+          <li><strong>Asking only IT.</strong> IT can tell you which systems exist; only the users can tell you what's in them. The inventory must be informed by the people who actually handle CUI in the course of their work — not derived from a network scan.</li>
+          <li><strong>Assuming "we don't have CUI."</strong> Many contractors who hold prime or subcontract relationships under DoD believe they don't handle CUI. Read the contracts before drawing that conclusion. CUI obligations attach by contract clause, not by self-assessment.</li>
+          <li><strong>Treating the inventory as a one-time document.</strong> CUI flows change as contracts start and end, as personnel change roles, as new tools are adopted. An inventory frozen at the time of your initial assessment will be stale within months.</li>
+          <li><strong>Missing the marking obligation.</strong> Receiving CUI is one obligation; creating derivative works (reports, analyses, drawings) carries the obligation to apply CUI markings to those derivatives. Your inventory should note marking status as a control item, not just an observation.</li>
+          <li><strong>Conflating CUI with all sensitive information.</strong> Trade secrets, internal financials, and other proprietary data are sensitive but are not CUI unless they meet the regulatory definition. Over-scoping by treating proprietary data as CUI inflates compliance cost without serving the regulatory purpose.</li>
+        </ul>
+
+        <h2 id="references">Authoritative References</h2>
+        <div class="ref-grid">
+          <a href="https://www.archives.gov/cui/registry/category-list" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NARA CUI Registry</div>
+            <div class="ref-card-desc">The authoritative list of CUI categories — read it as a discovery tool, not just a reference</div>
+          </a>
+          <a href="https://www.archives.gov/cui/registry/limited-dissemination" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NARA Limited Dissemination Controls</div>
+            <div class="ref-card-desc">Markings that may appear in addition to the CUI banner — NOFORN, REL TO USA, FED ONLY, and others</div>
+          </a>
+          <a href="https://www.dodcui.mil/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DoD CUI Program Office</div>
+            <div class="ref-card-desc">DoD-specific guidance on CUI marking, handling, and the Defense CUI Registry</div>
+          </a>
+          <a href="https://www.acquisition.gov/dfars/252.204-7012-safeguarding-covered-defense-information-and-cyber-incident-reporting" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DFARS 252.204-7012</div>
+            <div class="ref-card-desc">The clause that defines Covered Defense Information and creates the safeguarding obligation</div>
+          </a>
+          <a href="https://csrc.nist.gov/publications/detail/sp/800-171/rev-2/final" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST SP 800-171 Rev 2</div>
+            <div class="ref-card-desc">The 110 requirements that apply to systems holding CUI — your inventory determines which systems they apply to</div>
+          </a>
+          <a href="https://www.archives.gov/cui/registry/category-detail/ctrl-tech-info" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NARA: Controlled Technical Information</div>
+            <div class="ref-card-desc">Detailed definition of the CTI category — the most common CUI type for defense contractors</div>
+          </a>
+        </div>
+
+        <div class="callout green">
+          <p><strong>Next steps:</strong> With your CUI inventory in hand, work through the <a href="enclave-architecture.html" style="color:var(--blue);font-weight:600;">enclave architecture decision</a>, then document the inventory in your <a href="ssp-guide.html" style="color:var(--blue);font-weight:600;">SSP boundary section</a>. If you flow CUI to subcontractors, see <a href="dfars-flow-down.html" style="color:var(--blue);font-weight:600;">DFARS 252.204-7012(m) flow-down obligations</a>.</p>
+        </div>
+
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+        <p>Technical resources for DIB contractors navigating CMMC 2.0 Level 2 compliance.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html">CMMC 2.0 Guide</a></li>
+          <li><a href="resources.html#architecture">Architecture &amp; Scoping</a></li>
+          <li><a href="resources.html#controls">Control Family Guides</a></li>
+          <li><a href="resources.html#ssp">SSP &amp; POA&amp;M</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Key Topics</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html#who-needs-it">Who Needs to Comply</a></li>
+          <li><a href="guide.html#c3pao">C3PAO vs. Self-Assessment</a></li>
+          <li><a href="guide.html#sprs">SPRS Scoring</a></li>
+          <li><a href="guide.html#nist">110 Controls Reference</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resources.html">All Resources</a></li>
+          <li><a href="guide.html">CMMC Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Methodical Security LLC. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

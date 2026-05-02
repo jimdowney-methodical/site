@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Family Guides — Methodical Security</title>
+  <meta name="description" content="Plain-English guides for all 14 NIST SP 800-171 Rev 2 control families — what each requirement means, how to implement it, and what assessors look for.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="guide.html">CMMC Guide</a></li>
+    </ul>
+    <div></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ── INDEX MODE ─────────────────────────────────────────────────────────── -->
+<div id="cf-index-section">
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><a href="resources.html">Resources</a><span>›</span><span style="color:rgba(255,255,255,.7)">Control Families</span></div>
+        <span class="eyebrow">NIST SP 800-171 Rev 2</span>
+        <h1>Control Family Guides</h1>
+        <p>Plain-English breakdowns of all 14 security requirement families — what each control requires, how to implement it, and what evidence a C3PAO assessor will look for.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--surface);">
+    <div class="container">
+      <div id="cf-index-grid" class="cf-index-grid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ── FAMILY GUIDE MODE ──────────────────────────────────────────────────── -->
+<div id="cf-guide-section" style="display:none">
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="breadcrumb" id="cf-breadcrumb"></div>
+        <span class="eyebrow">Control Family Guide</span>
+        <h1 id="cf-family-name"></h1>
+        <p id="cf-family-intro" style="max-width:680px;"></p>
+        <div id="cf-hero-stats" class="cf-hero-stats"></div>
+      </div>
+    </div>
+  </section>
+
+  <div style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;">
+    <div class="container">
+      <div class="cf-themes-row">
+        <div id="cf-themes" class="cf-themes"></div>
+        <span class="cf-themes-hint">Filter by topic</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="cf-reqs-header">
+        <h2>Requirements <span id="cf-filter-count" class="cf-filter-count" style="display:none"></span></h2>
+        <button id="cf-expand-all" class="cf-expand-btn">Expand all</button>
+      </div>
+      <div id="cf-reqs-list"></div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--navy);padding:48px 0;">
+    <div class="container">
+      <div class="cf-findings-header">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--amber);flex-shrink:0"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <h2 style="color:#fff;margin:0;">Common Assessment Findings</h2>
+      </div>
+      <ul id="cf-findings-list" class="cf-findings-list"></ul>
+    </div>
+  </section>
+
+  <div class="cf-family-nav">
+    <div class="container">
+      <a id="cf-prev-link" href="#" class="cf-nav-link cf-nav-prev"></a>
+      <a href="controls.html" class="cf-nav-link cf-nav-all">All 14 Families</a>
+      <a id="cf-next-link" href="#" class="cf-nav-link cf-nav-next"></a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+        <p>Technical resources for DIB contractors navigating CMMC 2.0 Level 2 compliance.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html">CMMC 2.0 Guide</a></li>
+          <li><a href="controls.html">Control Family Guides</a></li>
+          <li><a href="resources.html#ssp">SSP &amp; POA&amp;M</a></li>
+          <li><a href="resources.html#oscal">Automation &amp; OSCAL</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Key Topics</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html#who-needs-it">Who Needs to Comply</a></li>
+          <li><a href="guide.html#c3pao">C3PAO vs. Self-Assessment</a></li>
+          <li><a href="guide.html#sprs">SPRS Scoring</a></li>
+          <li><a href="guide.html#nist">110 Controls Reference</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resources.html">All Resources</a></li>
+          <li><a href="guide.html">CMMC Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Methodical Security LLC. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/controls-data.js"></script>
+<script src="js/controls-resources.js"></script>
+<script src="js/requirement-themes.js"></script>
+<script src="js/controls.js"></script>
+</body>
+</html>

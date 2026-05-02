@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MSP, Vendor, and CSP Oversight: Managing Outsourced IT Under CMMC — Methodical Security</title>
+  <meta name="description" content="A practical guide to managing managed service providers, vendors, and cloud service providers under CMMC — when they fall in scope, what contractual terms to require, and what evidence to collect.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .vendor-table { width:100%; border-collapse:collapse; margin:14px 0 22px; font-size:.86rem; }
+    .vendor-table th, .vendor-table td { padding:10px 12px; border:1px solid var(--border); text-align:left; vertical-align:top; }
+    .vendor-table thead th { background:var(--navy); color:#fff; font-weight:600; font-size:.76rem; text-transform:uppercase; letter-spacing:.05em; }
+    .vendor-table tbody tr:nth-child(even) { background:#f8fafc; }
+    .vendor-table td strong { color:var(--navy); }
+    .req-list { background:var(--surface); border-radius:8px; padding:16px 22px; margin:14px 0; }
+    .req-list h4 { margin:0 0 8px; color:var(--navy); font-size:.95rem; }
+    .req-list ul { margin:6px 0 0 20px; }
+    .req-list li { font-size:.92rem; line-height:1.7; margin-bottom:6px; color:var(--text); }
+    .clause-pre { background:#f8fafc; border:1px solid var(--border); border-radius:8px; padding:16px 20px; font-family:Georgia, "Times New Roman", serif; font-size:.9rem; line-height:1.7; color:var(--text); margin:14px 0 22px; }
+    .clause-pre strong { color:var(--navy); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="guide.html">CMMC Guide</a></li>
+    </ul>
+    <div></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="resources.html">Resources</a><span>›</span>
+        <span style="color:rgba(255,255,255,.7)">Vendor Oversight</span>
+      </div>
+      <span class="eyebrow">Specialized Topics · 13-minute read · Third-party management</span>
+      <h1>MSP, Vendor, and CSP Oversight</h1>
+      <p>Most small DIB contractors rely on managed service providers for IT, cloud service providers for productivity tools, and a long tail of specialty vendors. CMMC requires that you understand which of these are in scope, what controls they're responsible for, and what evidence supports their compliance posture. This guide walks through the practical management of those relationships.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="guide-layout">
+
+      <aside class="guide-sidebar">
+        <div style="font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;">On this page</div>
+        <nav class="guide-sidebar-nav">
+          <a href="#why-it-matters" class="active">Why Vendor Oversight Matters</a>
+          <a href="#three-types">Three Vendor Types</a>
+          <a href="#in-scope">When Vendors Are In Scope</a>
+          <a href="#esp">External Service Providers (ESPs)</a>
+          <a href="#contractual">Contractual Requirements</a>
+          <a href="#crm">The Customer Responsibility Matrix</a>
+          <a href="#evidence">Evidence to Collect</a>
+          <a href="#msp-questions">MSP Selection Questions</a>
+          <a href="#sample-clause">Sample Contract Clause</a>
+          <a href="#references">References</a>
+        </nav>
+      </aside>
+
+      <article class="guide-content">
+
+        <h2 id="why-it-matters">Why Vendor Oversight Matters</h2>
+        <p>Most contractors have no internal IT department large enough to handle every aspect of compliance themselves. The MSP administers the network. A cloud provider hosts the email. A SaaS vendor handles the engineering CAD repository. A support contractor manages the ticketing system. Every one of those relationships extends your authorization boundary outward — and the controls those vendors implement (or fail to implement) become part of your compliance posture.</p>
+        <p>From an assessor's perspective, there is no distinction between "things you control directly" and "things your vendors control." If a vendor's failure causes your environment to be non-compliant, the finding lands on you. The vendor isn't certified — you are. The contract is between you and the government; the vendor is your problem.</p>
+        <p>Vendor oversight under CMMC is therefore not a procurement exercise. It is a security exercise: knowing which vendors handle in-scope assets, what their security posture is, what controls they're responsible for, and what evidence supports their compliance. The work happens before the assessment, not during.</p>
+
+        <h2 id="three-types">Three Vendor Types</h2>
+
+        <table class="vendor-table">
+          <thead>
+            <tr><th>Type</th><th>Description</th><th>Example</th><th>CMMC posture</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Managed Service Provider (MSP)</strong></td>
+              <td>Operates and administers your IT infrastructure on your behalf. Often has privileged access to in-scope systems.</td>
+              <td>Outsourced IT firm administering your firewalls, servers, and endpoints</td>
+              <td>Almost always in scope. May themselves require CMMC certification (under emerging "ESP" rules).</td>
+            </tr>
+            <tr>
+              <td><strong>Cloud Service Provider (CSP)</strong></td>
+              <td>Operates a multi-tenant platform that hosts your data or runs your software. Customer configures usage; provider operates the platform.</td>
+              <td>Microsoft 365 GCC High; AWS GovCloud; PreVeil; Kiteworks</td>
+              <td>In scope when it stores/processes/transmits CUI. Must meet FedRAMP Moderate or equivalent.</td>
+            </tr>
+            <tr>
+              <td><strong>Specialty vendor</strong></td>
+              <td>A vendor that provides a discrete service or tool to your organization. May or may not have system access.</td>
+              <td>Background screening firm; payroll provider; office supplies vendor; outside counsel; software application vendor</td>
+              <td>In scope only when the relationship involves CDI handling or in-scope system access. Many specialty vendors are out of scope.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>The distinctions matter because the compliance obligations differ. An MSP with persistent privileged access to your in-scope environment is fundamentally different from a payroll vendor that processes employee names and hours. Treating them the same way over-invests in oversight of low-risk vendors and under-invests in high-risk ones.</p>
+
+        <h2 id="in-scope">When Vendors Are In Scope</h2>
+        <p>A vendor relationship pulls into CMMC scope when any of the following is true:</p>
+        <ul>
+          <li><strong>The vendor stores, processes, or transmits CUI.</strong> A cloud-hosted CUI repository, a secure file-transfer service that handles CUI exchange, an encrypted communication platform that carries CUI — all in scope.</li>
+          <li><strong>The vendor has access to systems that handle CUI.</strong> An MSP with administrative access to your CUI server is in scope, regardless of whether the MSP technicians ever read the actual CUI files. The access alone creates the scope.</li>
+          <li><strong>The vendor's services are part of your CUI workflow.</strong> A CAD tool used to work with CUI drawings, a PLM system that manages CUI engineering data, an analytics tool that processes CUI as input — all in scope as part of the workflow that handles CUI.</li>
+          <li><strong>The vendor is contractually a subcontractor handling CDI.</strong> See the <a href="dfars-flow-down.html">DFARS flow-down guide</a>; a sub handling CDI must comply with all 7012 obligations.</li>
+        </ul>
+        <p>A vendor relationship is generally <em>out</em> of scope when the vendor:</p>
+        <ul>
+          <li>Has no access to in-scope systems</li>
+          <li>Does not handle CUI</li>
+          <li>Provides a service that does not involve in-scope data flows (e.g., a public-facing marketing website hosted on commercial cloud, with no CUI in the workflow)</li>
+        </ul>
+        <p>The boundary determination must be made vendor-by-vendor. A vendor inventory listing each vendor, the service provided, the in-scope/out-of-scope determination, and the rationale is a worthwhile artifact for the assessment.</p>
+
+        <h2 id="esp">External Service Providers (ESPs)</h2>
+        <p>The CMMC Final Rule introduces the concept of an "External Service Provider" — an entity that provides specific services to the contractor that affect the contractor's ability to meet CMMC requirements. The rule places obligations on contractors with respect to their ESPs:</p>
+        <ul>
+          <li><strong>The contractor must identify ESPs in the SSP.</strong> The SSP must list ESPs whose services affect compliance, with the specific controls each ESP supports.</li>
+          <li><strong>ESPs that handle CUI may themselves require CMMC certification.</strong> An MSP whose technicians have privileged access to a contractor's CUI environment is, under the rule, an ESP — and depending on how the rule is interpreted in practice, may need to be CMMC certified at the appropriate level. The interpretive guidance is still evolving; track the CMMC PMO's published clarifications.</li>
+          <li><strong>The contractor remains responsible for the ESP's controls.</strong> Even where the ESP has its own certification, the contractor's SSP must document the relationship and the contractor must verify the ESP's compliance through evidence.</li>
+        </ul>
+        <p>The practical implication: when you select MSPs and CSPs going forward, the question "is this vendor itself CMMC certified?" matters. An MSP that is CMMC Level 2 certified is operationally and contractually easier to work with than one that is not. The available pool of CMMC-certified MSPs is small but growing rapidly.</p>
+
+        <div class="callout amber">
+          <p><strong>The ESP rules are an area of active interpretation.</strong> Cyber AB and the CMMC PMO have published guidance, but specific scenarios continue to surface novel questions. When in doubt about whether a particular vendor falls under ESP requirements, consult current PMO guidance and consider asking your C3PAO during the scoping discussion.</p>
+        </div>
+
+        <h2 id="contractual">Contractual Requirements</h2>
+        <p>Every in-scope vendor relationship needs contractual terms that bind the vendor to security obligations consistent with the contractor's CMMC posture. The specifics vary by vendor type, but the categories below should appear in some form:</p>
+
+        <div class="req-list">
+          <h4>For all in-scope vendors</h4>
+          <ul>
+            <li>An obligation to handle CUI consistently with NIST SP 800-171 Rev 2 requirements (or to inherit them via the contractor's SSP if the vendor is fully embedded)</li>
+            <li>Cyber incident notification: requirement to notify the contractor of any security incident affecting the contractor's data, with specific timelines</li>
+            <li>Access controls: vendor personnel access to in-scope systems must follow the contractor's access control policies (named users, MFA, periodic review)</li>
+            <li>Audit rights: the contractor's right to assess the vendor's relevant controls (or to receive third-party assessment evidence in lieu of direct audit)</li>
+            <li>Data return / destruction at end of relationship: how the vendor returns or destroys contractor data when the engagement ends</li>
+            <li>Sub-vendor / lower-tier provider requirements: rules around the vendor's own use of subcontractors who would gain access to contractor data</li>
+            <li>Insurance: appropriate cyber liability coverage given the data exposure</li>
+          </ul>
+        </div>
+
+        <div class="req-list">
+          <h4>Additional for MSPs</h4>
+          <ul>
+            <li>US-person personnel requirement (especially if any ITAR-controlled CUI is in scope — see the <a href="itar-ear-controls.html">ITAR/EAR guide</a>)</li>
+            <li>Specific named technicians on the contractor's account, with notification of personnel changes</li>
+            <li>Background check requirements for technicians with privileged access</li>
+            <li>Privileged access controls: separate accounts for vendor admin work, MFA enforcement, session logging</li>
+            <li>Change management: vendor changes to in-scope systems must follow the contractor's change control process</li>
+            <li>Documentation of vendor activities: tickets, change records, audit logs of vendor access</li>
+          </ul>
+        </div>
+
+        <div class="req-list">
+          <h4>Additional for CSPs handling CUI</h4>
+          <ul>
+            <li>FedRAMP Moderate authorization or demonstrable equivalence — confirmed through the FedRAMP Marketplace or the CSP's published equivalence evidence</li>
+            <li>Customer Responsibility Matrix (CRM) provided to the contractor</li>
+            <li>Annual SOC 2 Type II report or equivalent attestation</li>
+            <li>Data residency requirements: where data is stored, where it is processed, geographic and jurisdictional constraints</li>
+            <li>Incident notification timeline tied to the contractor's 72-hour DoD reporting obligation</li>
+            <li>For CUI handling: confirmation that no foreign-person administrative access exists (or that any such access is authorized under appropriate licenses for ITAR data)</li>
+          </ul>
+        </div>
+
+        <h2 id="crm">The Customer Responsibility Matrix</h2>
+        <p>For every CSP in your authorization boundary, the Customer Responsibility Matrix (CRM) is the document that defines who is responsible for which controls. The CRM is published by the CSP and varies by service. Microsoft publishes CRMs through the Service Trust Portal; AWS publishes them through Artifact; PreVeil and Kiteworks publish CRMs through their respective compliance documentation pages.</p>
+        <p>Each control in the CRM is categorized as:</p>
+        <ul>
+          <li><strong>Inherited (or "Provider-Provided"):</strong> The CSP fully implements the control; the customer relies on the CSP's implementation</li>
+          <li><strong>Shared:</strong> Both the CSP and customer have responsibilities (the CSP provides the capability; the customer must configure it correctly)</li>
+          <li><strong>Customer-Responsible:</strong> The CSP provides no implementation of this control; the customer must implement it independently</li>
+        </ul>
+        <p>For CMMC purposes, you must document in your SSP which controls you inherit, which are shared, and which you implement directly. The shared controls are where most operational findings cluster, because they require the customer to actually configure the platform correctly — and the most common failure is leaving the platform at default settings.</p>
+        <p>Reading the CRM is not optional. A common assessor question is "show me your CRM for [CSP] — and show me how you've implemented the customer-responsible controls." Not having the CRM (or having it but not having internalized it) is a common finding.</p>
+
+        <h2 id="evidence">Evidence to Collect</h2>
+        <p>For each in-scope vendor, your evidence package should include:</p>
+        <ul>
+          <li><strong>Contract or master service agreement</strong> incorporating the security clauses described above</li>
+          <li><strong>Customer Responsibility Matrix</strong> (for CSPs) — current version, with the customer-responsible controls mapped to your SSP</li>
+          <li><strong>FedRAMP authorization confirmation</strong> (for CSPs handling CUI) — Marketplace listing screenshot or equivalent</li>
+          <li><strong>SOC 2 Type II report or equivalent</strong> from the vendor (annual)</li>
+          <li><strong>Vendor security questionnaire response</strong> documenting the vendor's relevant security posture</li>
+          <li><strong>For MSPs: list of named technicians</strong> with US-person status (if relevant) and date of last background check</li>
+          <li><strong>For MSPs: privileged access logs</strong> showing what vendor personnel accessed, when</li>
+          <li><strong>Vendor incident notifications</strong> (any incidents reported by the vendor, the response taken, the lessons learned)</li>
+          <li><strong>Records of vendor access reviews</strong> — periodic confirmation that the vendor's access is still appropriate and limited to the named personnel</li>
+          <li><strong>Vendor offboarding records</strong> for any vendor relationships that have ended — confirmation that data was returned or destroyed and access was revoked</li>
+        </ul>
+        <p>The vendor evidence is part of your overall <a href="evidence-library.html">evidence library</a>. Treat it with the same freshness discipline — vendor questionnaires from three years ago are not useful; current ones are.</p>
+
+        <h2 id="msp-questions">MSP Selection Questions</h2>
+        <p>If you're selecting an MSP for the first time, or evaluating an existing MSP for CUI work, the questions below cover the relevant ground. Treat as an initial filter; expect detailed follow-up on the answers that matter most.</p>
+
+        <div class="req-list">
+          <h4>CMMC posture</h4>
+          <ul>
+            <li>Are you CMMC certified? At what level? When was the certification granted?</li>
+            <li>Do you meet the External Service Provider requirements as currently interpreted by the CMMC PMO?</li>
+            <li>Can you provide an SSP excerpt covering the controls you implement on our behalf?</li>
+            <li>What is your incident response procedure when a contractor's environment is affected?</li>
+          </ul>
+        </div>
+
+        <div class="req-list">
+          <h4>Personnel</h4>
+          <ul>
+            <li>Are all personnel with access to our environment US persons under ITAR? Can you contractually commit to that?</li>
+            <li>What background checks are performed on personnel with privileged access?</li>
+            <li>Will we have specific named technicians assigned to our account, and will we be notified of changes?</li>
+            <li>What is your policy on offshore support, follow-the-sun support, or use of foreign subcontractors?</li>
+          </ul>
+        </div>
+
+        <div class="req-list">
+          <h4>Operations</h4>
+          <ul>
+            <li>How do you log and audit your personnel's access to our systems? Will we have access to those logs?</li>
+            <li>How are change requests handled? Do they follow our change control process or yours?</li>
+            <li>What's your security incident notification timeline if your tools or staff are compromised?</li>
+            <li>How do you handle credential management for the privileged accounts you use to administer our environment?</li>
+          </ul>
+        </div>
+
+        <div class="req-list">
+          <h4>Contracts and exit</h4>
+          <ul>
+            <li>What security clauses are in your standard MSA? Are you willing to negotiate additions for CUI handling?</li>
+            <li>What is your data return / destruction policy at end of engagement?</li>
+            <li>What insurance coverage applies to incidents affecting our data?</li>
+            <li>What is your liability cap for security incidents? Is it negotiable for CUI engagements?</li>
+          </ul>
+        </div>
+
+        <h2 id="sample-clause">Sample Vendor Contract Clause</h2>
+        <p>Below is a plain-language sample clause for a CUI-handling vendor (MSP, software vendor with system access, etc.). Adapt for your specific situation; have legal counsel confirm before use.</p>
+
+        <div class="clause-pre">
+          <strong>Section [N]. Information Security and CMMC Compliance.</strong><br><br>
+          (a) <strong>NIST SP 800-171 implementation.</strong> Vendor shall implement and maintain controls satisfying NIST SP 800-171 Revision 2 to the extent applicable to its services for Customer, including all systems and personnel with access to Customer's Covered Defense Information ("CDI") or to Customer's information systems handling CDI.<br><br>
+          (b) <strong>FedRAMP authorization (cloud services).</strong> Any cloud service or cloud-hosted infrastructure used to deliver services that handle CDI shall be authorized at the FedRAMP Moderate baseline or demonstrably equivalent under the December 21, 2023 DoD CIO memorandum on FedRAMP Moderate Equivalency, including assessment by a FedRAMP-recognized 3PAO against the full FedRAMP Moderate baseline with no open POA&amp;Ms.<br><br>
+          (c) <strong>US-person personnel.</strong> All personnel with access to Customer's CDI-handling systems shall be United States Persons as defined under 22 CFR 120.62. Vendor shall maintain a list of authorized personnel and notify Customer of any additions or removals within five business days.<br><br>
+          (d) <strong>Cyber incident reporting.</strong> Vendor shall notify Customer of any security incident affecting Customer's data or systems within 24 hours of discovery, in writing, with available details. Vendor shall cooperate with Customer's required reporting under DFARS 252.204-7012.<br><br>
+          (e) <strong>Privileged access controls.</strong> Vendor personnel accessing Customer's systems shall use named, multi-factor-authenticated accounts. Shared accounts and unmonitored access are prohibited. Vendor shall provide Customer with audit logs of vendor access on request.<br><br>
+          (f) <strong>Data return and destruction.</strong> Upon termination of this Agreement, Vendor shall return all Customer data within 30 days and destroy any retained copies in accordance with NIST SP 800-88 sanitization standards. Vendor shall provide written certification of destruction.<br><br>
+          (g) <strong>Sub-vendors.</strong> Vendor shall not permit any sub-vendor or lower-tier provider to access Customer CDI or CDI-handling systems without Customer's prior written approval. Approved sub-vendors are bound by these same obligations.<br><br>
+          (h) <strong>Audit rights.</strong> Customer or its designated assessor (including any C3PAO conducting Customer's CMMC assessment) shall have reasonable access to Vendor's relevant policies, procedures, evidence, and personnel for the purpose of verifying compliance with this Section.<br><br>
+          (i) <strong>Annual attestation.</strong> Vendor shall provide Customer annually with (i) a current SOC 2 Type II report or equivalent attestation, (ii) confirmation of any material changes to its security posture, and (iii) a current Customer Responsibility Matrix where applicable.
+        </div>
+
+        <h2 id="references">Authoritative References</h2>
+        <div class="ref-grid">
+          <a href="https://dodcio.defense.gov/CMMC/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DoD CIO CMMC Program Office</div>
+            <div class="ref-card-desc">Authoritative source for ESP guidance and the rolling interpretive clarifications</div>
+          </a>
+          <a href="https://marketplace.fedramp.gov/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">FedRAMP Marketplace</div>
+            <div class="ref-card-desc">Authoritative directory of FedRAMP-authorized cloud services — verify any CSP holding CUI</div>
+          </a>
+          <a href="https://dodcio.defense.gov/Portals/0/Documents/Library/FEDRAMP-EquivalencyCloudServiceProviders.pdf" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DoD CIO FedRAMP Equivalency Memo (Dec 21, 2023)</div>
+            <div class="ref-card-desc">The standard for "FedRAMP Moderate equivalent" — assessment by FedRAMP-recognized 3PAO, 100% baseline coverage, zero findings, no open POA&amp;Ms, full Body of Evidence; no self-attestation</div>
+          </a>
+          <a href="https://learn.microsoft.com/en-us/microsoft-365/compliance/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">Microsoft Service Trust Portal</div>
+            <div class="ref-card-desc">Source for Microsoft's CRMs and FedRAMP package documentation</div>
+          </a>
+          <a href="https://aws.amazon.com/artifact/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">AWS Artifact</div>
+            <div class="ref-card-desc">AWS's portal for security and compliance documentation including FedRAMP packages and customer responsibility documentation</div>
+          </a>
+          <a href="https://cyberab.org/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">The Cyber AB</div>
+            <div class="ref-card-desc">Maintains the directory of CMMC-certified MSPs and CSPs as the program matures</div>
+          </a>
+        </div>
+
+        <div class="callout green">
+          <p><strong>Related resources:</strong> See the <a href="dfars-flow-down.html" style="color:var(--blue);font-weight:600;">DFARS flow-down guide</a> for subcontractor obligations that overlap with vendor management, the <a href="enclave-architecture.html" style="color:var(--blue);font-weight:600;">enclave architecture guide</a> for cloud-side scoping, and the <a href="itar-ear-controls.html" style="color:var(--blue);font-weight:600;">ITAR/EAR guide</a> for export-control overlay on vendor selection.</p>
+        </div>
+
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+        <p>Technical resources for DIB contractors navigating CMMC 2.0 Level 2 compliance.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html">CMMC 2.0 Guide</a></li>
+          <li><a href="resources.html#architecture">Architecture &amp; Scoping</a></li>
+          <li><a href="resources.html#controls">Control Family Guides</a></li>
+          <li><a href="resources.html#ssp">SSP &amp; POA&amp;M</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Key Topics</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html#who-needs-it">Who Needs to Comply</a></li>
+          <li><a href="guide.html#c3pao">C3PAO vs. Self-Assessment</a></li>
+          <li><a href="guide.html#sprs">SPRS Scoring</a></li>
+          <li><a href="guide.html#nist">110 Controls Reference</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resources.html">All Resources</a></li>
+          <li><a href="guide.html">CMMC Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Methodical Security LLC. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

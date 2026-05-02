@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DFARS 252.204-7012(m) Flow-Down: Subcontractor Obligations — Methodical Security</title>
+  <meta name="description" content="A practical guide to DFARS 252.204-7012(m) flow-down obligations for primes and subs handling covered defense information — what flows, who's covered, and how to actually implement it.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .clause-quote { background:#0b1526; color:#e2e8f0; border-radius:8px; padding:18px 22px; margin:14px 0 22px; font-family:Georgia, "Times New Roman", serif; font-size:.92rem; line-height:1.7; border-left:4px solid var(--blue); }
+    .clause-quote em { color:#cbd5e1; font-style:italic; }
+    .clause-quote .clause-cite { display:block; margin-top:10px; font-family:inherit; color:#94a3b8; font-size:.78rem; font-style:normal; }
+    .clause-table { width:100%; border-collapse:collapse; margin:16px 0 24px; font-size:.88rem; }
+    .clause-table th, .clause-table td { padding:10px 12px; border:1px solid var(--border); text-align:left; vertical-align:top; }
+    .clause-table thead th { background:var(--navy); color:#fff; font-weight:600; font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; }
+    .clause-table tbody tr:nth-child(even) { background:#f8fafc; }
+    .clause-table td code { background:#eff6ff; color:#1d4ed8; padding:2px 6px; border-radius:4px; font-size:.85rem; }
+    .role-split { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:18px 0 24px; }
+    .role-card { border:1px solid var(--border); border-radius:8px; padding:18px 20px; background:#fff; }
+    .role-card.prime { border-left:4px solid #1d4ed8; }
+    .role-card.sub { border-left:4px solid #c2410c; }
+    .role-card h3 { margin:0 0 10px; color:var(--navy); font-size:1rem; }
+    .role-card .role-meta { font-size:.72rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px; }
+    .role-card ol { margin:8px 0 0 20px; }
+    .role-card li { font-size:.9rem; line-height:1.65; margin-bottom:8px; color:var(--text); }
+    .role-card strong { color:var(--navy); }
+    @media (max-width:780px) { .role-split { grid-template-columns:1fr; } }
+    .scenario-box { background:var(--surface); border-radius:8px; padding:14px 18px; margin:12px 0; border-left:3px solid var(--blue); }
+    .scenario-box .scenario-q { font-weight:600; color:var(--navy); font-size:.92rem; margin-bottom:6px; }
+    .scenario-box .scenario-a { font-size:.9rem; color:var(--text); margin:0; }
+    .venn-card { background:#f8fafc; border:1px solid var(--border); border-radius:8px; padding:16px 20px; margin:12px 0; }
+    .venn-card h4 { margin:0 0 8px; color:var(--navy); font-size:.95rem; }
+    .venn-card p { margin:0 0 6px; font-size:.9rem; color:var(--text); }
+    .venn-card p:last-child { margin-bottom:0; }
+    .clause-pre { background:#f8fafc; border:1px solid var(--border); border-radius:8px; padding:16px 20px; font-family:Georgia, "Times New Roman", serif; font-size:.9rem; line-height:1.7; color:var(--text); margin:14px 0 22px; }
+    .clause-pre strong { color:var(--navy); }
+    .failure-list { background:#fffbeb; border:1px solid var(--amber); border-radius:8px; padding:16px 22px; margin:16px 0; }
+    .failure-list h4 { margin:0 0 8px; color:#92400e; font-size:.95rem; }
+    .failure-list ul { margin:6px 0 0 20px; }
+    .failure-list li { color:var(--text); font-size:.9rem; line-height:1.7; margin-bottom:8px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="guide.html">CMMC Guide</a></li>
+    </ul>
+    <div></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="resources.html">Resources</a><span>›</span>
+        <span style="color:rgba(255,255,255,.7)">DFARS 7012(m) Flow-Down</span>
+      </div>
+      <span class="eyebrow">Architecture &amp; Scoping · 14-minute read · Written for both primes and subs</span>
+      <h1>DFARS 252.204-7012(m) Flow-Down Obligations</h1>
+      <p>The contract clause every prime must include in qualifying subcontracts — and that every subcontractor handling covered defense information must comply with. This guide covers what actually flows, who's actually covered, and the operational steps both sides need to take.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="guide-layout">
+
+      <!-- Sidebar -->
+      <aside class="guide-sidebar">
+        <div style="font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;">On this page</div>
+        <nav class="guide-sidebar-nav">
+          <a href="#clause-text" class="active">The Clause Text</a>
+          <a href="#related-clauses">Related DFARS Clauses</a>
+          <a href="#who-flows-down">Who Flows It Down</a>
+          <a href="#what-flows">What Flows Down</a>
+          <a href="#cdi-vs-cui">CDI vs. CUI vs. FCI</a>
+          <a href="#incident-reporting">72-Hour Incident Reporting</a>
+          <a href="#prime-steps">For Primes: Practical Steps</a>
+          <a href="#sub-steps">For Subs: Practical Steps</a>
+          <a href="#failure-patterns">Common Failure Patterns</a>
+          <a href="#sample-language">Sample Subcontract Language</a>
+          <a href="#references">Authoritative References</a>
+        </nav>
+      </aside>
+
+      <!-- Content -->
+      <article class="guide-content">
+
+        <h2 id="clause-text">The Clause Text</h2>
+        <p>DFARS 252.204-7012 — "Safeguarding Covered Defense Information and Cyber Incident Reporting" — has been the operational core of DoD cybersecurity contracting since 2016. Paragraph (m) is the flow-down provision: the rule that requires primes to include the same clause in subcontracts that handle covered defense information.</p>
+
+        <div class="clause-quote">
+          <em>"(m) Subcontracts. The Contractor shall —</em>
+          <br><br>
+          <em>(1) Include this clause, including this paragraph (m), in subcontracts, or similar contractual instruments, for operationally critical support, or for which subcontract performance will involve covered defense information, including subcontracts for commercial products or commercial services, without alteration, except to identify the parties; and</em>
+          <br><br>
+          <em>(2) Require subcontractors to —</em>
+          <br><br>
+          <em>(i) Notify the prime Contractor (or next higher-tier subcontractor) when submitting a request to vary from a NIST SP 800-171 security requirement to the Contracting Officer, in accordance with paragraph (b)(2)(ii)(D) of this clause; and</em>
+          <br><br>
+          <em>(ii) Provide the incident report number, automatically assigned by DoD, to the prime Contractor (or next higher-tier subcontractor) as soon as practicable, when reporting a cyber incident to DoD as required in paragraph (c) of this clause."</em>
+          <span class="clause-cite">— DFARS 252.204-7012(m), as amended</span>
+        </div>
+
+        <p>Two operative obligations come out of paragraph (m). First, the entire clause must be included <strong>without alteration</strong> in qualifying subcontracts — primes do not have discretion to negotiate it away or soften it. Second, primes must require subs to communicate two specific things back: any request to deviate from an 800-171 requirement, and the DoD-assigned incident report number when an incident is reported.</p>
+
+        <h2 id="related-clauses">Related DFARS Clauses You Need to Know</h2>
+        <p>252.204-7012 does not stand alone. Three related clauses, all introduced more recently, govern assessment, scoring, and certification:</p>
+
+        <table class="clause-table">
+          <thead>
+            <tr><th>Clause</th><th>What It Requires</th><th>When It Applies</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>252.204-7012</code></td>
+              <td>Safeguarding of covered defense information per NIST SP 800-171; cyber incident reporting within 72 hours; flow-down to subs handling CDI</td>
+              <td>All DoD contracts (and subcontracts) involving covered defense information; in effect since 2016</td>
+            </tr>
+            <tr>
+              <td><code>252.204-7019</code></td>
+              <td>Contractor must have a current (within 3 years) NIST SP 800-171 self-assessment posted to SPRS before contract award</td>
+              <td>Solicitations and contracts that include 7012; in effect since November 2020</td>
+            </tr>
+            <tr>
+              <td><code>252.204-7020</code></td>
+              <td>Contractor must provide the DoD with access to facilities, systems, and personnel for higher-level (Medium or High) NIST 800-171 assessments when required; flow-down to subs is required</td>
+              <td>Same triggering conditions as 7019; assessments performed by DCMA DIBCAC</td>
+            </tr>
+            <tr>
+              <td><code>252.204-7021</code></td>
+              <td>Contractor must hold a current CMMC certification at the level specified in the solicitation, and must flow down the appropriate CMMC level to subcontractors based on the CDI those subs will handle</td>
+              <td>Phased rollout under the CMMC Final Rule; full applicability reached during the program's three-year phased implementation</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>The four clauses operate as a stack: 7012 establishes the safeguarding obligation, 7019 requires you to have self-assessed, 7020 reserves the government's right to verify, and 7021 layers in third-party certification at the appropriate level. Flow-down obligations attach to 7012, 7020, and 7021 — meaning subs handling CDI inherit safeguarding, assessment-cooperation, and (when 7021 applies) certification obligations from the prime.</p>
+
+        <h2 id="who-flows-down">Who Flows It Down — and to Whom</h2>
+        <p>The clause flows from the prime to any subcontractor whose work will involve covered defense information, or who will provide operationally critical support. It is <strong>not</strong> a blanket flow-down to every sub on a contract — it is a data-driven flow-down that depends on whether the sub will actually touch CDI in the course of performance.</p>
+
+        <p>Some concrete scenarios:</p>
+
+        <div class="scenario-box">
+          <div class="scenario-q">A prime has a DoD engineering contract. They subcontract with a CAD-services firm that will receive technical drawings (CDI) to perform finite-element analysis.</div>
+          <p class="scenario-a"><strong>Flows down.</strong> The CAD subcontractor will store, process, and transmit CDI in performance of the subcontract.</p>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-q">The same prime contracts with a janitorial service to clean their office at night. The janitorial staff does not have system access and does not handle any documents marked CUI.</div>
+          <p class="scenario-a"><strong>Does not flow down.</strong> The janitorial subcontractor performs no work involving CDI. (However, physical access to a CUI-containing facility may trigger separate physical-protection obligations under 800-171 control PE.3.061.)</p>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-q">The prime uses a managed service provider (MSP) to administer their internal IT — including the file server where CUI deliverables are stored.</div>
+          <p class="scenario-a"><strong>Flows down.</strong> The MSP has privileged access to systems holding CDI; that access constitutes "processing" CDI in the relevant sense even if MSP staff never deliberately read the files.</p>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-q">The CAD subcontractor (above) further subcontracts a portion of the analysis to a second-tier specialty firm, who will also need access to the technical drawings.</div>
+          <p class="scenario-a"><strong>Flows down again — to the second-tier sub.</strong> Paragraph (m) requires every level of the supply chain that handles CDI to flow the clause down to the next level. The first-tier sub effectively becomes a "prime" for purposes of flow-down to the second-tier sub.</p>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-q">The prime buys office supplies from a national vendor on a separate purchase order. That vendor has no involvement with the DoD contract and no access to CDI.</div>
+          <p class="scenario-a"><strong>Does not flow down.</strong> The purchase has no nexus to CDI or to performance of the DoD contract.</p>
+        </div>
+
+        <div class="callout amber">
+          <p><strong>"Operationally critical support" is a separate trigger.</strong> Even if a subcontractor never touches CDI, the clause flows down if the sub provides "operationally critical support" — defined in 7012(a) as supplies or services designated by the government as critical to the airlift, sealift, intermodal transportation, or logistical support of the armed forces. This is rare for most contractors but worth checking in the contract DD-254 or statement of work.</p>
+        </div>
+
+        <h2 id="what-flows">What Flows Down</h2>
+        <p>Paragraph (m)(1) is unambiguous: the clause flows <em>without alteration</em>, except to identify the parties. That means the entire safeguarding and reporting framework lands on the sub:</p>
+        <ul>
+          <li><strong>Implementation of NIST SP 800-171 Rev 2.</strong> The sub must implement the same 110 security requirements that apply to the prime, scoped to the sub's environment that handles the CDI.</li>
+          <li><strong>72-hour cyber incident reporting.</strong> Discovery of a cyber incident affecting CDI obligates the sub to report to DoD within 72 hours via the DIBNet portal — and to provide the resulting incident report number to the prime.</li>
+          <li><strong>Cyber forensic preservation.</strong> The sub must isolate affected systems, preserve images of known-affected systems, and preserve relevant monitoring and packet capture data for at least 90 days from the date of the cyber incident report.</li>
+          <li><strong>Media submission.</strong> The sub must submit malicious software identified during the incident to DoD Cyber Crime Center (DC3), and may be required to provide additional media to support the government's analysis.</li>
+          <li><strong>Cooperation with DoD damage assessment.</strong> If DoD initiates a damage assessment after a reported incident, the sub must cooperate with that assessment.</li>
+          <li><strong>Cloud service requirements.</strong> Any cloud service the sub uses to store, process, or transmit CDI must meet the FedRAMP Moderate baseline or be demonstrably equivalent — the same standard that applies to the prime.</li>
+          <li><strong>Sub-flow-down obligation.</strong> The sub must include the clause in its own subcontracts that involve CDI, perpetuating the chain.</li>
+        </ul>
+        <p>What flow-down does not do is consolidate compliance: each entity in the chain is independently responsible for its own implementation of the requirements. A prime cannot satisfy a sub's obligations by having a strong security posture itself, and a sub cannot satisfy its own obligations by relying on the prime's certification.</p>
+
+        <h2 id="cdi-vs-cui">CDI vs. CUI vs. FCI: Resolving the Terminology</h2>
+        <p>Three overlapping terms appear across DFARS, FAR, and CMMC documents. They are not interchangeable, and confusing them leads to scope errors.</p>
+
+        <div class="venn-card">
+          <h4>Federal Contract Information (FCI)</h4>
+          <p>Information not intended for public release that is provided by or generated for the government under a contract. FCI is the broadest and least sensitive of the three categories. Contractors handling only FCI fall under FAR 52.204-21 (the "basic safeguarding" rule) and CMMC Level 1 — not under DFARS 252.204-7012.</p>
+        </div>
+
+        <div class="venn-card">
+          <h4>Controlled Unclassified Information (CUI)</h4>
+          <p>Information that the government creates or possesses, or that an entity creates or possesses for or on behalf of the government, that requires safeguarding or dissemination controls under law, regulation, or government-wide policy. CUI categories are enumerated in the <a href="https://www.archives.gov/cui/registry/category-list" target="_blank" rel="noopener noreferrer">NARA CUI Registry</a> and include Defense, Export Control, Privacy, and many other categories.</p>
+        </div>
+
+        <div class="venn-card">
+          <h4>Covered Defense Information (CDI)</h4>
+          <p>The DFARS-specific term used in 252.204-7012. Defined in 7012(a) as unclassified controlled technical information <em>or</em> other information (as described in the CUI Registry) that requires safeguarding or dissemination controls and is either (1) marked or otherwise identified in the contract and provided to the contractor by or on behalf of DoD, or (2) collected, developed, received, transmitted, used, or stored by the contractor in support of contract performance.</p>
+          <p style="margin-top:6px"><strong>CDI is essentially the DoD's contract-specific subset of CUI.</strong> All CDI is CUI; not all CUI is CDI (CUI on a non-DoD contract isn't called CDI). For most operational purposes, "CUI" and "CDI" are used interchangeably when discussing DFARS 7012 obligations.</p>
+        </div>
+
+        <p>The flow-down trigger in 7012(m) uses the term "covered defense information." For practical compliance work, treat any CUI received in connection with a DoD contract as CDI for flow-down purposes.</p>
+
+        <h2 id="incident-reporting">The 72-Hour Incident Reporting Flow</h2>
+        <p>The 72-hour cyber incident reporting obligation is the most operationally consequential part of 7012, and the part most likely to fail under pressure when a real incident occurs. The flow runs as follows:</p>
+
+        <ol>
+          <li><strong>The sub discovers a cyber incident</strong> affecting CDI or affecting a system that processes, stores, or transmits CDI.</li>
+          <li><strong>The sub conducts a review</strong> of its information system for evidence of compromise of CDI, and identifies any compromised data, accounts, or systems.</li>
+          <li><strong>Within 72 hours of discovery</strong>, the sub submits a cyber incident report to DoD through the <a href="https://dibnet.dod.mil/" target="_blank" rel="noopener noreferrer">DIBNet portal</a>. This requires a DoD-issued external certificate (medium-assurance certificate from an approved provider) and a DIBNet account, both of which must be obtained <em>before</em> an incident occurs.</li>
+          <li><strong>DoD assigns an incident report number</strong> to the submission.</li>
+          <li><strong>The sub provides the incident report number to the prime</strong> as soon as practicable — this is the explicit obligation under paragraph (m)(2)(ii).</li>
+          <li><strong>The sub preserves images and monitoring data</strong> for at least 90 days from the date of the report, in case DoD requests them for damage assessment.</li>
+        </ol>
+
+        <div class="callout amber">
+          <p><strong>The DIBNet account is a pre-incident requirement.</strong> Obtaining the DoD-issued external certificate for DIBNet access takes weeks. An organization that waits until an incident occurs to apply for DIBNet access will miss the 72-hour reporting window. Every prime and every sub handling CDI should have at least two named individuals with active DIBNet access before any contract performance begins.</p>
+        </div>
+
+        <p>Two friction points commonly trip up subs. First, the contractual relationship: a sub may have an NDA with the prime that appears to require notification to the prime <em>before</em> any external disclosure of an incident. The DFARS reporting obligation overrides ordinary NDA constraints — the sub must report to DoD within 72 hours regardless of prime notification timing — but this should be addressed in the subcontract language to avoid ambiguity. Second, dual reporting: many subs do not realize they are required to report to DoD <em>and</em> to the prime; some report only to the prime and rely on the prime to forward upward, which is not what the clause requires.</p>
+
+        <h2 id="prime-steps">For Primes: Practical Steps</h2>
+
+        <div class="role-split">
+          <div class="role-card prime">
+            <div class="role-meta">If you are a prime contractor</div>
+            <h3>Operational implementation checklist</h3>
+            <ol>
+              <li><strong>Inventory subs that will handle CDI.</strong> Maintain a current list of subcontractors performing work that involves CDI. The list should include the contract or PO, the CDI category involved, and the sub's CMMC level (once 7021 applies).</li>
+              <li><strong>Standardize subcontract templates.</strong> Update your subcontract boilerplate to include the full text of 252.204-7012 (and 7019/7020, with 7021 added during the CMMC phased rollout). Have legal review confirm the clause is included <em>without alteration</em>.</li>
+              <li><strong>Collect and verify SPRS scores.</strong> Under 7019, subs handling CDI must have a current self-assessment posted to SPRS. Periodically verify each sub's SPRS score (or contractually require the sub to provide it) and document the verification in your subcontractor file.</li>
+              <li><strong>Verify CMMC certification at the appropriate level.</strong> Once 7021 applies to the contract, confirm each sub holds a current CMMC certification at the level appropriate to the CDI they handle. The CMMC level the sub needs may be lower than yours if the sub handles a narrower CDI scope.</li>
+              <li><strong>Document oversight in your SSP.</strong> Section 8 of your SSP (External System Interconnections) should document each subcontractor relationship that involves CDI flow, including the security expectations and verification mechanisms.</li>
+              <li><strong>Pre-stage incident reporting coordination.</strong> Establish a written incident communication procedure with each CDI-handling sub: who calls whom, on what number, with what information, and what each party reports to DoD. Test the procedure annually.</li>
+              <li><strong>Monitor sub status changes.</strong> A sub's CMMC level can lapse, or a sub can experience a cyber incident affecting your CDI. Build a process for periodic re-verification — at least annually, and before any new CDI flow to the sub.</li>
+            </ol>
+          </div>
+
+          <div class="role-card sub" id="sub-steps" style="scroll-margin-top:80px;">
+            <div class="role-meta">If you are a subcontractor</div>
+            <h3>Operational implementation checklist</h3>
+            <ol>
+              <li><strong>Confirm the clause is in your subcontract.</strong> Read your subcontract terms carefully. If your work involves CDI and 7012 is not flowed down, raise it with the prime — both for your own legal protection and because the prime is required to flow it.</li>
+              <li><strong>Treat the 110 requirements as your own obligation.</strong> You implement NIST SP 800-171 directly — the prime's compliance does not cover you. Your SSP, your POA&amp;M, your SPRS score are all your responsibility.</li>
+              <li><strong>Submit your own SPRS score.</strong> Conduct a NIST 800-171 self-assessment, calculate your SPRS score, and submit it to SPRS under your CAGE code. Most subs do not realize this is their direct obligation, not the prime's.</li>
+              <li><strong>Obtain CMMC certification at the appropriate level.</strong> Once 7021 applies to your subcontract, you must hold a current CMMC certification at the level the prime specifies. The level depends on the CDI you handle — confirm in writing what level is required before pursuing certification.</li>
+              <li><strong>Establish DIBNet access in advance.</strong> Apply for the DoD-issued external certificate and create a DIBNet account before any contract performance begins. Have at least two named individuals with active access.</li>
+              <li><strong>Know your prime notification path.</strong> Understand exactly who at the prime to notify if you experience a cyber incident, and confirm that path is documented in your incident response plan.</li>
+              <li><strong>Flow down to your own subs.</strong> If you further subcontract any CDI-handling work, you are now in the prime's role with respect to that second-tier sub. The clause must flow again.</li>
+              <li><strong>Use FedRAMP-authorized cloud services for CDI.</strong> If you store, process, or transmit CDI in any cloud service, that service must be FedRAMP Moderate authorized or equivalent. Commercial M365, Google Workspace, Dropbox, etc. are not authorized for CDI. See the <a href="enclave-architecture.html#fedramp">enclave architecture guide</a> for details.</li>
+            </ol>
+          </div>
+        </div>
+
+        <h2 id="failure-patterns">Common Failure Patterns</h2>
+
+        <div class="failure-list">
+          <h4>Patterns that result in findings, contract action, or false claims exposure</h4>
+          <ul>
+            <li><strong>Primes that flow the clause but never verify compliance.</strong> Including 7012 in the subcontract is the floor, not the ceiling — primes are expected to take reasonable steps to verify subs are actually compliant. Collecting an SPRS score and confirming a CMMC certificate are the minimum viable verification steps.</li>
+            <li><strong>Subs that assume the prime's enclave covers them.</strong> If the prime sends CDI to the sub via Kiteworks (or any other secure channel), the sub still has to safeguard the CDI on the sub's own systems once it arrives. The prime's enclave does not extend to the sub's environment.</li>
+            <li><strong>Subs that report incidents only to the prime.</strong> The clause requires reporting to DoD within 72 hours. The sub's obligation runs to DoD, not to the prime. Notifying the prime is required <em>in addition to</em> DoD reporting, not <em>instead of</em>.</li>
+            <li><strong>Primes that accept commercial cloud as the sub's environment.</strong> A sub running CDI through commercial Microsoft 365, Google Workspace, or any other non-FedRAMP-authorized service is non-compliant. Accepting that posture exposes the prime to flow-down enforcement risk.</li>
+            <li><strong>Subs that obtain CMMC certification at the wrong level.</strong> Some subs over-certify (paying for Level 2 when their CDI exposure would qualify for Level 1) and some under-certify (assuming Level 1 is enough when CDI is in scope). The CMMC level required is set by the contract, not by the sub's preference.</li>
+            <li><strong>ITAR or EAR data treated as ordinary CDI.</strong> Export-controlled technical data (ITAR Category XV, for example) carries US-person access restrictions in addition to 7012 safeguarding obligations. Subs cannot use offshore developers, foreign-national contractors, or non-US-person cloud administrators on systems handling ITAR data — even if 7012 alone would otherwise permit it.</li>
+            <li><strong>Subs whose cloud admins are outside the United States.</strong> Many cloud-managed-service providers have non-US-person administrators with privileged access. For CDI generally, this is a question of FedRAMP authorization. For ITAR/EAR, it is a hard prohibition.</li>
+            <li><strong>Sub-tier subs that never see the clause.</strong> First-tier subs frequently fail to flow 7012 to second-tier subs, breaking the chain. Primes have limited visibility past the first tier and must rely on contractual requirements that the chain be maintained.</li>
+          </ul>
+        </div>
+
+        <h2 id="sample-language">Sample Subcontract Language</h2>
+        <p>Most prime contracts have lawyer-drafted multi-page versions of the flow-down clause. The version below is a plain-language paragraph suitable for a small business prime's standard subcontract template. It is offered as a starting point, not as legal advice — confirm any contract language with counsel before use.</p>
+
+        <div class="clause-pre">
+          <strong>Section [N]. Cybersecurity Compliance and Flow-Down.</strong><br><br>
+          (a) <strong>Incorporation of DFARS clauses.</strong> Subcontractor agrees that the following Defense Federal Acquisition Regulation Supplement ("DFARS") clauses are incorporated into this Subcontract by reference, in full and without alteration except to identify the parties: 252.204-7012 (Safeguarding Covered Defense Information and Cyber Incident Reporting), 252.204-7019 (Notice of NIST SP 800-171 DoD Assessment Requirements), and 252.204-7020 (NIST SP 800-171 DoD Assessment Requirements). At such time as DFARS 252.204-7021 (Cybersecurity Maturity Model Certification Requirements) becomes applicable to the prime contract, that clause is also incorporated.<br><br>
+          (b) <strong>NIST SP 800-171 implementation.</strong> Subcontractor represents and warrants that it has implemented, and will maintain throughout performance of this Subcontract, the security requirements specified in NIST SP 800-171 Revision 2 in any information system that will store, process, or transmit Covered Defense Information ("CDI") in connection with this Subcontract.<br><br>
+          (c) <strong>SPRS posting.</strong> Subcontractor shall post and maintain a current NIST SP 800-171 self-assessment score in the Supplier Performance Risk System ("SPRS") under its own CAGE code, and shall provide the score to Prime upon request.<br><br>
+          (d) <strong>CMMC certification.</strong> When DFARS 252.204-7021 applies to this Subcontract, Subcontractor shall obtain and maintain a current CMMC certification at the level required by the Prime, which Subcontractor acknowledges may be the same as or lower than the Prime's required CMMC level depending on the scope of CDI handled by Subcontractor.<br><br>
+          (e) <strong>Cyber incident reporting.</strong> In the event of a cyber incident affecting CDI or any system that processes CDI in connection with this Subcontract, Subcontractor shall (i) report the incident to the Department of Defense via the DIBNet portal within 72 hours of discovery, in accordance with DFARS 252.204-7012(c); (ii) notify Prime of the incident as soon as practicable and in no event later than 24 hours after submission of the DIBNet report; and (iii) provide the DoD-assigned incident report number to Prime upon receipt.<br><br>
+          (f) <strong>Cloud services.</strong> Any cloud service used by Subcontractor to store, process, or transmit CDI shall be authorized at the FedRAMP Moderate baseline or be demonstrably equivalent under the Department of Defense Chief Information Officer's December 21, 2023 memorandum on FedRAMP Moderate Equivalency for Cloud Service Provider's Cloud Service Offerings. Equivalency requires assessment by a FedRAMP-recognized 3PAO against 100% of the FedRAMP Moderate baseline with no open POA&amp;Ms; self-attestation is not permitted. Use of commercial (non-FedRAMP-authorized) cloud services to handle CDI is prohibited.<br><br>
+          (g) <strong>Lower-tier subcontracts.</strong> Subcontractor shall include this Section [N] in any lower-tier subcontract or similar instrument under which the lower-tier subcontractor will store, process, or transmit CDI in performance of this Subcontract.<br><br>
+          (h) <strong>Audit cooperation.</strong> Subcontractor shall cooperate with any DoD assessment of compliance with NIST SP 800-171 conducted under DFARS 252.204-7020, and shall provide Prime with reasonable access to evidence of compliance upon request.
+        </div>
+
+        <p>This language is intentionally short and specific. Long boilerplate clauses are sometimes signed without being read; concise clauses tend to be both read and understood. Keep the operative obligations explicit and unambiguous.</p>
+
+        <h2 id="references">Authoritative References</h2>
+        <div class="ref-grid">
+          <a href="https://www.acquisition.gov/dfars/252.204-7012-safeguarding-covered-defense-information-and-cyber-incident-reporting" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DFARS 252.204-7012 — Full Text</div>
+            <div class="ref-card-desc">The clause itself, including the 7012(m) flow-down paragraph and the 72-hour incident reporting requirements</div>
+          </a>
+          <a href="https://www.acquisition.gov/dfars/252.204-7019-notice-nist-sp-800-171-dod-assessment-requirements" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DFARS 252.204-7019</div>
+            <div class="ref-card-desc">The notice clause requiring contractors to have a current SPRS posting before contract award</div>
+          </a>
+          <a href="https://www.acquisition.gov/dfars/252.204-7020-nist-sp-800-171-dod-assessment-requirements" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DFARS 252.204-7020</div>
+            <div class="ref-card-desc">The DoD assessment-cooperation clause, with its own flow-down to subs handling CDI</div>
+          </a>
+          <a href="https://www.acquisition.gov/dfars/252.204-7021-contractor-compliance-cybersecurity-maturity-model-certification-level-requirements" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DFARS 252.204-7021</div>
+            <div class="ref-card-desc">The CMMC certification clause and the obligation to flow the appropriate CMMC level to subcontractors</div>
+          </a>
+          <a href="https://dibnet.dod.mil/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DIBNet Portal</div>
+            <div class="ref-card-desc">The DoD's portal for cyber incident reporting under 7012(c) — accounts and certificates must be obtained in advance</div>
+          </a>
+          <a href="https://www.archives.gov/cui/registry/category-list" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NARA CUI Registry</div>
+            <div class="ref-card-desc">Authoritative list of CUI categories — use to determine whether information received under a DoD contract qualifies as CDI</div>
+          </a>
+        </div>
+
+        <div class="callout green">
+          <p><strong>Related resources:</strong> The cloud-service requirements referenced in 7012 are explored in detail in the <a href="enclave-architecture.html" style="color:var(--blue);font-weight:600;">enclave architecture guide</a>. The 800-171 control implementations that subs must satisfy are covered in the <a href="controls.html" style="color:var(--blue);font-weight:600;">110 control deep dives</a>, and the SSP requirements in the <a href="ssp-guide.html" style="color:var(--blue);font-weight:600;">SSP writing guide</a>.</p>
+        </div>
+
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+        <p>Technical resources for DIB contractors navigating CMMC 2.0 Level 2 compliance.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html">CMMC 2.0 Guide</a></li>
+          <li><a href="resources.html#controls">Control Family Guides</a></li>
+          <li><a href="resources.html#ssp">SSP &amp; POA&amp;M</a></li>
+          <li><a href="resources.html#oscal">Automation &amp; OSCAL</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Key Topics</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html#who-needs-it">Who Needs to Comply</a></li>
+          <li><a href="guide.html#c3pao">C3PAO vs. Self-Assessment</a></li>
+          <li><a href="guide.html#sprs">SPRS Scoring</a></li>
+          <li><a href="guide.html#nist">110 Controls Reference</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resources.html">All Resources</a></li>
+          <li><a href="guide.html">CMMC Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Methodical Security LLC. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

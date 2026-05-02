@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NIST SP 800-171 Rev 2 to Rev 3 Transition — Methodical Security</title>
+  <meta name="description" content="What changed between NIST SP 800-171 Rev 2 and Rev 3, what it means for CMMC compliance, and how to begin preparing for the eventual transition.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .compare-table { width:100%; border-collapse:collapse; margin:14px 0 22px; font-size:.86rem; }
+    .compare-table th, .compare-table td { padding:10px 12px; border:1px solid var(--border); text-align:left; vertical-align:top; }
+    .compare-table thead th { background:var(--navy); color:#fff; font-weight:600; font-size:.76rem; text-transform:uppercase; letter-spacing:.05em; }
+    .compare-table tbody tr:nth-child(even) { background:#f8fafc; }
+    .compare-table td strong { color:var(--navy); }
+    .change-card { border:1px solid var(--border); border-radius:8px; padding:16px 22px; margin:14px 0; background:#fff; border-left:4px solid var(--blue); }
+    .change-card h3 { margin:0 0 4px; color:var(--navy); }
+    .change-card .change-meta { font-size:.72rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; }
+    .change-card ul { margin:6px 0 0 18px; }
+    .change-card li { font-size:.92rem; line-height:1.7; margin-bottom:5px; color:var(--text); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="guide.html">CMMC Guide</a></li>
+    </ul>
+    <div></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="resources.html">Resources</a><span>›</span>
+        <span style="color:rgba(255,255,255,.7)">Rev 2 → Rev 3 Transition</span>
+      </div>
+      <span class="eyebrow">Reference · 9-minute read · Forward-looking</span>
+      <h1>NIST SP 800-171 Rev 2 → Rev 3 Transition</h1>
+      <p>NIST released SP 800-171 Revision 3 in May 2024 with substantial differences from Rev 2 — different control structure, different language, additional content, and removed content. CMMC 2.0 currently runs on Rev 2, but a transition to Rev 3 is anticipated. This guide explains what changed and how to begin preparing for the transition.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="guide-layout">
+
+      <aside class="guide-sidebar">
+        <div style="font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;">On this page</div>
+        <nav class="guide-sidebar-nav">
+          <a href="#current-state" class="active">Current State</a>
+          <a href="#what-changed">What Changed</a>
+          <a href="#new-requirements">New Requirements</a>
+          <a href="#removed">Removed Requirements</a>
+          <a href="#odp">Organization-Defined Parameters</a>
+          <a href="#structure">Structural Changes</a>
+          <a href="#cmmc-impact">When CMMC Adopts Rev 3</a>
+          <a href="#preparing">How to Prepare Now</a>
+          <a href="#references">References</a>
+        </nav>
+      </aside>
+
+      <article class="guide-content">
+
+        <h2 id="current-state">Current State</h2>
+        <p>NIST SP 800-171 has been the foundation of DoD cybersecurity contractor requirements since 2016. The current operational version is Revision 2, published in February 2020, which contains 110 security requirements organized into 14 control families.</p>
+        <p>NIST published both <strong>SP 800-171 Revision 3 and the companion SP 800-171A Rev 3 (assessment procedures) on May 14, 2024</strong>. Rev 3 introduces substantial changes from Rev 2. However:</p>
+        <ul>
+          <li><strong>CMMC 2.0 is built on Rev 2.</strong> The 32 CFR Part 170 Final Rule that established CMMC explicitly references SP 800-171 Rev 2 as the controlling standard.</li>
+          <li><strong>DoD has not yet announced a transition timeline to Rev 3 within CMMC.</strong> The relationship between DoD's CMMC framework and the underlying NIST standard is governed by regulation, not by NIST publication dates.</li>
+          <li><strong>For active CMMC compliance work, Rev 2 remains the operative standard.</strong> Build your SSP, your evidence package, and your assessment readiness against Rev 2.</li>
+          <li><strong>Rev 3 is anticipated to influence future CMMC versions.</strong> Eventually — likely as part of a CMMC framework update — the underlying NIST standard will move to Rev 3, possibly with DoD-specific overlays.</li>
+        </ul>
+        <div class="callout amber">
+          <p><strong>Do not implement Rev 3 in lieu of Rev 2 for current CMMC work.</strong> An SSP written against Rev 3 will not pass a Rev 2-based assessment cleanly. Stay on Rev 2 for active certification; track Rev 3 for forward planning.</p>
+        </div>
+
+        <h2 id="what-changed">What Changed Between Rev 2 and Rev 3</h2>
+
+        <table class="compare-table">
+          <thead>
+            <tr><th></th><th>NIST SP 800-171 Rev 2</th><th>NIST SP 800-171 Rev 3</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Total requirements</strong></td>
+              <td>110</td>
+              <td>97 base + organization-defined parameters that effectively expand the count</td>
+            </tr>
+            <tr>
+              <td><strong>Control families</strong></td>
+              <td>14</td>
+              <td>17 (added Planning, System and Services Acquisition, and Supply Chain Risk Management)</td>
+            </tr>
+            <tr>
+              <td><strong>Source standard</strong></td>
+              <td>Derived primarily from NIST SP 800-53 Rev 4 (Moderate baseline)</td>
+              <td>Derived from NIST SP 800-53 Rev 5 (Moderate baseline) — significant updates to the underlying control catalog</td>
+            </tr>
+            <tr>
+              <td><strong>Organization-defined parameters (ODPs)</strong></td>
+              <td>None — requirements are uniform across all contractors</td>
+              <td>Many requirements include ODPs — values to be set by the implementing organization (or by the agency in the contract)</td>
+            </tr>
+            <tr>
+              <td><strong>Withdrawn requirements</strong></td>
+              <td>—</td>
+              <td>Multiple Rev 2 requirements were withdrawn (consolidated into others or removed as redundant)</td>
+            </tr>
+            <tr>
+              <td><strong>New requirements</strong></td>
+              <td>—</td>
+              <td>New requirements added for supply chain risk management, system services acquisition, planning, and other topics not previously covered</td>
+            </tr>
+            <tr>
+              <td><strong>Format</strong></td>
+              <td>Single requirement statement per control</td>
+              <td>Restructured with clearer mappings to assessment objectives (similar to 800-53 format)</td>
+            </tr>
+            <tr>
+              <td><strong>Companion document</strong></td>
+              <td>NIST SP 800-171A (assessment procedures)</td>
+              <td>Updated NIST SP 800-171A Rev 3 (assessment procedures aligned to Rev 3 controls)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>The most consequential changes are the addition of organization-defined parameters, the new control families, and the alignment to 800-53 Rev 5. Each represents a meaningful departure from how Rev 2 operates.</p>
+
+        <h2 id="new-requirements">New Requirements in Rev 3</h2>
+        <p>Rev 3 adds requirement areas that did not exist in Rev 2. The most notable additions:</p>
+
+        <div class="change-card">
+          <div class="change-meta">New family · Planning</div>
+          <h3>Planning (PL)</h3>
+          <ul>
+            <li>Formal requirement for a documented information security planning process</li>
+            <li>Rules for plan review, update, and dissemination</li>
+            <li>Aligns to the 800-53 PL family</li>
+          </ul>
+        </div>
+
+        <div class="change-card">
+          <div class="change-meta">New family · Supply Chain Risk Management</div>
+          <h3>Supply Chain Risk Management (SR)</h3>
+          <ul>
+            <li>Formal requirements for supply chain risk management program</li>
+            <li>Vendor and supplier risk assessment</li>
+            <li>Component authenticity (anti-counterfeit) requirements</li>
+            <li>Alignment to NIST SP 800-161 (cyber supply chain risk management)</li>
+            <li>Significant new burden for organizations without a mature SCRM program</li>
+          </ul>
+        </div>
+
+        <div class="change-card">
+          <div class="change-meta">New family · System and Services Acquisition</div>
+          <h3>System and Services Acquisition (SA)</h3>
+          <ul>
+            <li>Security requirements that must be addressed during acquisition of systems and services</li>
+            <li>Documentation requirements for acquired systems</li>
+            <li>Developer-related security controls (where applicable)</li>
+          </ul>
+        </div>
+
+        <div class="change-card">
+          <div class="change-meta">New requirements · existing families</div>
+          <h3>Notable new requirements within existing families</h3>
+          <ul>
+            <li>Stronger emphasis on cryptographic key management lifecycle</li>
+            <li>Explicit requirements for software bill of materials (SBOM) and component inventory</li>
+            <li>Strengthened identity and authentication requirements aligned to NIST SP 800-63 current guidance</li>
+            <li>More explicit incident response phases and requirements</li>
+            <li>Updated audit log requirements reflecting modern logging practice</li>
+            <li>Enhanced configuration management requirements covering automation and continuous monitoring</li>
+          </ul>
+        </div>
+
+        <h2 id="removed">Removed or Consolidated Requirements</h2>
+        <p>Rev 3 also withdraws or consolidates several Rev 2 requirements:</p>
+        <ul>
+          <li><strong>Several requirements consolidated into broader controls.</strong> Where Rev 2 had multiple narrow requirements addressing related topics, Rev 3 sometimes combines them into a single more general requirement.</li>
+          <li><strong>Some requirements moved to the assessment objectives layer.</strong> Detail that lived in requirement text in Rev 2 may now live in 800-171A Rev 3 as assessment objectives, changing how the requirement is written but not what is assessed.</li>
+          <li><strong>A small number of requirements were removed entirely.</strong> Where the underlying need is addressed adequately by other controls or by current practice, NIST removed the redundant requirement.</li>
+        </ul>
+        <p>The net effect on count is approximately the same — the published count of 97 base requirements may be misleading because of the ODP expansion and the new families. Total implementation burden is likely greater under Rev 3 than under Rev 2 for most contractors.</p>
+
+        <h2 id="odp">Organization-Defined Parameters</h2>
+        <p>The single most significant structural change in Rev 3 is the introduction of organization-defined parameters (ODPs). Rather than uniform values across all contractors (Rev 2's approach), many Rev 3 requirements include parameters that the implementing organization (or the contracting agency) sets within a defined range or with defined criteria.</p>
+        <p>For example, an audit log retention requirement under Rev 2 might say "the contractor shall retain audit logs for at least one year." The same requirement under Rev 3 might say "the contractor shall retain audit logs for [Assignment: organization-defined time period]" — with the organization (or contracting agency) defining the actual value.</p>
+        <p>The implications are twofold:</p>
+        <ul>
+          <li><strong>Implementation flexibility.</strong> Contractors can tune parameters to their environment and risk profile rather than meeting a uniform requirement that may not fit their context.</li>
+          <li><strong>Assessment complexity.</strong> Assessors must verify that the chosen parameters are appropriate, not just that they were met. The range of acceptable answers is wider, but the assessment burden of demonstrating appropriateness is greater.</li>
+        </ul>
+        <p>For DoD contracts, the contracting agency may set the ODPs in the contract or DD-254. Contractors will need to read contracts more carefully to extract the parameter values that govern their implementation.</p>
+
+        <h2 id="structure">Structural Changes</h2>
+        <p>Beyond the content changes, Rev 3 restructures how requirements are presented:</p>
+        <ul>
+          <li><strong>Format aligned to 800-53.</strong> Requirements follow a structure closer to NIST SP 800-53 Rev 5, including the use of selection statements and assignment statements (the source of ODPs).</li>
+          <li><strong>Stronger separation between requirement and discussion.</strong> The requirement text is more concise; explanatory discussion is moved to a separate "Discussion" section, similar to 800-53.</li>
+          <li><strong>Updated control mapping documentation.</strong> NIST publishes mapping tables showing the correspondence between Rev 2 and Rev 3 requirements, useful for transition planning.</li>
+          <li><strong>Refreshed companion documents.</strong> SP 800-171A Rev 3 provides updated assessment procedures aligned to the new requirement structure.</li>
+        </ul>
+
+        <h2 id="cmmc-impact">When CMMC Will Adopt Rev 3</h2>
+        <p>The CMMC framework is governed by 32 CFR Part 170, which currently references SP 800-171 Rev 2. A transition to Rev 3 within CMMC requires DoD rulemaking — a multi-step process that includes proposed rule, public comment period, response to comments, and final rule.</p>
+        <p>As of 2026, DoD has not published a proposed rule transitioning CMMC to Rev 3. Several scenarios are plausible:</p>
+        <ul>
+          <li><strong>DoD adopts Rev 3 directly.</strong> A future CMMC version (CMMC 3.0?) would reference Rev 3 as the underlying standard. Implementation would require contractors to update SSPs, evidence packages, and assessment readiness against the new requirements.</li>
+          <li><strong>DoD adopts Rev 3 with overlays.</strong> The base requirement set is Rev 3, but DoD adds program-specific overlays to address defense-specific concerns. Similar to how DoD has historically added DFARS-specific safeguarding rules on top of the NIST baseline.</li>
+          <li><strong>DoD remains on Rev 2 indefinitely.</strong> Less likely but possible — DoD could decide that Rev 2 adequately serves contractor cybersecurity and that the transition burden is not justified by the benefits of Rev 3.</li>
+          <li><strong>A long transition period applies.</strong> Even after a CMMC transition is announced, contractors are likely to receive a multi-year window to migrate. Existing certifications would likely run their three-year terms under the framework they were issued under.</li>
+        </ul>
+        <p>The most useful posture for contractors: continue to build for Rev 2 today, but architect compliance programs that can absorb a transition without complete rework.</p>
+
+        <h2 id="preparing">How to Prepare Now</h2>
+        <p>Without a published CMMC transition timeline, premature implementation of Rev 3 is wasteful. But several preparatory steps cost little and reduce future transition risk:</p>
+
+        <ul>
+          <li><strong>Read Rev 3.</strong> Familiarity with the new requirements helps you spot opportunities where current Rev 2 implementation already exceeds Rev 2 minimums and aligns with Rev 3 expectations. The discussion sections in Rev 3 are also useful general security guidance.</li>
+          <li><strong>Begin building supply chain risk management capability.</strong> The new SR family in Rev 3 is the area where most contractors have the largest gap. A basic SCRM program — vendor risk assessment, supplier inventory, anti-counterfeit posture — is worth building regardless of CMMC timing.</li>
+          <li><strong>Document your current organizational parameters.</strong> Many of the ODPs in Rev 3 correspond to choices you've already made under Rev 2 (audit log retention duration, account lockout thresholds, password length). Document these choices as deliberate parameter values rather than assumed defaults — your Rev 3 SSP will look much like a documented version of those choices.</li>
+          <li><strong>Strengthen your continuous monitoring.</strong> Rev 3 places greater emphasis on continuous, automated monitoring than Rev 2. Investments in SIEM, vulnerability management automation, and configuration drift monitoring serve both Rev 2 and Rev 3.</li>
+          <li><strong>Build a flexible policy structure.</strong> Policies written with explicit parameter values (rather than narrative descriptions) translate more easily into the Rev 3 ODP format. See the <a href="policy-library.html">policy library guide</a> for the structural recommendations.</li>
+          <li><strong>Engage with industry associations.</strong> NDIA, AIA, and similar associations are tracking the CMMC-Rev 3 question and engaging with DoD on transition planning. Participate in industry comment periods when proposed rules are published.</li>
+          <li><strong>Track DoD PMO communications.</strong> The CMMC PMO will be the authoritative source for transition timing announcements. Follow PMO communications, public events, and rule-making notices.</li>
+        </ul>
+
+        <p>The transition is coming, but probably not soon. Contractors who maintain a strong Rev 2 program and stay informed about Rev 3 will be well-positioned when the transition is announced — likely with a multi-year window to migrate.</p>
+
+        <h2 id="references">Authoritative References</h2>
+        <div class="ref-grid">
+          <a href="https://csrc.nist.gov/publications/detail/sp/800-171/rev-2/final" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST SP 800-171 Rev 2</div>
+            <div class="ref-card-desc">The currently operative standard underlying CMMC Level 2 — what to implement today</div>
+          </a>
+          <a href="https://csrc.nist.gov/pubs/sp/800/171/r3/final" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST SP 800-171 Rev 3</div>
+            <div class="ref-card-desc">The May 2024 update — the future standard, not yet referenced by CMMC</div>
+          </a>
+          <a href="https://csrc.nist.gov/publications/detail/sp/800-171a/final" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST SP 800-171A Rev 2</div>
+            <div class="ref-card-desc">Assessment procedures for Rev 2 — what assessors use today</div>
+          </a>
+          <a href="https://csrc.nist.gov/pubs/sp/800/171/a/r3/final" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST SP 800-171A Rev 3</div>
+            <div class="ref-card-desc">Updated assessment procedures aligned to Rev 3 — useful for transition planning</div>
+          </a>
+          <a href="https://csrc.nist.gov/projects/protecting-controlled-unclassified-information" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST CUI Project</div>
+            <div class="ref-card-desc">NIST's project page for the SP 800-171 series — includes mapping documents and supporting publications</div>
+          </a>
+          <a href="https://dodcio.defense.gov/CMMC/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DoD CIO CMMC Program Office</div>
+            <div class="ref-card-desc">Authoritative source for any future announcements about the CMMC framework's adoption of Rev 3</div>
+          </a>
+        </div>
+
+        <div class="callout green">
+          <p><strong>Related resources:</strong> See the <a href="phase-tracker.html" style="color:var(--blue);font-weight:600;">CMMC phase tracker</a> for the broader rollout timeline, and the <a href="maintaining-certification.html" style="color:var(--blue);font-weight:600;">maintenance guide</a> for how regulatory changes can affect existing certifications.</p>
+        </div>
+
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+        <p>Technical resources for DIB contractors navigating CMMC 2.0 Level 2 compliance.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html">CMMC 2.0 Guide</a></li>
+          <li><a href="resources.html#architecture">Architecture &amp; Scoping</a></li>
+          <li><a href="resources.html#controls">Control Family Guides</a></li>
+          <li><a href="resources.html#ssp">SSP &amp; POA&amp;M</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Key Topics</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html#who-needs-it">Who Needs to Comply</a></li>
+          <li><a href="guide.html#c3pao">C3PAO vs. Self-Assessment</a></li>
+          <li><a href="guide.html#sprs">SPRS Scoring</a></li>
+          <li><a href="guide.html#nist">110 Controls Reference</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resources.html">All Resources</a></li>
+          <li><a href="guide.html">CMMC Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Methodical Security LLC. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

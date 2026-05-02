@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMMC Final Rule Phase Tracker — Methodical Security</title>
+  <meta name="description" content="A timeline reference for the CMMC Final Rule rollout — Phase 1, 2, 3, and 4 enforcement milestones, what's currently in effect, and how to read your contracts to know which phase applies.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .phase-block { border:1px solid var(--border); border-radius:8px; padding:18px 22px; margin:14px 0; background:#fff; }
+    .phase-block.active { border-left:4px solid #16a34a; background:#f0fdf4; }
+    .phase-block.upcoming { border-left:4px solid #c2410c; }
+    .phase-block.future { border-left:4px solid #475569; opacity:.92; }
+    .phase-block h3 { margin:0 0 4px; color:var(--navy); }
+    .phase-block .phase-meta { font-size:.72rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+    .phase-block ul { margin:8px 0 0 18px; }
+    .phase-block li { font-size:.92rem; line-height:1.7; margin-bottom:6px; color:var(--text); }
+    .phase-block .badge { display:inline-block; padding:3px 10px; border-radius:20px; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; margin-left:8px; vertical-align:middle; }
+    .badge-active { background:#dcfce7; color:#166534; }
+    .badge-upcoming { background:#fff7ed; color:#c2410c; }
+    .badge-future { background:#e2e8f0; color:#334155; }
+    .timeline-table { width:100%; border-collapse:collapse; margin:14px 0 22px; font-size:.86rem; }
+    .timeline-table th, .timeline-table td { padding:10px 12px; border:1px solid var(--border); text-align:left; vertical-align:top; }
+    .timeline-table thead th { background:var(--navy); color:#fff; font-weight:600; font-size:.76rem; text-transform:uppercase; letter-spacing:.05em; }
+    .timeline-table tbody tr:nth-child(even) { background:#f8fafc; }
+    .timeline-table td.window { white-space:nowrap; font-family:monospace; font-weight:600; color:var(--navy); }
+    .last-updated { font-size:.82rem; color:var(--muted); font-style:italic; margin-bottom:18px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="guide.html">CMMC Guide</a></li>
+    </ul>
+    <div></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="resources.html">Resources</a><span>›</span>
+        <span style="color:rgba(255,255,255,.7)">Phase Tracker</span>
+      </div>
+      <span class="eyebrow">Reference · Updated periodically · Verify against PMO source</span>
+      <h1>CMMC Final Rule Phase Tracker</h1>
+      <p>The CMMC program is rolling out in phases under the Final Rule. This is the timeline reference for what is currently in effect, what is coming, and how to read your contracts to know which phase applies to your work.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="guide-layout">
+
+      <aside class="guide-sidebar">
+        <div style="font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;">On this page</div>
+        <nav class="guide-sidebar-nav">
+          <a href="#current" class="active">Current State</a>
+          <a href="#phase-1">Phase 1</a>
+          <a href="#phase-2">Phase 2</a>
+          <a href="#phase-3">Phase 3</a>
+          <a href="#phase-4">Phase 4</a>
+          <a href="#timeline">Phased Timeline</a>
+          <a href="#reading-contracts">Reading Your Contracts</a>
+          <a href="#planning">Planning Implications</a>
+          <a href="#references">Authoritative Sources</a>
+        </nav>
+      </aside>
+
+      <article class="guide-content">
+
+        <h2 id="current">Current State</h2>
+        <p class="last-updated">Last reviewed: 2026-05. Verify current state against the DoD CIO CMMC Program Office before making contract decisions; the rollout schedule has been adjusted multiple times since the Final Rule was published.</p>
+        <p>The CMMC Final Rule (32 CFR Part 170) was <strong>published in the Federal Register on October 15, 2024 (89 FR 83214)</strong> and <strong>became effective on December 16, 2024</strong>. The acquisition-side rule (DFARS Case 2019-D041, updating DFARS 252.204-7021) was published as a final rule on <strong>September 10, 2025</strong>, with phased applicability to solicitations beginning <strong>November 10, 2025</strong>.</p>
+        <p>The rollout is structured in four phases over a three-year period. Each phase progressively expands which contracts must include CMMC certification requirements and at what level. Throughout the rollout, contracting officers retain discretion to require CMMC earlier than the phased schedule would otherwise require.</p>
+
+        <div class="callout amber">
+          <p><strong>Phase status changes.</strong> The PMO has published guidance, schedule adjustments, and class deviations as the program has matured. Always confirm the current state against the PMO's published guidance before making procurement decisions or planning compliance investments.</p>
+        </div>
+
+        <h2 id="phase-1">Phase 1 — Self-Assessment Required</h2>
+
+        <div class="phase-block">
+          <div class="phase-meta">Phase 1 · Began November 10, 2025</div>
+          <h3>CMMC Level 1 and Level 2 (Self-Assessment) requirements appear in solicitations <span class="badge badge-active">In effect</span></h3>
+          <p style="margin:6px 0 12px;color:var(--text);">In Phase 1, contracting officers begin requiring CMMC Level 1 (Self) and CMMC Level 2 (Self) certifications in new contracts and option exercises. Level 2 (C3PAO) and Level 3 are not yet broadly required in Phase 1 except by contracting officer discretion.</p>
+          <h4 style="margin:12px 0 6px;color:var(--navy);font-size:.92rem;">What this means for contractors</h4>
+          <ul>
+            <li>If your contract is awarded during Phase 1 and the contract includes DFARS 252.204-7021 specifying Level 1 or Level 2 (Self), you must have a current self-assessment posted in SPRS at the appropriate level</li>
+            <li>The senior official affirmation in SPRS becomes a contractual representation</li>
+            <li>Existing DFARS 7012, 7019, and 7020 obligations continue to apply unchanged</li>
+            <li>Contracts not yet including 7021 continue under the prior framework (DFARS 7012 + SPRS posting under 7019)</li>
+          </ul>
+        </div>
+
+        <h2 id="phase-2">Phase 2 — Level 2 C3PAO Certification Required</h2>
+
+        <div class="phase-block">
+          <div class="phase-meta">Phase 2 · Begins November 10, 2026</div>
+          <h3>CMMC Level 2 (C3PAO) certification appears in new contracts <span class="badge badge-upcoming">Upcoming</span></h3>
+          <p style="margin:6px 0 12px;color:var(--text);">Beginning <strong>November 10, 2026</strong>, contracting officers in applicable solicitations begin requiring CMMC Level 2 (C3PAO) certification at award. This affects the population of contractors that handle CUI under DoD contracts — DoD estimates approximately 80,000 contractors will ultimately need Level 2 third-party certification. Contracts already in performance under earlier-phase terms continue under those terms; Phase 2 affects new awards and option exercises that include the updated 7021 clause.</p>
+          <h4 style="margin:12px 0 6px;color:var(--navy);font-size:.92rem;">What this means for contractors</h4>
+          <ul>
+            <li>If your contract is awarded during Phase 2 and the contract specifies Level 2 (C3PAO), you must hold a current C3PAO-issued certification before contract award</li>
+            <li>C3PAO assessment must be planned and executed in advance of bidding on Phase 2 contracts — typical lead time is 12–18 months from initial preparation through certification</li>
+            <li>Contracts already in place under earlier framework continue under the terms of those contracts; Phase 2 affects new awards and option exercises that include 7021</li>
+            <li>The C3PAO ecosystem capacity is expected to be a constraint during early Phase 2; engaging a C3PAO early matters</li>
+          </ul>
+        </div>
+
+        <h2 id="phase-3">Phase 3 — Level 3 Required</h2>
+
+        <div class="phase-block">
+          <div class="phase-meta">Phase 3 · Begins November 10, 2027</div>
+          <h3>CMMC Level 3 certification appears in new contracts <span class="badge badge-future">Future</span></h3>
+          <p style="margin:6px 0 12px;color:var(--text);">Phase 3 introduces the Level 3 requirement for contracts handling the most sensitive CUI. Level 3 layers the 24 NIST SP 800-172 enhanced requirements on top of the Level 2 base, and assessments are conducted by DIBCAC rather than C3PAOs.</p>
+          <h4 style="margin:12px 0 6px;color:var(--navy);font-size:.92rem;">What this means for contractors</h4>
+          <ul>
+            <li>Affects a narrow population — primes and Tier 1 subs on the highest-sensitivity programs</li>
+            <li>Contractors targeted for Level 3 typically know it well in advance; Level 3 contracts are negotiated with the security requirement clearly understood</li>
+            <li>Level 3 implementation requires the Level 2 foundation plus the additional 800-172 controls — typically a 12–24 month preparation timeline beyond Level 2</li>
+            <li>DIBCAC assessment scheduling is a constraint distinct from the C3PAO ecosystem</li>
+          </ul>
+        </div>
+
+        <h2 id="phase-4">Phase 4 — Full Implementation</h2>
+
+        <div class="phase-block">
+          <div class="phase-meta">Phase 4 · Begins November 10, 2028</div>
+          <h3>CMMC requirements appear in all applicable contracts <span class="badge badge-future">Future</span></h3>
+          <p style="margin:6px 0 12px;color:var(--text);">Phase 4 represents full implementation: any contract that involves FCI or CUI includes appropriate CMMC certification requirements. The phased rollout effectively completes; thereafter, CMMC is the standing baseline.</p>
+          <h4 style="margin:12px 0 6px;color:var(--navy);font-size:.92rem;">What this means for contractors</h4>
+          <ul>
+            <li>By Phase 4, every contractor performing on FCI or CUI contracts should be certified at the appropriate level</li>
+            <li>The contractor population that has not yet certified by Phase 4 will face a sharp constraint on contract opportunities</li>
+            <li>The C3PAO ecosystem is expected to have significantly more capacity by Phase 4 than during early Phase 2</li>
+            <li>Recertifications from Phase 1/2/3 begin to come due during Phase 4 — the recertification volume layers on top of new certifications</li>
+          </ul>
+        </div>
+
+        <h2 id="timeline">The Phased Timeline at a Glance</h2>
+
+        <table class="timeline-table">
+          <thead>
+            <tr><th>Phase</th><th>Approximate window</th><th>What's required in new contracts</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Phase 1</strong></td>
+              <td class="window">Nov 10, 2025</td>
+              <td>Level 1 (Self) and Level 2 (Self) certification appear in new contracts</td>
+            </tr>
+            <tr>
+              <td><strong>Phase 2</strong></td>
+              <td class="window">Nov 10, 2026</td>
+              <td>Level 2 (C3PAO) certification appears in new contracts</td>
+            </tr>
+            <tr>
+              <td><strong>Phase 3</strong></td>
+              <td class="window">Nov 10, 2027</td>
+              <td>Level 3 certification appears in new contracts; Level 2 (C3PAO) becomes required for option exercises on covered contracts</td>
+            </tr>
+            <tr>
+              <td><strong>Phase 4</strong></td>
+              <td class="window">Nov 10, 2028</td>
+              <td>Full implementation — CMMC at the appropriate level required for any applicable FCI/CUI-handling contract (no exceptions beyond pure COTS procurements)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>The dates above reflect the schedule established by the DFARS Final Rule (DFARS Case 2019-D041, published September 10, 2025). The DoD has historically adjusted CMMC schedules through guidance and class deviations; verify current applicability against the PMO's published schedule before procurement planning.</p>
+        <p>Throughout all phases, contracting officers may include CMMC requirements in contracts earlier than the phased schedule would otherwise require — particularly for contracts involving sensitive CUI or for follow-on work to existing CMMC-required contracts. There is no period during the rollout when CMMC requirements are guaranteed not to appear in your contracts.</p>
+
+        <h2 id="reading-contracts">Reading Your Contracts to Know What Applies</h2>
+        <p>The phase that applies to a specific contract is determined by the clauses in that contract, not by your interpretation of the rollout schedule. To know what applies to a contract you hold or are pursuing:</p>
+        <ul>
+          <li><strong>Look for DFARS 252.204-7021.</strong> If the clause appears, the contract has a CMMC certification requirement. The clause specifies the required CMMC level (1, 2, or 3) and the assessment type (Self or C3PAO).</li>
+          <li><strong>Look for DFARS 252.204-7012.</strong> If 7012 appears (with or without 7021), the contract involves CDI and triggers all the safeguarding obligations.</li>
+          <li><strong>Look for DFARS 252.204-7019 and 7020.</strong> These typically appear alongside 7012 and require SPRS posting and DoD assessment access.</li>
+          <li><strong>Look for FAR 52.204-21.</strong> If only this clause appears (no DFARS 7012 or 7021), you have a Level 1 (FCI-only) obligation.</li>
+        </ul>
+        <p>The contract is the authority. The phased schedule tells you what to expect in upcoming solicitations; your existing contracts continue to operate under the clauses they incorporate.</p>
+        <p>For the full discussion of how to read DFARS clauses to determine your level, see <a href="choosing-level.html">Choosing Your CMMC Level</a>.</p>
+
+        <h2 id="planning">Planning Implications</h2>
+        <p>The phased rollout creates predictable planning windows. Use them.</p>
+
+        <ul>
+          <li><strong>If you handle only FCI:</strong> Level 1 (Self) is required from Phase 1 onward. Annual self-assessment and SPRS affirmation. Modest investment compared to higher levels.</li>
+          <li><strong>If you handle CUI and your contract specifies Level 2 (Self):</strong> Annual self-assessment with the senior official's affirmation. The implementation burden of all 110 controls applies even though no third party assesses you.</li>
+          <li><strong>If you handle CUI and Level 2 (C3PAO) is in your future:</strong> Begin certification preparation now. The 12–18 month typical preparation timeline plus the C3PAO scheduling lead time means starting Phase 2 work in Phase 1 is sensible. Waiting until your first Phase 2 contract opportunity to begin preparation usually means missing the opportunity.</li>
+          <li><strong>If you are targeted for Level 3:</strong> You almost certainly already know. Plan for the Level 2 foundation first, then layer the 800-172 enhancements. Total preparation timeline is typically 24–36 months from initial Level 2 preparation to Level 3 certification.</li>
+          <li><strong>If you have a multi-year contract that may extend beyond your current certification:</strong> Recertification planning matters. Begin engaging your C3PAO 6 months before your certification expires; an expired certification can affect contract performance even if the underlying security posture is strong. See <a href="maintaining-certification.html#recert">Maintaining Your Certification</a>.</li>
+        </ul>
+
+        <h2 id="references">Authoritative Sources</h2>
+        <div class="ref-grid">
+          <a href="https://dodcio.defense.gov/CMMC/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DoD CIO CMMC Program Office</div>
+            <div class="ref-card-desc">Authoritative source for current phase status, schedule changes, and interpretive guidance — check before any procurement decision</div>
+          </a>
+          <a href="https://www.federalregister.gov/documents/2024/10/15/2024-22905/cybersecurity-maturity-model-certification-cmmc-program" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">CMMC Final Rule (32 CFR Part 170)</div>
+            <div class="ref-card-desc">The DoD-side rule that established the CMMC program — the foundational regulatory basis for the phased rollout</div>
+          </a>
+          <a href="https://www.acquisition.gov/dfars/252.204-7021-contractor-compliance-cybersecurity-maturity-model-certification-level-requirements" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DFARS 252.204-7021</div>
+            <div class="ref-card-desc">The acquisition-side clause that triggers contract-level CMMC requirements in solicitations and contracts</div>
+          </a>
+          <a href="https://cyberab.org/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">The Cyber AB</div>
+            <div class="ref-card-desc">CMMC Accreditation Body — current C3PAO ecosystem capacity, assessment process documentation, and accreditation status changes</div>
+          </a>
+          <a href="https://www.acq.osd.mil/dpap/dars/dfars/index.html" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DFARS / DPC</div>
+            <div class="ref-card-desc">Defense Pricing and Contracting — issues class deviations and contracting guidance that affect how the rollout is implemented</div>
+          </a>
+          <a href="https://www.sprs.csd.disa.mil/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">SPRS</div>
+            <div class="ref-card-desc">Where the self-assessment scores and senior official affirmations live throughout all phases</div>
+          </a>
+        </div>
+
+        <div class="callout green">
+          <p><strong>Related resources:</strong> See <a href="choosing-level.html" style="color:var(--blue);font-weight:600;">Choosing Your CMMC Level</a> for the contract-reading methodology, and <a href="rev2-to-rev3-transition.html" style="color:var(--blue);font-weight:600;">NIST 800-171 Rev 2 → Rev 3</a> for the underlying control standard's evolution that may eventually feed into CMMC.</p>
+        </div>
+
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+        <p>Technical resources for DIB contractors navigating CMMC 2.0 Level 2 compliance.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html">CMMC 2.0 Guide</a></li>
+          <li><a href="resources.html#architecture">Architecture &amp; Scoping</a></li>
+          <li><a href="resources.html#controls">Control Family Guides</a></li>
+          <li><a href="resources.html#ssp">SSP &amp; POA&amp;M</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Key Topics</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html#who-needs-it">Who Needs to Comply</a></li>
+          <li><a href="guide.html#c3pao">C3PAO vs. Self-Assessment</a></li>
+          <li><a href="guide.html#sprs">SPRS Scoring</a></li>
+          <li><a href="guide.html#nist">110 Controls Reference</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resources.html">All Resources</a></li>
+          <li><a href="guide.html">CMMC Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Methodical Security LLC. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maintaining Your CMMC Certification: The Three-Year Operational Picture — Methodical Security</title>
+  <meta name="description" content="What CMMC compliance looks like after the certificate is granted — annual affirmations, POA&M lifecycle, change management, continuous monitoring, and three-year recertification planning.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .timeline-table { width:100%; border-collapse:collapse; margin:14px 0 22px; font-size:.86rem; }
+    .timeline-table th, .timeline-table td { padding:10px 12px; border:1px solid var(--border); text-align:left; vertical-align:top; }
+    .timeline-table thead th { background:var(--navy); color:#fff; font-weight:600; font-size:.76rem; text-transform:uppercase; letter-spacing:.05em; }
+    .timeline-table tbody tr:nth-child(even) { background:#f8fafc; }
+    .timeline-table td.year { white-space:nowrap; font-family:monospace; font-weight:600; color:var(--navy); }
+    .activity-card { border:1px solid var(--border); border-radius:8px; padding:18px 22px; margin:14px 0; background:#fff; border-left:4px solid var(--blue); }
+    .activity-card h3 { margin:0 0 4px; color:var(--navy); }
+    .activity-card .activity-meta { font-size:.72rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+    .activity-card ul { margin:8px 0 0 18px; }
+    .activity-card li { font-size:.92rem; line-height:1.7; margin-bottom:5px; color:var(--text); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="guide.html">CMMC Guide</a></li>
+    </ul>
+    <div></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="resources.html">Resources</a><span>›</span>
+        <span style="color:rgba(255,255,255,.7)">Maintaining Certification</span>
+      </div>
+      <span class="eyebrow">After Certification · 12-minute read · Operational</span>
+      <h1>Maintaining Your CMMC Certification</h1>
+      <p>Certification is the start of the compliance lifecycle, not the end. This is the operational picture for the three-year certification period: annual affirmations, POA&amp;M lifecycle, change management, continuous monitoring, and the recertification planning that begins long before the three-year mark.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="guide-layout">
+
+      <aside class="guide-sidebar">
+        <div style="font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;">On this page</div>
+        <nav class="guide-sidebar-nav">
+          <a href="#three-year" class="active">The Three-Year Cycle</a>
+          <a href="#affirmation">Annual Affirmation</a>
+          <a href="#poam-lifecycle">POA&amp;M Lifecycle</a>
+          <a href="#change-mgmt">Change Management</a>
+          <a href="#monitoring">Continuous Monitoring</a>
+          <a href="#ssp-review">Annual SSP Review</a>
+          <a href="#sprs">Maintaining SPRS</a>
+          <a href="#triggers">Re-Assessment Triggers</a>
+          <a href="#recert">Recertification Planning</a>
+          <a href="#references">References</a>
+        </nav>
+      </aside>
+
+      <article class="guide-content">
+
+        <h2 id="three-year">The Three-Year Cycle</h2>
+        <p>A CMMC Level 2 (C3PAO) certification is valid for three years from the date of issuance, contingent on the contractor meeting ongoing maintenance obligations. The three-year window is not a holiday from compliance — it is a period during which several recurring obligations apply, any of which can affect the validity of the certification.</p>
+
+        <table class="timeline-table">
+          <thead>
+            <tr><th>Time</th><th>Activity</th><th>Trigger</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="year">Year 0</td><td>Initial certification granted</td><td>C3PAO assessment + PMO certification decision</td></tr>
+            <tr><td class="year">Year 0–1</td><td>Initial POA&amp;M items closed (if conditional certification)</td><td>180-day window from the conditional CMMC status date (per 32 CFR § 170.21) — this is sometimes the same as the formal certification date but not always</td></tr>
+            <tr><td class="year">Year 1</td><td>First annual senior official affirmation in SPRS</td><td>One year from certification</td></tr>
+            <tr><td class="year">Year 1+</td><td>Annual SSP review and update</td><td>Recurring</td></tr>
+            <tr><td class="year">Year 1+</td><td>Annual security awareness training cycle</td><td>Recurring per AT family policy</td></tr>
+            <tr><td class="year">Year 1+</td><td>Annual risk assessment, IR plan tabletop, policy review</td><td>Recurring per RA, IR, CA family policies</td></tr>
+            <tr><td class="year">Year 2</td><td>Second annual senior official affirmation in SPRS</td><td>Two years from certification</td></tr>
+            <tr><td class="year">Year 2.5</td><td>Recertification preparation begins; engage C3PAO for next assessment</td><td>~6 months before certification expiration</td></tr>
+            <tr><td class="year">Year 3</td><td>Recertification assessment; new certificate issued</td><td>Before original certificate expires</td></tr>
+          </tbody>
+        </table>
+
+        <p>Throughout the three years, additional triggers can require off-cycle action: significant environmental changes, cyber incidents, regulatory updates, contract changes that alter scope. The certification is not "set and forget."</p>
+
+        <h2 id="affirmation">Annual Senior Official Affirmation</h2>
+        <p>Each year of the three-year certification period, an authorized senior official of the contractor must affirm in SPRS that the contractor continues to meet the CMMC requirements at the certified level. The affirmation obligation is established explicitly by the CMMC Final Rule at <strong>32 CFR §§ 170.16 and 170.17</strong> (covering Level 1 self-assessment and Level 2 self-assessment / certification affirmations respectively). False affirmations expose the senior official to <strong>False Claims Act</strong> liability (31 U.S.C. §§ 3729–3733) and, separately, can result in administrative action under the CMMC Program including suspension or revocation of certification.</p>
+        <div class="callout">
+          <p><strong>Two distinct SPRS-related obligations exist and are sometimes confused:</strong></p>
+          <ul style="margin:6px 0 0 18px;">
+            <li><strong>NIST SP 800-171 self-assessment posting (DFARS 252.204-7019)</strong> — the older obligation, which requires contractors to post a current self-assessment summary score in SPRS.</li>
+            <li><strong>CMMC annual affirmation (32 CFR §§ 170.16 / 170.17)</strong> — the new obligation introduced by the CMMC Final Rule, an annual senior-official attestation that the contractor continues to meet the certified CMMC level.</li>
+          </ul>
+          <p style="margin-top:6px">Both flow into SPRS, but they are different attestations covering different content.</p>
+        </div>
+        <p>The affirmation requires the senior official to confirm that:</p>
+        <ul>
+          <li>The contractor continues to implement all 110 NIST SP 800-171 Rev 2 requirements (or whatever level applies)</li>
+          <li>Any open POA&amp;M items remain appropriate for the certification level (some POA&amp;M items are not permitted at certification — see the POA&amp;M lifecycle section)</li>
+          <li>The SSP remains current and accurately reflects the operational environment</li>
+          <li>No significant changes to the environment have occurred that would invalidate the certification</li>
+          <li>Cyber incidents have been reported as required</li>
+        </ul>
+        <p>Practical implementation: the senior official should not affirm without first reviewing the SSP, the POA&amp;M, and a brief from the ISSO confirming the operational state. The affirmation is a legal representation; reading documents you sign matters.</p>
+        <div class="callout amber">
+          <p><strong>The affirmation creates personal exposure.</strong> The senior official affirming is making a representation under penalty of False Claims Act exposure (31 U.S.C. §§ 3729–3733) and under the CMMC Final Rule at 32 CFR §§ 170.16 and 170.17. False affirmations — affirming compliance that does not exist, affirming an SSP that is materially out of date, affirming that POA&amp;M items remain appropriate when they have lapsed — can result in personal liability beyond the corporate consequences, plus administrative action against the certification itself.</p>
+        </div>
+
+        <h2 id="poam-lifecycle">POA&amp;M Lifecycle</h2>
+        <p>The Plan of Action and Milestones (POA&amp;M) is the living tracker of compliance gaps and their remediation plans. Throughout the certification period, items are added (when new gaps are identified), worked (during remediation), and closed (when remediation completes and is validated).</p>
+        <p>Key rules to know:</p>
+        <ul>
+          <li><strong>Conditional certification has a 180-day clock.</strong> Items on POA&amp;M at the time of conditional certification must be closed within 180 days. Failure to close within the window can result in the certification being downgraded to "not certified" status.</li>
+          <li><strong>POA&amp;M eligibility is sharply limited.</strong> Per the CMMC Final Rule and the DoD Assessment Guide for Level 2: only requirements scored at <strong>1 point</strong> are eligible for POA&amp;M, with one explicit exception — <strong>SC.L2-3.13.11 (CUI Encryption)</strong> may be on POA&amp;M when encryption is employed but is not FIPS-validated (counted as 1 or 3 points in that case). All 5-point requirements (and 3-point requirements other than that single exception) must be fully implemented at certification. Of the 110 requirements, <strong>47 are POA&amp;M-eligible</strong>; even with maximally permitted POA&amp;M items the contractor must achieve a SPRS score of <strong>at least 88</strong> to qualify for conditional certification.</li>
+          <li><strong>POA&amp;M items added during the three-year period must be tracked.</strong> If a new gap is identified through internal assessment, monitoring, or audit findings, it must be added to the POA&amp;M with a credible remediation plan.</li>
+          <li><strong>POA&amp;M items have target completion dates.</strong> Missing target dates without re-baselining the POA&amp;M and documenting the reason creates a finding for the recertification assessment.</li>
+        </ul>
+        <p>POA&amp;M maintenance is the most common area where contractors lose ground during the three-year cycle. An unmaintained POA&amp;M — items added years ago and never closed, target dates missed and never updated, no record of who owns each item — signals to assessors that the compliance program is not actively managed.</p>
+        <p>Operational practice: review the POA&amp;M at least monthly. Review responsibility should be assigned to the ISSO (or equivalent named role). Each POA&amp;M item should have an owner, a current status, a target completion date, and recent activity. Closed items should be documented with the closure evidence — what was done and how it was validated.</p>
+
+        <h2 id="change-mgmt">Change Management for In-Scope Systems</h2>
+        <p>Changes to in-scope systems can affect compliance posture. The 800-171 Configuration Management family (CM) requires formal change control; maintaining certification requires that the change control process actually catches changes that have CMMC impact.</p>
+        <p>Categories of change to track:</p>
+        <ul>
+          <li><strong>System additions.</strong> A new server, new endpoint, new cloud service added to the in-scope environment. Each addition must be reviewed for CMMC impact: does it require new evidence, new policy coverage, new assessor scrutiny at recertification?</li>
+          <li><strong>System retirements.</strong> Removing a system from scope. Confirm CUI is migrated or destroyed properly, that asset inventory is updated, that any associated user access is terminated.</li>
+          <li><strong>Configuration changes.</strong> A change to firewall rules, a change to access control policies, a change to the audit log retention configuration. Significant changes must follow the change control process and be reflected in the SSP.</li>
+          <li><strong>Personnel changes.</strong> A new ISSO, a new System Owner, a turnover in the IR team. Roles must be reassigned and documented; new role-holders must be briefed and trained.</li>
+          <li><strong>Vendor changes.</strong> A new MSP, a switch from one CSP to another, a new specialty vendor with system access. Each change requires re-evaluation of the inheritance and shared-responsibility model.</li>
+          <li><strong>Architectural changes.</strong> Migrating from one enclave platform to another (e.g., M365 commercial to GCC High), changing network segmentation, restructuring the boundary. These almost always trigger off-cycle re-assessment.</li>
+          <li><strong>Organizational changes.</strong> M&amp;A activity, divestiture, change of legal entity. Existing certifications do not automatically transfer through corporate transactions; the PMO must be notified and may require re-assessment.</li>
+        </ul>
+        <p>The test for whether a change requires more than routine handling: would the change have come up in your initial assessment? If yes, it likely requires SSP update, POA&amp;M consideration, and possibly notification to the PMO.</p>
+
+        <h2 id="monitoring">Continuous Monitoring</h2>
+        <p>NIST SP 800-171 Rev 2 requires that the contractor "monitor security controls on an ongoing basis to ensure the continued effectiveness of the controls" (3.12.3). The CMMC level 2 implementation expects this to be a real, operational program — not a once-a-year review.</p>
+
+        <div class="activity-card">
+          <div class="activity-meta">Continuous monitoring · operational practice</div>
+          <h3>What ongoing monitoring includes</h3>
+          <ul>
+            <li><strong>Audit log review:</strong> Periodic (typically weekly) review of audit logs for indicators of anomaly, with documented findings</li>
+            <li><strong>Vulnerability scanning:</strong> Monthly authenticated scans of in-scope systems with remediation tracking through the POA&amp;M</li>
+            <li><strong>Patch compliance monitoring:</strong> Continuous tracking of patch deployment status; investigation of systems falling out of compliance</li>
+            <li><strong>Access review:</strong> Quarterly review of authorized users, with terminated employees confirmed removed and inactive accounts disabled</li>
+            <li><strong>Configuration drift monitoring:</strong> Comparison of current system configurations against documented baselines, with remediation of drift</li>
+            <li><strong>Vendor compliance monitoring:</strong> Annual review of vendor evidence (SOC 2 reports, CRM updates, attestations) and ad-hoc review of vendor incident notifications</li>
+            <li><strong>Security alert monitoring:</strong> Ongoing review of vendor and threat-intelligence security advisories with assessment of applicability to in-scope systems</li>
+            <li><strong>Incident detection and response:</strong> Operational capability to detect and respond to incidents, with documented response activity</li>
+          </ul>
+        </div>
+
+        <p>The continuous monitoring program produces evidence that you'll rely on at recertification. The same evidence the initial assessment looked at — vulnerability scans, access reviews, audit logs, patch reports — should be available continuously, not generated specifically for an assessment window.</p>
+
+        <h2 id="ssp-review">Annual SSP Review</h2>
+        <p>The SSP is required to be reviewed and updated at least annually. The annual review is not a perfunctory exercise — it is the documented confirmation that the SSP continues to accurately reflect operational reality.</p>
+        <p>The annual review should:</p>
+        <ul>
+          <li>Walk through every section of the SSP and confirm it remains accurate</li>
+          <li>Update any control implementation statements where the implementation has changed</li>
+          <li>Refresh the system inventory, network architecture diagrams, and authorized user roster</li>
+          <li>Update the inherited control documentation for any cloud or vendor changes</li>
+          <li>Update the interconnection list for any vendor or external system changes</li>
+          <li>Confirm POA&amp;M cross-references remain accurate</li>
+          <li>Update the document control metadata (version, effective date, next review date)</li>
+          <li>Be approved by the System Owner</li>
+        </ul>
+        <p>The output: an updated SSP with revision history showing the annual review was performed. An SSP last updated three years ago, while the certification is still active, is a finding waiting to happen at recertification.</p>
+
+        <h2 id="sprs">Maintaining SPRS</h2>
+        <p>The Supplier Performance Risk System (SPRS) holds the contractor's NIST 800-171 self-assessment score. Maintaining SPRS during the certification period involves:</p>
+        <ul>
+          <li><strong>Annual senior official affirmation</strong> as described above</li>
+          <li><strong>Updating the score if it changes</strong> — most commonly because POA&amp;M items have closed (improving the score) or because new gaps have been identified (lowering the score)</li>
+          <li><strong>Maintaining accurate organizational information</strong> — CAGE code, point of contact, scope description</li>
+          <li><strong>Updating after significant environmental changes</strong> — if an enclave change or vendor change materially affects implementation, the SPRS posting should reflect the current state</li>
+        </ul>
+        <p>The SPRS posting is publicly visible to government contracting personnel. Inaccurate or stale SPRS data signals that the contractor is not actively maintaining compliance — and may affect contract opportunities even before recertification.</p>
+
+        <h2 id="triggers">Re-Assessment Triggers</h2>
+        <p>The three-year certification is the default validity period, but certain events can trigger an earlier re-assessment requirement:</p>
+        <ul>
+          <li><strong>Significant change to the environment.</strong> A material change in scope, architecture, or boundary that affects the original assessment basis. Examples: changing enclave platforms, migrating to a different cloud provider, adding a major new in-scope system, organizational restructuring that changes who handles CUI.</li>
+          <li><strong>Cyber incident with material impact.</strong> A reportable incident that suggests material gaps in the certified controls may trigger PMO review and, in serious cases, suspension of certification pending demonstrated remediation.</li>
+          <li><strong>Loss of key control inheritance.</strong> If a vendor relationship that you depend on for control inheritance ends without replacement (the CSP loses its FedRAMP authorization, the MSP loses its security capability), the certification may be invalidated for the affected scope.</li>
+          <li><strong>Regulatory update requiring new control coverage.</strong> A change to the underlying NIST 800-171 standard or to the CMMC requirements may require demonstration of compliance against the new standard before the next normal recertification.</li>
+          <li><strong>M&amp;A activity.</strong> Mergers, acquisitions, divestitures, and similar transactions can affect the certification. PMO notification is generally required; re-assessment may be required depending on the nature of the change.</li>
+          <li><strong>Contract action.</strong> A new contract requiring a higher CMMC level than your current certification. You cannot simply assert the higher level — you must achieve it through assessment.</li>
+        </ul>
+        <p>The bias should be toward over-notification rather than under-notification. If a change is significant enough that you're uncertain whether it triggers re-assessment, raise it with the C3PAO and (where applicable) the CMMC PMO. The PMO publishes guidance on what constitutes a significant change.</p>
+
+        <h2 id="recert">Recertification Planning</h2>
+        <p>Recertification is not a routine activity to be planned at the last minute. The next assessment should begin formal planning approximately six months before the current certificate expires.</p>
+
+        <div class="activity-card">
+          <div class="activity-meta">~6 months before expiration</div>
+          <h3>Engage your C3PAO</h3>
+          <ul>
+            <li>Initial conversation with the prior C3PAO (or a new C3PAO if you've decided to change)</li>
+            <li>Scoping discussion — confirm the in-scope environment is similar to (or different from) the prior assessment</li>
+            <li>Pricing and timeline discussion</li>
+            <li>Statement of Work negotiation</li>
+          </ul>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-meta">~4 months before expiration</div>
+          <h3>Internal readiness review</h3>
+          <ul>
+            <li>Comprehensive internal walkthrough of the SSP — confirm it reflects current reality</li>
+            <li>Evidence package audit — confirm all evidence is current and accessible</li>
+            <li>POA&amp;M closure — confirm any open items have credible remediation status or are appropriately deferred</li>
+            <li>Mock interviews with control family owners</li>
+            <li>Identification and remediation of any gaps surfaced during readiness review</li>
+          </ul>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-meta">~2 months before expiration</div>
+          <h3>Document submission</h3>
+          <ul>
+            <li>Submit current SSP, POA&amp;M, policy library, and supporting evidence to the C3PAO</li>
+            <li>Coordinate logistics for fieldwork (room, network access, scheduling)</li>
+            <li>Brief personnel who will participate in the assessment</li>
+          </ul>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-meta">~1 month before expiration</div>
+          <h3>Assessment fieldwork</h3>
+          <ul>
+            <li>The recertification assessment itself, similar in structure to the initial assessment</li>
+            <li>Fieldwork is sometimes shorter than the initial assessment if the environment has been stable, but not assumed to be</li>
+            <li>See the <a href="assessment-day.html">Assessment Day Playbook</a> for the operational picture</li>
+          </ul>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-meta">Before original expiration</div>
+          <h3>New certificate issued</h3>
+          <ul>
+            <li>The C3PAO submits the ROC with certification recommendation; the PMO issues the new certificate before the original expires</li>
+            <li>The new certification begins a new three-year cycle</li>
+            <li>Any remaining POA&amp;M items from the previous cycle should be addressed in the new SSP</li>
+          </ul>
+        </div>
+
+        <p>Organizations that allow their certification to lapse — by failing to begin recertification planning early enough — face a material problem: an active CMMC certification may be a contractual prerequisite for the contracts they hold or pursue. A lapse can trigger contract performance issues even if the underlying security posture is strong.</p>
+        <div class="callout green">
+          <p><strong>Run recertification as a project, not an event.</strong> Assign a named owner, build a project plan with milestones, allocate the time of the personnel who will participate, and treat the timeline as a hard constraint. Recertification with three months of preparation is harder and more expensive than recertification with six months.</p>
+        </div>
+
+        <h2 id="references">Authoritative References</h2>
+        <div class="ref-grid">
+          <a href="https://www.ecfr.gov/current/title-32/subtitle-A/chapter-I/subchapter-G/part-170" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">32 CFR Part 170 (CMMC Final Rule)</div>
+            <div class="ref-card-desc">The CMMC Program rule itself — including §§ 170.16 and 170.17 establishing the annual affirmation obligations for Levels 1 and 2</div>
+          </a>
+          <a href="https://dodcio.defense.gov/CMMC/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DoD CIO CMMC Program Office</div>
+            <div class="ref-card-desc">Authoritative source for certification maintenance requirements and the rolling clarifications around significant change, re-assessment triggers, and ESP relationships</div>
+          </a>
+          <a href="https://www.sprs.csd.disa.mil/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">SPRS</div>
+            <div class="ref-card-desc">The Supplier Performance Risk System where the annual senior official affirmation is recorded and the NIST 800-171 score is maintained</div>
+          </a>
+          <a href="https://csrc.nist.gov/publications/detail/sp/800-171/rev-2/final" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST SP 800-171 Rev 2</div>
+            <div class="ref-card-desc">The 110 requirements that must continue to be met throughout the certification period — particularly the CA family on continuous monitoring</div>
+          </a>
+          <a href="https://www.acquisition.gov/dfars/252.204-7012-safeguarding-covered-defense-information-and-cyber-incident-reporting" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DFARS 252.204-7012</div>
+            <div class="ref-card-desc">The 72-hour cyber incident reporting obligation that continues throughout the certification period</div>
+          </a>
+          <a href="https://cyberab.org/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">The Cyber AB</div>
+            <div class="ref-card-desc">CMMC Accreditation Body — guidance on assessment expectations and the C3PAO ecosystem you'll re-engage for recertification</div>
+          </a>
+          <a href="https://www.law.cornell.edu/uscode/text/31/3729" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">31 U.S.C. §§ 3729–3733 (False Claims Act)</div>
+            <div class="ref-card-desc">The statute that creates personal exposure for false annual senior official affirmations</div>
+          </a>
+        </div>
+
+        <div class="callout green">
+          <p><strong>Related resources:</strong> The <a href="assessment-day.html" style="color:var(--blue);font-weight:600;">Assessment Day Playbook</a> applies to recertification as well as initial certification. The <a href="evidence-library.html" style="color:var(--blue);font-weight:600;">evidence library guide</a> describes the artifacts that must be continuously maintained, and the <a href="policy-library.html" style="color:var(--blue);font-weight:600;">policy library guide</a> covers the documents that must be reviewed annually.</p>
+        </div>
+
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+        <p>Technical resources for DIB contractors navigating CMMC 2.0 Level 2 compliance.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html">CMMC 2.0 Guide</a></li>
+          <li><a href="resources.html#architecture">Architecture &amp; Scoping</a></li>
+          <li><a href="resources.html#controls">Control Family Guides</a></li>
+          <li><a href="resources.html#ssp">SSP &amp; POA&amp;M</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Key Topics</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html#who-needs-it">Who Needs to Comply</a></li>
+          <li><a href="guide.html#c3pao">C3PAO vs. Self-Assessment</a></li>
+          <li><a href="guide.html#sprs">SPRS Scoring</a></li>
+          <li><a href="guide.html#nist">110 Controls Reference</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resources.html">All Resources</a></li>
+          <li><a href="guide.html">CMMC Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Methodical Security LLC. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

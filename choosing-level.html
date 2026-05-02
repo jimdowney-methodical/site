@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choosing Your CMMC Level: Level 1, 2, or 3 — Methodical Security</title>
+  <meta name="description" content="A practical guide to determining whether your organization needs CMMC Level 1, Level 2 self-assessment, Level 2 C3PAO assessment, or Level 3 — driven by your contracts, not by guesswork.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .level-table { width:100%; border-collapse:collapse; margin:14px 0 22px; font-size:.86rem; }
+    .level-table th, .level-table td { padding:10px 12px; border:1px solid var(--border); text-align:left; vertical-align:top; }
+    .level-table thead th { background:var(--navy); color:#fff; font-weight:600; font-size:.76rem; text-transform:uppercase; letter-spacing:.05em; }
+    .level-table tbody tr:nth-child(even) { background:#f8fafc; }
+    .level-card { border:1px solid var(--border); border-radius:8px; padding:18px 22px; margin:14px 0; background:#fff; }
+    .level-card.l1 { border-left:4px solid #1d4ed8; }
+    .level-card.l2-self { border-left:4px solid #16a34a; }
+    .level-card.l2-c3pao { border-left:4px solid #c2410c; }
+    .level-card.l3 { border-left:4px solid #991b1b; }
+    .level-card h3 { margin:0 0 4px; color:var(--navy); }
+    .level-card .level-meta { font-size:.72rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+    .scenario-box { background:var(--surface); border-radius:8px; padding:14px 18px; margin:12px 0; border-left:3px solid var(--blue); }
+    .scenario-box .scenario-q { font-weight:600; color:var(--navy); font-size:.92rem; margin-bottom:6px; }
+    .scenario-box .scenario-a { font-size:.9rem; color:var(--text); margin:0; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="guide.html">CMMC Guide</a></li>
+    </ul>
+    <div></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="resources.html">Resources</a><span>›</span>
+        <span style="color:rgba(255,255,255,.7)">Choosing Your Level</span>
+      </div>
+      <span class="eyebrow">Pre-Assessment · 9-minute read · Decision support</span>
+      <h1>Choosing Your CMMC Level</h1>
+      <p>CMMC has three levels and four assessment paths. Your level isn't a strategic choice — it's determined by the contracts you hold or pursue. This guide walks through how to read your contracts to determine which level you need, and what to do when the answer is ambiguous or you have mixed exposure.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="guide-layout">
+
+      <aside class="guide-sidebar">
+        <div style="font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;">On this page</div>
+        <nav class="guide-sidebar-nav">
+          <a href="#contract-driven" class="active">Contract-Driven, Not Strategic</a>
+          <a href="#dfars-clauses">Reading the DFARS Clauses</a>
+          <a href="#level-1">Level 1 (FCI)</a>
+          <a href="#level-2-self">Level 2 Self-Assessment</a>
+          <a href="#level-2-c3pao">Level 2 C3PAO Assessment</a>
+          <a href="#level-3">Level 3 (NIST 800-172)</a>
+          <a href="#scenarios">Common Scenarios</a>
+          <a href="#mixed">Mixed and Ambiguous Exposure</a>
+          <a href="#changes-during">Changes During the Cycle</a>
+          <a href="#references">Authoritative References</a>
+        </nav>
+      </aside>
+
+      <article class="guide-content">
+
+        <h2 id="contract-driven">Contract-Driven, Not Strategic</h2>
+        <p>The single most important point: your CMMC level is set by the data you handle on government contracts, not by an internal decision. You cannot choose to be Level 1 if your contracts require Level 2; you cannot choose to be Level 2 if your contracts only involve FCI; and you generally cannot opt into Level 3 unless a contract requires it.</p>
+        <p>The level is established by the combination of (1) what data the government provides you under the contract and (2) which DFARS or FAR clauses the contract incorporates. Both elements appear in the contract itself — usually in a clauses-incorporated-by-reference section, the statement of work, the DD-254 (if applicable), and the security classification guide.</p>
+        <p>Once you know what you have, you can plan and budget accordingly. Trying to plan without first reading your contracts produces remediation work targeted at the wrong level — almost always more expensive than necessary.</p>
+
+        <h2 id="dfars-clauses">Reading the DFARS Clauses</h2>
+        <p>Four contract clauses govern CMMC level applicability. Find them in your contracts before doing anything else.</p>
+
+        <table class="level-table">
+          <thead>
+            <tr><th>Clause</th><th>If Present, You Need</th><th>What It Tells You</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>FAR 52.204-21</strong></td>
+              <td>Level 1 (basic safeguarding of FCI)</td>
+              <td>The contract involves Federal Contract Information. Triggers the 15 basic safeguarding requirements.</td>
+            </tr>
+            <tr>
+              <td><strong>DFARS 252.204-7012</strong></td>
+              <td>Level 2 (NIST 800-171 Rev 2)</td>
+              <td>The contract involves Covered Defense Information (CDI). Triggers the full 110 NIST 800-171 requirements.</td>
+            </tr>
+            <tr>
+              <td><strong>DFARS 252.204-7019 / 7020</strong></td>
+              <td>Level 2 with SPRS posting and DoD assessment access</td>
+              <td>You must have a current self-assessment posted to SPRS, and DoD reserves the right to perform a higher-level assessment. Almost always co-occurs with 7012.</td>
+            </tr>
+            <tr>
+              <td><strong>DFARS 252.204-7021</strong></td>
+              <td>Level 1, 2, or 3 — at the level the clause specifies</td>
+              <td>The contract requires a CMMC certification at a stated level. The specific CMMC level (1, 2, 3) and assessment type (self vs. third-party) are named in the clause as filled in by the contracting officer.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>If a contract has only FAR 52.204-21, it's a Level 1 obligation. If it has DFARS 252.204-7012 (and typically 7019/7020), you're at Level 2. The 7021 clause names the exact CMMC level required once the program reaches the relevant phase of the rollout — and that level may be Level 1 (Self), Level 2 (Self), Level 2 (C3PAO), or Level 3 depending on what the contracting officer specifies.</p>
+        <div class="callout">
+          <p><strong>Look at every active contract, not just the largest.</strong> A small contract with a 7012 obligation creates the same Level 2 obligation as a large one. The total compliance investment is driven by the highest level any single contract demands — you cannot mix and match by contract.</p>
+        </div>
+
+        <h2 id="level-1">Level 1 — Basic Safeguarding of FCI</h2>
+
+        <div class="level-card l1">
+          <div class="level-meta">CMMC Level 1 · Self-Assessment</div>
+          <h3>Federal Contract Information only</h3>
+          <p style="margin:6px 0 14px;color:var(--muted);font-size:.92rem;">Triggered by FAR 52.204-21; covers contractors that handle FCI but no CUI.</p>
+          <p><strong>Requirements:</strong> <strong>15 basic safeguarding requirements</strong> in FAR 52.204-21(b) itself. CMMC Level 1, which incorporates the FAR 52.204-21 requirements, names <strong>17 practices</strong> total — the 15 FAR safeguards plus 2 additional controls. Both numbers are correct in their respective contexts: cite the FAR clause for 15 and the CMMC Level 1 model for 17. These map to a subset of NIST SP 800-171 controls — primarily access control, identification and authentication, media protection, physical protection, and system and communications protection.</p>
+          <p><strong>Assessment:</strong> Annual self-assessment by the contractor's authorized senior official, with results affirmed in SPRS. No third-party assessor is involved at Level 1.</p>
+          <p><strong>Typical contractor:</strong> A subcontractor performing services under a federal contract that does not transmit CUI — for example, a janitorial service, a logistics support contractor, or a small parts supplier whose technical drawings come from public catalogs.</p>
+          <p><strong>What is not Level 1:</strong> Any contractor who receives CUI, including controlled technical information, source selection information, or export-controlled data — even occasionally. The presence of even one CUI document received under contract pushes you to Level 2.</p>
+        </div>
+
+        <h2 id="level-2-self">Level 2 — Self-Assessment Path</h2>
+
+        <div class="level-card l2-self">
+          <div class="level-meta">CMMC Level 2 · Self-Assessment</div>
+          <h3>CUI handled, but contract specifies self-assessment</h3>
+          <p style="margin:6px 0 14px;color:var(--muted);font-size:.92rem;">Triggered when DFARS 252.204-7021 specifies "Level 2 (Self)" — applicable to contracts where the CUI exposure does not warrant third-party assessment.</p>
+          <p><strong>Requirements:</strong> All 110 NIST SP 800-171 Rev 2 requirements — the same as the C3PAO path.</p>
+          <p><strong>Assessment:</strong> Annual self-assessment by the contractor's senior official, with results affirmed in SPRS. No third-party assessor.</p>
+          <p><strong>Typical contractor:</strong> A small population. The Level 2 (Self) designation is reserved for the limited set of contracts where the contracting officer determines the CUI sensitivity does not warrant third-party rigor and explicitly designates self-assessment in the 7021 clause. Most CUI-handling contracts default to the C3PAO path.</p>
+          <p><strong>Key warning:</strong> Even though no third party assesses you, the senior official's affirmation creates legal exposure — under the False Claims Act and contractually. Self-assessment is not a lower bar of implementation. The 110 requirements still apply in full.</p>
+        </div>
+
+        <h2 id="level-2-c3pao">Level 2 — C3PAO Assessment Path</h2>
+
+        <div class="level-card l2-c3pao">
+          <div class="level-meta">CMMC Level 2 · Third-Party Assessment</div>
+          <h3>CUI handled and contract requires C3PAO certification</h3>
+          <p style="margin:6px 0 14px;color:var(--muted);font-size:.92rem;">Triggered when DFARS 252.204-7021 specifies "Level 2 (C3PAO)" — the default for the vast majority of CUI-handling contracts.</p>
+          <p><strong>Requirements:</strong> All 110 NIST SP 800-171 Rev 2 requirements, implemented and evidenced.</p>
+          <p><strong>Assessment:</strong> A Certified Third-Party Assessment Organization (C3PAO) conducts a formal assessment, produces a Report on Conformity (ROC), and recommends certification. Certification is granted by the CMMC PMO based on the C3PAO recommendation. Valid for three years.</p>
+          <p><strong>Typical contractor:</strong> The vast majority of DIB contractors handling CUI on DoD contracts. DoD estimates approximately 80,000 contractors in the DIB will require Level 2 third-party certification for CUI handling — effectively the default path for any CUI work that the contracting officer has not explicitly carved out for self-assessment.</p>
+          <p><strong>Cost reality:</strong> The Pentagon's most recent estimate puts the C3PAO assessment alone at $105K–$118K for a typical small-to-medium contractor. Total preparation plus certification is more often in the $50K–$200K range. See the <a href="choosing-c3pao.html">C3PAO selection guide</a> for cost considerations.</p>
+        </div>
+
+        <h2 id="level-3">Level 3 — Highest Sensitivity (NIST 800-172)</h2>
+
+        <div class="level-card l3">
+          <div class="level-meta">CMMC Level 3 · DoD Assessment</div>
+          <h3>CUI of highest sensitivity, advanced persistent threat exposure</h3>
+          <p style="margin:6px 0 14px;color:var(--muted);font-size:.92rem;">Triggered when DFARS 252.204-7021 specifies "Level 3" — reserved for contractors handling CUI critical to national security.</p>
+          <p><strong>Requirements:</strong> All 110 NIST SP 800-171 Rev 2 requirements <em>plus</em> 24 enhanced requirements drawn from NIST SP 800-172 — covering advanced persistent threat protection, dual authorization, audit log analytics, threat intelligence, and other elevated controls.</p>
+          <p><strong>Assessment:</strong> Conducted by DoD itself, specifically by the Defense Industrial Base Cybersecurity Assessment Center (DIBCAC), not by C3PAOs. Higher-rigor assessment, longer engagement, more expensive.</p>
+          <p><strong>Typical contractor:</strong> A narrow population — primes and Tier 1 subs working on highly sensitive programs (next-generation aviation platforms, advanced weapons systems, certain space and cyber programs). Most contractors will never see Level 3.</p>
+          <p><strong>How you'll know:</strong> The contracting officer specifies Level 3 in the 7021 clause. You will not be surprised by a Level 3 designation — these contracts are negotiated and the requirement is communicated explicitly during pre-award discussions.</p>
+        </div>
+
+        <h2 id="scenarios">Common Scenarios</h2>
+
+        <div class="scenario-box">
+          <div class="scenario-q">A small machine shop receives blueprints from a prime to manufacture parts for a defense program. The blueprints are marked "CUI//SP-CTI."</div>
+          <p class="scenario-a"><strong>Level 2.</strong> Receipt of CUI under a DoD contract triggers DFARS 7012 and CMMC Level 2. The default assessment path is C3PAO; the prime's flow-down clause will specify which.</p>
+        </div>
+
+        <div class="scenario-q-spacer" style="height:0;"></div>
+        <div class="scenario-box">
+          <div class="scenario-q">A logistics contractor moves equipment between government facilities. They receive transportation orders that are not marked CUI but list shipment contents and destinations.</div>
+          <p class="scenario-a"><strong>Possibly Level 1, possibly Level 2.</strong> If the transportation orders contain only FCI (information about contract performance not intended for public release), Level 1 applies. If the orders contain operational information that meets a CUI category — for example, force movement information — Level 2 applies. Read the contract clauses, ask the contracting officer, and treat ambiguous data as CUI until clarified.</p>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-q">A software company has one DoD subcontract for a research project (CUI flows down) and several commercial contracts that have no government nexus.</div>
+          <p class="scenario-a"><strong>Level 2 for the in-scope environment.</strong> The CMMC obligation attaches to the systems handling the CUI from the DoD subcontract. The commercial work can remain out of scope provided you can enforce a boundary between the CUI-handling environment and the commercial environment. See the <a href="enclave-architecture.html">enclave architecture guide</a>.</p>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-q">A staffing firm places engineers at a defense prime's site. The engineers handle CUI on the prime's systems while on assignment but the staffing firm does not have its own CUI-handling environment.</div>
+          <p class="scenario-a"><strong>Likely Level 1 for the staffing firm.</strong> If the staffing firm itself does not store, process, or transmit CUI — only its placed personnel do, on the prime's systems — then the staffing firm's own CMMC obligation may be limited to FCI under FAR 52.204-21. Confirm with the prime: some primes flow Level 2 obligations to staffing firms regardless. The prime's contract terms control.</p>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-q">An electronics manufacturer is told by the contracting officer that the new contract will be Level 3.</div>
+          <p class="scenario-a"><strong>Plan for Level 3 immediately.</strong> Level 3 adds 24 NIST SP 800-172 enhanced requirements, requires a DIBCAC (DoD-conducted) assessment rather than a C3PAO, and substantially increases cost and timeline. If your current posture is not Level 2 mature, you have a multi-step climb ahead. Begin by achieving Level 2 (C3PAO) certification; then layer the 800-172 enhancements.</p>
+        </div>
+
+        <h2 id="mixed">Mixed and Ambiguous Exposure</h2>
+        <p>Real organizations rarely have a single, clean level. Common patterns and how to handle them:</p>
+        <ul>
+          <li><strong>Mostly FCI with occasional CUI.</strong> Even one CUI-handling contract pushes you to Level 2 for the systems that handle it. Decide whether to enclave the CUI work (keeping the rest of the org at Level 1 posture) or to bring the whole org to Level 2.</li>
+          <li><strong>Mostly Level 2, one Level 3 contract on the horizon.</strong> Achieve Level 2 first; the Level 3 enhancements layer on top. Trying to leapfrog directly to Level 3 without a solid Level 2 foundation tends to fail under DIBCAC scrutiny.</li>
+          <li><strong>FCI today, CUI in your pipeline.</strong> If pursuing CUI-handling contracts is part of your growth strategy, plan for Level 2 readiness ahead of award, not after. The 12–18 month preparation timeline does not compress well.</li>
+          <li><strong>Subcontractor whose obligations are unclear.</strong> Read the prime contract's flow-down language. If it incorporates DFARS 7012 by reference, you are bound by the same Level 2 obligation as the prime for the CUI you handle. See the <a href="dfars-flow-down.html">flow-down guide</a>.</li>
+          <li><strong>Government data that is sensitive but appears to lack a CUI marking.</strong> Some legacy government data was never properly marked. The marking obligation does not retroactively define the data's status — if the data meets a NARA registry category, it is CUI regardless of marking. When in doubt, ask the contracting officer in writing for confirmation.</li>
+        </ul>
+
+        <h2 id="changes-during">Changes During the Three-Year Cycle</h2>
+        <p>Your level can change. A few common triggers:</p>
+        <ul>
+          <li><strong>New contract at a higher level.</strong> If you win a Level 3 contract while certified at Level 2, you must achieve Level 3 certification before you can perform on the Level 3 contract.</li>
+          <li><strong>Loss of all CUI-handling contracts.</strong> If you no longer have any contracts with 7012, you may step back to Level 1 — but only after the existing certification expires and you have no contractual obligation to maintain it.</li>
+          <li><strong>Significant change to your environment.</strong> A major change (adoption of a new enclave platform, M&amp;A activity, change of cloud provider) may trigger a re-assessment requirement before the three-year mark. Your existing certification is not automatically valid across organizational changes.</li>
+          <li><strong>Cyber incident with material impact.</strong> A reportable incident may trigger DoD review and, in serious cases, suspension of your certification pending demonstrated remediation.</li>
+        </ul>
+
+        <h2 id="references">Authoritative References</h2>
+        <div class="ref-grid">
+          <a href="https://dodcio.defense.gov/CMMC/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DoD CIO CMMC Program Office</div>
+            <div class="ref-card-desc">The authoritative source for CMMC level definitions, scoping guidance, and program documentation</div>
+          </a>
+          <a href="https://www.acquisition.gov/dfars/252.204-7021-contractor-compliance-cybersecurity-maturity-model-certification-level-requirements" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DFARS 252.204-7021</div>
+            <div class="ref-card-desc">The clause that names the CMMC level required by a specific contract</div>
+          </a>
+          <a href="https://www.acquisition.gov/far/52.204-21" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">FAR 52.204-21</div>
+            <div class="ref-card-desc">The basic safeguarding clause for Federal Contract Information — the foundation of CMMC Level 1</div>
+          </a>
+          <a href="https://csrc.nist.gov/publications/detail/sp/800-171/rev-2/final" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST SP 800-171 Rev 2</div>
+            <div class="ref-card-desc">The 110 requirements that define CMMC Level 2</div>
+          </a>
+          <a href="https://csrc.nist.gov/publications/detail/sp/800-172/final" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST SP 800-172</div>
+            <div class="ref-card-desc">The enhanced requirements layered on top of 800-171 to reach CMMC Level 3</div>
+          </a>
+          <a href="https://www.dcsa.mil/Industrial-Security/National-Industrial-Security-Program-Oversight/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DCSA / DIBCAC</div>
+            <div class="ref-card-desc">The DoD entity that conducts Level 3 assessments and higher-level NIST 800-171 assessments under 7020</div>
+          </a>
+        </div>
+
+        <div class="callout green">
+          <p><strong>Next steps:</strong> Once you've identified your level, work through <a href="cui-scoping.html" style="color:var(--blue);font-weight:600;">CUI scoping</a> to know exactly what's in scope, then move to the <a href="enclave-architecture.html" style="color:var(--blue);font-weight:600;">architecture decision</a>. For Level 2 (C3PAO) certification, see the <a href="choosing-c3pao.html" style="color:var(--blue);font-weight:600;">C3PAO selection guide</a>.</p>
+        </div>
+
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+        <p>Technical resources for DIB contractors navigating CMMC 2.0 Level 2 compliance.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html">CMMC 2.0 Guide</a></li>
+          <li><a href="resources.html#architecture">Architecture &amp; Scoping</a></li>
+          <li><a href="resources.html#controls">Control Family Guides</a></li>
+          <li><a href="resources.html#ssp">SSP &amp; POA&amp;M</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Key Topics</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html#who-needs-it">Who Needs to Comply</a></li>
+          <li><a href="guide.html#c3pao">C3PAO vs. Self-Assessment</a></li>
+          <li><a href="guide.html#sprs">SPRS Scoring</a></li>
+          <li><a href="guide.html#nist">110 Controls Reference</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resources.html">All Resources</a></li>
+          <li><a href="guide.html">CMMC Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Methodical Security LLC. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

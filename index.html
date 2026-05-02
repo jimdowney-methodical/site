@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Methodical Security — CMMC 2.0 Level 2 Resources for DIB Contractors</title>
+  <meta name="description" content="Technical resources for DIB contractors navigating CMMC 2.0 Level 2 — who needs a C3PAO audit, enforcement deadlines, and how to prepare your SSP and POA&amp;M.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">M</div>
+      Methodical Security
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="guide.html">CMMC Guide</a></li>
+    </ul>
+    <div></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner" style="max-width:780px;">
+      <span class="eyebrow">Resources for DIB Contractors</span>
+      <h1>Navigating CMMC 2.0 Level 2</h1>
+      <p style="font-size:1.1rem;">Clear, technical resources for Defense Industrial Base contractors processing Controlled Unclassified Information. If your organization handles CUI — as a prime or subcontractor — compliance is a current requirement for contract award.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Reality Check -->
+<section class="reality-check">
+  <div class="container">
+    <div class="rc-header fade-up">
+      <span class="eyebrow" style="color:var(--amber);">Reality Check</span>
+      <h2>Who Needs a Third-Party Audit?</h2>
+      <p>A common misconception is that most contractors will qualify for a Level 2 annual self-assessment. In practice, the C3PAO path is the default for any contract involving CUI; self-assessment is reserved for the narrow set of contracts where the contracting officer specifically designates it.</p>
+    </div>
+
+    <div class="rc-split fade-up">
+
+      <div class="rc-card rc-card-c3pao">
+        <div class="rc-pct">~80,000</div>
+        <div class="rc-card-label">DIB Contractors Needing Level 2 (C3PAO)</div>
+        <p>DoD estimates approximately <strong>80,000 contractors</strong> across the Defense Industrial Base will require Level 2 third-party (C3PAO) certification — effectively any organization that stores, processes, or transmits CUI under a DoD contract.</p>
+        <ul class="rc-list">
+          <li>Performed by an accredited C3PAO</li>
+          <li>Required prior to contract award once 7021 applies</li>
+          <li>Default path for CUI-handling contracts</li>
+        </ul>
+      </div>
+
+      <div class="rc-card rc-card-self">
+        <div class="rc-pct">~140,000</div>
+        <div class="rc-card-label">Contractors Eligible for Self-Assessment (Level 1 or Level 2 Self)</div>
+        <p>The remainder of the DIB — approximately <strong>140,000 contractors</strong> — falls into the self-assessment category, primarily Level 1 (FCI-only). Level 2 (Self) is the narrow exception where a CUI-handling contract specifically permits self-attestation.</p>
+        <ul class="rc-list">
+          <li>Self-reported score in SPRS</li>
+          <li>Senior official affirmation under FCA exposure</li>
+          <li>Most are Level 1 (FCI), not Level 2 (Self)</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="rc-takeaway fade-up">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p><strong>You cannot choose your assessment path.</strong> Prepare your architecture and documentation with the assumption that a third-party auditor will be reviewing it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Enforcement Timeline -->
+<section class="section">
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="eyebrow">DFARS 48 CFR Rollout</span>
+      <h2>The Enforcement Timeline</h2>
+      <p>The phased rollout is active. Compliance is a current requirement for winning and maintaining defense contracts.</p>
+    </div>
+
+    <div class="phase-timeline fade-up">
+
+      <div class="phase-item phase-active">
+        <div class="phase-marker">
+          <div class="phase-dot"></div>
+          <div class="phase-line"></div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-meta">
+            <span class="phase-badge phase-badge-active">Active Now</span>
+            <span class="phase-date">Since November 10, 2025</span>
+          </div>
+          <h3>Phase 1 — Level 2 Self-Assessment</h3>
+          <p>The DoD is inserting Level 2 Self-Assessment requirements into new solicitations. Contractors must have an active <a href="https://www.sprs.csd.disa.mil" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.85);text-decoration:underline;">SPRS score</a> prior to contract award. If you have not submitted a score, you are already at risk.</p>
+        </div>
+      </div>
+
+      <div class="phase-item phase-critical">
+        <div class="phase-marker">
+          <div class="phase-dot"></div>
+          <div class="phase-line"></div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-meta">
+            <span class="phase-badge phase-badge-critical">Critical Deadline</span>
+            <span class="phase-date">November 10, 2026</span>
+          </div>
+          <h3>Phase 2 — C3PAO Certification Mandatory</h3>
+          <p>Starting this November, the DoD will begin mandating Level 2 C3PAO certification as a strict condition of contract award for prioritized CUI. Organizations that have not completed a C3PAO audit by this date will be unable to compete for new contracts involving prioritized CUI. Find accredited C3PAOs in the <a href="https://cybermarq.cyber-ab.org" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.85);text-decoration:underline;">Cyber AB Marketplace</a>.</p>
+        </div>
+      </div>
+
+      <div class="phase-item">
+        <div class="phase-marker">
+          <div class="phase-dot"></div>
+          <div class="phase-line"></div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-meta">
+            <span class="phase-badge phase-badge-upcoming">Upcoming</span>
+            <span class="phase-date">2027</span>
+          </div>
+          <h3>Phase 3 — Expansion to All Applicable New Contracts</h3>
+          <p>C3PAO requirements expand to cover all applicable new contracts across the DIB, regardless of CUI classification tier.</p>
+        </div>
+      </div>
+
+      <div class="phase-item">
+        <div class="phase-marker">
+          <div class="phase-dot"></div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-meta">
+            <span class="phase-badge phase-badge-upcoming">Upcoming</span>
+            <span class="phase-date">2028</span>
+          </div>
+          <h3>Phase 4 — Option Periods on Existing Contracts</h3>
+          <p>C3PAO requirements apply to option periods on existing contracts, completing the transition to universal implementation across the defense supply chain.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Scope strip -->
+<div style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 0;">
+  <div class="container">
+    <div class="hero-scope-box" style="background:transparent;border:none;padding:0;margin:0;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+      <div class="hero-scope-label" style="color:var(--muted);white-space:nowrap;">This site covers</div>
+      <div class="hero-scope-items">
+        <span style="color:var(--text);background:var(--white);border-color:var(--border);">Who is required to comply</span>
+        <span style="color:var(--text);background:var(--white);border-color:var(--border);">Self-assessment vs. C3PAO audit</span>
+        <span style="color:var(--text);background:var(--white);border-color:var(--border);">Enforcement deadlines</span>
+        <span style="color:var(--text);background:var(--white);border-color:var(--border);">110 NIST SP 800-171 Rev 2 controls</span>
+        <span style="color:var(--text);background:var(--white);border-color:var(--border);">SSP &amp; POA&amp;M preparation</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Resources -->
+<section class="section" style="background:var(--surface);">
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="eyebrow">Open Resources</span>
+      <h2>What You'll Find Here</h2>
+      <p>Technical guidance on building, documenting, and maintaining a CMMC 2.0 Level 2 compliance posture — without decoding regulatory jargon.</p>
+    </div>
+
+    <div class="res-grid fade-up">
+
+      <a href="resources.html#controls" class="res-card">
+        <div class="res-card-icon" style="background:#eff6ff;color:#2463eb;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <div class="res-card-body">
+          <h3>NIST SP 800-171 Rev 2 Deep Dives</h3>
+          <p>Practical, plain-English breakdowns of the 14 security requirement families and all 110 individual controls — what each requires, how to implement it, and what evidence an assessor will look for.</p>
+          <span class="res-card-link">Browse control family guides →</span>
+        </div>
+      </a>
+
+      <a href="resources.html#ssp" class="res-card">
+        <div class="res-card-icon" style="background:#fff7ed;color:#c2410c;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="res-card-body">
+          <h3>SSP &amp; POA&amp;M Architecture</h3>
+          <p>Guides on structuring your System Security Plan and Plan of Action &amp; Milestones — how to map control inheritance, document your environment accurately, and produce artifacts that hold up under C3PAO scrutiny.</p>
+          <span class="res-card-link">Browse SSP &amp; documentation guides →</span>
+        </div>
+      </a>
+
+      <a href="resources.html#oscal" class="res-card">
+        <div class="res-card-icon" style="background:#f5f3ff;color:#7c3aed;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="res-card-body">
+          <h3>Automation &amp; Open Standards</h3>
+          <p>Using JSON, XML, and OSCAL (Open Security Controls Assessment Language) to move away from static spreadsheets toward machine-readable, continuous compliance tracking.</p>
+          <span class="res-card-link">Browse automation resources →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Quick reference strip -->
+<section class="section" style="background:var(--navy);padding:64px 0;">
+  <div class="container">
+    <div class="qref-grid fade-up">
+      <div class="qref-item">
+        <div class="qref-num">110</div>
+        <div class="qref-label">NIST SP 800-171 Rev 2<br>Security Requirements</div>
+      </div>
+      <div class="qref-item">
+        <div class="qref-num">14</div>
+        <div class="qref-label">Control Families<br>covered by Level 2</div>
+      </div>
+      <div class="qref-item">
+        <div class="qref-num">~80K</div>
+        <div class="qref-label">DIB contractors estimated<br>to require Level 2 (C3PAO)</div>
+      </div>
+      <div class="qref-item">
+        <div class="qref-num">Nov&nbsp;'26</div>
+        <div class="qref-label">Phase 2 deadline for<br>C3PAO certification</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+        <p>Technical resources for DIB contractors navigating CMMC 2.0 Level 2 compliance.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html">CMMC 2.0 Guide</a></li>
+          <li><a href="resources.html#controls">Control Family Guides</a></li>
+          <li><a href="resources.html#ssp">SSP &amp; POA&amp;M</a></li>
+          <li><a href="resources.html#oscal">Automation &amp; OSCAL</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Key Topics</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html#who-needs-it">Who Needs to Comply</a></li>
+          <li><a href="guide.html#c3pao">C3PAO vs. Self-Assessment</a></li>
+          <li><a href="guide.html#sprs">SPRS Scoring</a></li>
+          <li><a href="guide.html#nist">110 Controls Reference</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resources.html">All Resources</a></li>
+          <li><a href="guide.html">CMMC Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Methodical Security LLC. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

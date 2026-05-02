@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enclave Architecture for CUI: Patterns, Platforms, and Pitfalls — Methodical Security</title>
+  <meta name="description" content="A practical guide to scoping CMMC Level 2 with a CUI enclave — comparing M365 GCC High, PreVeil, Kiteworks, and virtual desktop patterns, with shared responsibility and bridging-failure analysis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .pattern-table { width:100%; border-collapse:collapse; margin:16px 0 24px; font-size:.88rem; }
+    .pattern-table th, .pattern-table td { padding:10px 12px; border:1px solid var(--border); text-align:left; vertical-align:top; }
+    .pattern-table thead th { background:var(--navy); color:#fff; font-weight:600; font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; }
+    .pattern-table tbody tr:nth-child(even) { background:#f8fafc; }
+    .pattern-table td strong { color:var(--navy); }
+    .platform-card { border:1px solid var(--border); border-left:4px solid var(--blue); border-radius:8px; padding:18px 20px; margin:16px 0; background:#fff; }
+    .platform-card h3 { margin:0 0 8px; color:var(--navy); }
+    .platform-card .platform-meta { font-size:.78rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; font-weight:600; margin-bottom:10px; }
+    .platform-card.gcc { border-left-color:#1d4ed8; }
+    .platform-card.preveil { border-left-color:#7c3aed; }
+    .platform-card.kiteworks { border-left-color:#c2410c; }
+    .platform-card.vdi { border-left-color:#0891b2; }
+    .platform-card.diy { border-left-color:#475569; }
+    .crm-table { width:100%; border-collapse:collapse; margin:14px 0; font-size:.85rem; }
+    .crm-table th, .crm-table td { padding:8px 12px; border:1px solid var(--border); text-align:left; }
+    .crm-table thead th { background:var(--surface); color:var(--navy); font-weight:600; font-size:.75rem; text-transform:uppercase; }
+    .crm-table .resp-customer { background:#fee2e2; color:#991b1b; font-weight:600; text-align:center; }
+    .crm-table .resp-shared { background:#fff7ed; color:#c2410c; font-weight:600; text-align:center; }
+    .crm-table .resp-inherited { background:#dcfce7; color:#166534; font-weight:600; text-align:center; }
+    .bridge-list { background:#fffbeb; border:1px solid var(--amber); border-radius:8px; padding:18px 22px; margin:16px 0; }
+    .bridge-list h4 { margin:0 0 10px; color:#92400e; }
+    .bridge-list ol { margin:8px 0 0 20px; }
+    .bridge-list li { color:var(--text); font-size:.92rem; line-height:1.7; margin-bottom:8px; }
+    .decision-flow { background:var(--surface); border-radius:8px; padding:20px 24px; margin:18px 0; }
+    .decision-flow ol { margin:0 0 0 20px; }
+    .decision-flow li { font-size:.95rem; line-height:1.75; margin-bottom:10px; }
+    .decision-flow strong { color:var(--navy); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resources.html" class="active">Resources</a></li>
+      <li><a href="guide.html">CMMC Guide</a></li>
+    </ul>
+    <div></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="resources.html">Resources</a><span>›</span>
+        <span style="color:rgba(255,255,255,.7)">Enclave Architecture</span>
+      </div>
+      <span class="eyebrow">Architecture &amp; Scoping · 16-minute read · Platform-agnostic</span>
+      <h1>Enclave Architecture for CUI</h1>
+      <p>Most small DIB contractors reach CMMC Level 2 by scoping CUI into a small, controlled enclave rather than hardening every system in the organization. This guide compares the major enclave patterns, the shared-responsibility model that comes with each, and the bridging failures that cost organizations their certification.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="guide-layout">
+
+      <!-- Sidebar -->
+      <aside class="guide-sidebar">
+        <div style="font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;">On this page</div>
+        <nav class="guide-sidebar-nav">
+          <a href="#why-enclaves" class="active">Why Enclaves Exist</a>
+          <a href="#two-choices">Whole-Org vs. Enclave</a>
+          <a href="#boundary">The Boundary Problem</a>
+          <a href="#platforms">Major Platform Patterns</a>
+          <a href="#fedramp">FedRAMP Equivalence</a>
+          <a href="#crm">Shared Responsibility (CRM)</a>
+          <a href="#bridging">The Bridging Problem</a>
+          <a href="#decision">Choosing a Pattern</a>
+          <a href="#ssp-impact">Documenting in Your SSP</a>
+          <a href="#references">Authoritative References</a>
+        </nav>
+      </aside>
+
+      <!-- Content -->
+      <article class="guide-content">
+
+        <h2 id="why-enclaves">Why Enclaves Exist</h2>
+        <p>The single largest cost driver in CMMC Level 2 compliance is <strong>scope</strong> — the count of systems, identities, and network segments that handle CUI and therefore fall under the 110 NIST 800-171 Rev 2 requirements. A 50-person company that handles CUI on every workstation is committing to apply MFA, audit logging, encryption, configuration management, and the rest of the 110 controls to all 50 endpoints, every cloud service, every identity, and every network segment. The same company that confines CUI to a 5-person enclave reduces the in-scope footprint by roughly 90%.</p>
+        <p>That scope reduction compounds: less to remediate during preparation, less to assess during the C3PAO engagement, less to monitor for the three-year certification period, and a smaller blast radius if something fails. For organizations whose CUI exposure is genuinely limited — a few program managers handling drawings on a defense subcontract, an engineering team working on one ITAR-controlled product line — the enclave is almost always the cheapest path to certification.</p>
+        <div class="callout">
+          <p><strong>Enclaves do not reduce the assessment requirement.</strong> An enclave compresses the in-scope environment, but every requirement still applies to whatever is inside the enclave. A 5-person enclave still needs all 110 controls implemented, documented, and assessed — just over a much smaller surface.</p>
+        </div>
+
+        <h2 id="two-choices">The Two Architectural Choices</h2>
+        <p>Every organization preparing for CMMC Level 2 makes a strategic decision before any technical work begins: harden the entire organization, or carve out an enclave. The tradeoffs are real in both directions.</p>
+
+        <table class="pattern-table">
+          <thead>
+            <tr><th></th><th>Whole-Org Compliance</th><th>CUI Enclave</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Cost to stand up</strong></td>
+              <td>Higher — every system, every identity, every network segment must meet 800-171</td>
+              <td>Lower — only enclave components require remediation; rest of org stays as-is</td>
+            </tr>
+            <tr>
+              <td><strong>Operational burden</strong></td>
+              <td>Distributed across the whole IT footprint</td>
+              <td>Concentrated in the enclave — but the rest of the org runs normally</td>
+            </tr>
+            <tr>
+              <td><strong>User experience</strong></td>
+              <td>Uniform — all users live under the same controls</td>
+              <td>Bifurcated — enclave users may have separate devices, separate logins, and friction when collaborating with non-enclave colleagues</td>
+            </tr>
+            <tr>
+              <td><strong>C3PAO assessment scope</strong></td>
+              <td>Large — assessor evaluates the entire environment</td>
+              <td>Small — assessor focuses on the enclave; out-of-scope systems are reviewed only to confirm CUI cannot reach them</td>
+            </tr>
+            <tr>
+              <td><strong>Breakage risk</strong></td>
+              <td>Low — no dependency on a boundary; CUI can't leak into "out-of-scope" systems because there are none</td>
+              <td>High — the entire model depends on CUI never crossing the enclave boundary; one user emailing a drawing to their personal account invalidates the architecture</td>
+            </tr>
+            <tr>
+              <td><strong>Best for</strong></td>
+              <td>Organizations where most or all staff handle CUI; security-mature orgs that already operate close to 800-171</td>
+              <td>Organizations where CUI is concentrated among a small subset of staff; organizations starting from a low security baseline</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>The whole-org path is rarely chosen by small contractors. It tends to make sense only when CUI is so pervasive that an enclave would cover most of the organization anyway, or when the organization is mature enough that the incremental cost of full hardening is small.</p>
+
+        <h2 id="boundary">The Boundary Problem</h2>
+        <p>An enclave is defined by its boundary. Every part of the boundary must be enforced by technical and procedural controls, documented in your SSP, and demonstrable to an assessor. There are five dimensions that must be addressed for a boundary to hold:</p>
+        <ul>
+          <li><strong>Identity:</strong> Who can authenticate into the enclave? A separate Microsoft Entra ID tenant, a partitioned directory, or a wholly separate IAM is the strongest boundary. Sharing identities between commercial and enclave environments — single sign-on across both — is permissible but creates lateral-movement exposure that must be addressed.</li>
+          <li><strong>Endpoints:</strong> Which physical or virtual devices can access enclave resources? Common options: dedicated laptops issued only to enclave users; virtual desktop infrastructure (VDI) where users log in from any device but the desktop runs in the enclave; or hardened bring-your-own-device with strict conditional access. Each option has different cost and friction profiles.</li>
+          <li><strong>Network:</strong> How does traffic reach the enclave? Site-to-site VPN, Zero Trust Network Access (ZTNA), a segmented VLAN with firewall enforcement, or a pure cloud-to-endpoint pattern with no on-premises component. The network boundary must be enforced — not assumed.</li>
+          <li><strong>Data flow:</strong> Where does CUI enter the enclave (vendor portals, encrypted email, secure file transfer) and where does it exit (deliverables back to the prime, archival)? Every entry and exit point is a control surface.</li>
+          <li><strong>People:</strong> Which named individuals are authorized to access the enclave? An enclave with a defined user roster, regular access reviews, and immediate offboarding when staff change roles is enforceable. An enclave where "anyone in engineering" can request access is not.</li>
+        </ul>
+        <div class="callout amber">
+          <p><strong>The boundary must be demonstrable, not just declared.</strong> Stating in your SSP that "the CUI enclave is logically separated from the corporate network" does nothing on its own. The assessor will look for the firewall rules, the conditional access policies, the directory structure, and the data flow controls that actually enforce that separation. If those controls don't exist, the boundary doesn't exist.</p>
+        </div>
+
+        <h2 id="platforms">Major Platform Patterns</h2>
+        <p>Most enclaves are built on one of five recurring patterns. None is strictly better than the others — the right choice depends on CUI volume, existing tech stack, user count, and budget.</p>
+
+        <div class="platform-card gcc">
+          <div class="platform-meta">Pattern 1 · Cloud productivity enclave</div>
+          <h3>Microsoft 365 GCC High</h3>
+          <p><strong>What it is:</strong> A separate Microsoft 365 tenant operated in a dedicated Microsoft government cloud region, with US-person personnel restrictions and FedRAMP High authorization. Provides Exchange, SharePoint, Teams, and OneDrive in a CUI-eligible environment.</p>
+          <p><strong>What it covers:</strong> A meaningful portion of the 110 800-171 requirements through inheritance — particularly identity (Entra ID), audit logging, and parts of access control and system &amp; communications protection. Customer-responsible portions are still substantial.</p>
+          <p><strong>Gotchas:</strong> Requires a sponsor letter (a DoD contract or letter of intent) before Microsoft will provision a tenant. Significantly more expensive per-seat than commercial M365. Some commercial M365 features are unavailable or behave differently. Migration from commercial M365 is a project in itself. <strong>Commercial Microsoft 365 — including Microsoft 365 Business Premium and even Microsoft 365 E5 — is not authorized to hold CUI</strong>, regardless of what a Microsoft sales representative may suggest. The standard <strong>GCC</strong> offering is FedRAMP Moderate authorized and can hold many types of CUI, but <strong>GCC High</strong> is the preferred environment for CUI under DFARS 7012 and is required when the CUI is also ITAR-controlled (because GCC may have non-US-person support personnel that would violate ITAR's US-person rule).</p>
+        </div>
+
+        <div class="platform-card preveil">
+          <div class="platform-meta">Pattern 2 · Encrypted overlay enclave</div>
+          <h3>PreVeil</h3>
+          <p><strong>What it is:</strong> A purpose-built end-to-end encrypted email and file collaboration platform that operates as an overlay on top of an organization's existing commercial environment. CUI is handled exclusively within the PreVeil application; everything outside it is out of scope.</p>
+          <p><strong>What it covers:</strong> A large portion of the cryptographic, transmission protection, and storage protection requirements through the encrypted overlay model. PreVeil publishes a customer responsibility matrix for the controls it inherits, shares, or leaves to the customer.</p>
+          <p><strong>Gotchas:</strong> Endpoint compliance is still the customer's responsibility — the device that runs the PreVeil app must still meet 800-171 endpoint requirements. PreVeil is purpose-fit for email and file collaboration; if your CUI workflow requires CAD, PLM, ERP, or other line-of-business applications, PreVeil alone is insufficient. Best fit: very small organizations whose CUI exposure is narrow (correspondence and document exchange with primes).</p>
+        </div>
+
+        <div class="platform-card kiteworks">
+          <div class="platform-meta">Pattern 3 · Managed file transfer enclave</div>
+          <h3>Kiteworks &amp; similar MFT platforms</h3>
+          <p><strong>What it is:</strong> A managed file-transfer and secure collaboration platform that primes commonly use to send CUI down to subcontractors. Subs interact with the platform as authenticated users; the platform itself is FedRAMP authorized.</p>
+          <p><strong>What it covers:</strong> Strong on transmission protection, audit logging, and access control around the file exchange surface. Useful when the CUI exposure is primarily "files arrive from the prime, files go back to the prime."</p>
+          <p><strong>Gotchas:</strong> The MFT platform is only the entry/exit point for CUI. Once a file is downloaded to a sub's local environment for engineering work, that local environment is in scope. Treating the MFT platform as "the enclave" is a common scoping error — the enclave is wherever the CUI lives at rest, not just the channel it arrives through.</p>
+        </div>
+
+        <div class="platform-card vdi">
+          <div class="platform-meta">Pattern 4 · Virtual desktop enclave</div>
+          <h3>Azure Virtual Desktop in GCC High, AWS GovCloud WorkSpaces, dedicated VDI</h3>
+          <p><strong>What it is:</strong> Users log in from their normal endpoint (corporate laptop, home device, BYOD) to a virtual desktop hosted inside a CUI-eligible cloud environment. CUI never lands on the user's endpoint — it stays in the virtual session.</p>
+          <p><strong>What it covers:</strong> A significant scope reduction on the endpoint side, because the local device becomes a thin client rather than an in-scope endpoint. Most 800-171 controls move to the virtual desktop image, the underlying cloud platform, and the access broker.</p>
+          <p><strong>Gotchas:</strong> Requires strict prevention of data egress from the virtual session — clipboard redirection, file download, drive mapping, screen recording, and printing must all be controlled. If a user can copy CUI from the virtual desktop to the local clipboard, the local endpoint is in scope. The user experience can be poor for graphics-heavy CAD or simulation workloads. Network latency from the user's location to the cloud region matters.</p>
+        </div>
+
+        <div class="platform-card diy">
+          <div class="platform-meta">Pattern 5 · Build-your-own on government cloud</div>
+          <h3>AWS GovCloud, Azure Government, Oracle Government Cloud (custom build)</h3>
+          <p><strong>What it is:</strong> The customer architects their own CUI environment from primitives in a government-region cloud. Provides maximum flexibility for organizations with unusual workloads (large simulation clusters, custom engineering toolchains, GIS, classified-adjacent workflows).</p>
+          <p><strong>What it covers:</strong> The customer inherits the FedRAMP-authorized infrastructure layer but is responsible for designing and implementing every control above the hypervisor. Identity, networking, data protection, logging, configuration management — all on the customer.</p>
+          <p><strong>Gotchas:</strong> Highest engineering cost of any pattern. Suits organizations with mature cloud engineering capability and unusual workload requirements. For typical office-productivity CUI exposure, the cloud productivity enclave (Pattern 1) is usually a better fit at lower cost.</p>
+        </div>
+
+        <h2 id="fedramp">FedRAMP Equivalence and CSP Inheritance</h2>
+        <p>Department of Defense policy requires that any cloud service used to store, process, or transmit CUI be authorized at the FedRAMP Moderate baseline or be demonstrably equivalent. This is the single most consequential rule when evaluating an enclave platform.</p>
+        <div class="callout amber">
+          <p><strong>Commercial cloud services cannot hold CUI.</strong> Commercial Microsoft 365, Google Workspace, Dropbox Business, Slack (commercial tier), Zoom (commercial), and the general-public versions of nearly every major SaaS application are <em>not</em> FedRAMP Moderate authorized. They cannot lawfully hold CUI under DFARS 252.204-7012, and using them for CUI is both a regulatory violation and an automatic finding in any C3PAO assessment. This is true regardless of how strong the security controls of the commercial offering may be.</p>
+        </div>
+        <p>The DoD CIO memorandum of <strong>December 21, 2023</strong> ("Federal Risk and Authorization Management Program (FedRAMP) Moderate Equivalency for Cloud Service Provider's Cloud Service Offerings") set a strict bar for "equivalent." A CSP claiming equivalence must be assessed by a <strong>FedRAMP-recognized third-party assessment organization (3PAO) against 100% of the FedRAMP Moderate baseline controls</strong>, with <strong>zero control-related findings</strong>, <strong>no open POA&amp;M items from the assessment</strong>, and a <strong>complete Body of Evidence available to DIBCAC on request</strong>. <strong>Self-attestation of equivalence is explicitly not permitted.</strong> In practice, very few cloud services that are not formally FedRAMP authorized meet this bar.</p>
+        <p>Before adopting any cloud service for an enclave, verify its authorization status:</p>
+        <ul>
+          <li>Search the <a href="https://marketplace.fedramp.gov/" target="_blank" rel="noopener noreferrer">FedRAMP Marketplace</a> for the specific service offering and confirm "FedRAMP Authorized" status at Moderate or High</li>
+          <li>For services claiming equivalence, request the 3PAO assessment package and the evidence body, and have your security team confirm it meets the equivalence standard</li>
+          <li>Confirm the specific edition or tier you intend to use is the authorized one — a vendor's "Federal" or "Government" tier is the authorized variant; their "Commercial" or "Enterprise" tier typically is not</li>
+        </ul>
+
+        <h2 id="crm">Shared Responsibility and the Customer Responsibility Matrix</h2>
+        <p>Every cloud-based enclave inherits some 800-171 requirements from the underlying provider and leaves others to the customer. The Customer Responsibility Matrix (CRM) — published by the cloud provider — maps each control to the responsibility split. Reading and understanding the CRM is the first step in any enclave architecture decision.</p>
+        <div class="callout amber">
+          <p><strong>The numbers in the table below are illustrative only.</strong> They are not drawn from any specific CSP's published CRM and should not be used to plan inheritance assumptions. Always work from the cloud provider's actual published CRM — Microsoft publishes its CRM through the <a href="https://servicetrust.microsoft.com/" target="_blank" rel="noopener noreferrer">Service Trust Portal</a>; AWS publishes through <a href="https://aws.amazon.com/artifact/" target="_blank" rel="noopener noreferrer">AWS Artifact</a>. The pattern below shows the structural takeaway only: that no platform inherits more than roughly half the requirements, and that most assessment findings cluster in shared-responsibility controls left at default settings.</p>
+        </div>
+
+        <table class="crm-table">
+          <thead>
+            <tr><th>Control Family</th><th>Inherited from CSP</th><th>Shared</th><th>Customer Responsible</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Access Control (AC) — 22 reqs</td><td class="resp-inherited">~5</td><td class="resp-shared">~10</td><td class="resp-customer">~7</td></tr>
+            <tr><td>Audit &amp; Accountability (AU) — 9 reqs</td><td class="resp-inherited">~4</td><td class="resp-shared">~3</td><td class="resp-customer">~2</td></tr>
+            <tr><td>Configuration Management (CM) — 9 reqs</td><td class="resp-inherited">~3</td><td class="resp-shared">~3</td><td class="resp-customer">~3</td></tr>
+            <tr><td>Identification &amp; Authentication (IA) — 11 reqs</td><td class="resp-inherited">~2</td><td class="resp-shared">~6</td><td class="resp-customer">~3</td></tr>
+            <tr><td>Personnel Security (PS) — 2 reqs</td><td class="resp-inherited">0</td><td class="resp-shared">0</td><td class="resp-customer">2</td></tr>
+            <tr><td>Physical Protection (PE) — 6 reqs</td><td class="resp-inherited">~5</td><td class="resp-shared">~1</td><td class="resp-customer">0 (cloud-only) / 6 (hybrid)</td></tr>
+            <tr><td>System &amp; Communications Protection (SC) — 16 reqs</td><td class="resp-inherited">~6</td><td class="resp-shared">~6</td><td class="resp-customer">~4</td></tr>
+            <tr><td>System &amp; Information Integrity (SI) — 7 reqs</td><td class="resp-inherited">~2</td><td class="resp-shared">~3</td><td class="resp-customer">~2</td></tr>
+          </tbody>
+        </table>
+        <p>Two patterns matter here. First, no platform — including the most comprehensive — inherits more than roughly half the requirements. Even on a fully cloud-hosted enclave, there is meaningful customer-responsible work in identity configuration, access policy, data classification, audit log review, and incident response. Second, the "shared" rows are where most assessment findings cluster: shared controls require the customer to actually configure something correctly (enable MFA conditional access, configure audit log retention, define account lockout thresholds), and the most common failure is leaving the cloud platform at its default settings.</p>
+        <div class="callout">
+          <p><strong>Where to find the real CRM:</strong> Microsoft publishes its FedRAMP responsibility matrix through the Microsoft Service Trust Portal. PreVeil publishes its 800-171 responsibility matrix on its compliance documentation page. For any cloud service in your enclave, request the current CRM in writing — it is a contractual artifact, not optional documentation.</p>
+        </div>
+
+        <h2 id="bridging">The Bridging Problem</h2>
+        <p>The most common cause of enclave failure is not a missing control inside the enclave — it is a bridge that lets CUI cross the boundary into systems that are out of scope. Assessors test for these bridges aggressively, and finding even one can invalidate the entire enclave architecture.</p>
+
+        <div class="bridge-list">
+          <h4>Bridging failures assessors will probe</h4>
+          <ol>
+            <li><strong>Personal email used for CUI correspondence.</strong> A user receives a CUI document in the enclave, then forwards it to their personal Gmail to work from home. The personal email account is now an out-of-scope system holding CUI.</li>
+            <li><strong>BYOD access to enclave resources.</strong> A user logs into the enclave's webmail from a personal phone or laptop. Unless the BYOD device is enrolled in MDM and meets endpoint requirements, the device is now an in-scope endpoint that has not been assessed.</li>
+            <li><strong>Copy-paste from enclave to commercial.</strong> A user copies CUI text from a virtual desktop or PreVeil window and pastes it into commercial Microsoft Word, commercial Slack, or a personal note-taking app. The destination is out of scope and now contains CUI.</li>
+            <li><strong>Screenshots and screen recording.</strong> A user screenshots a CUI document for reference and saves it to their personal cloud photo backup. The cloud photo service is out of scope and now contains CUI.</li>
+            <li><strong>Printing to commercial print queues.</strong> A CUI document is printed from the enclave, but the print job routes through a corporate print server that is not in the enclave. The print server has now handled CUI.</li>
+            <li><strong>Commercial backup or archive systems.</strong> An enclave file server is backed up to a commercial cloud backup that is not FedRAMP authorized. The backup itself is now an out-of-scope CUI repository.</li>
+            <li><strong>Shadow IT for collaboration.</strong> Enclave users find the enclave's collaboration tools clunky and revert to a commercial alternative for "just this one project." The shadow tool now holds CUI.</li>
+            <li><strong>Contractor and subcontractor laptops.</strong> A consultant or subcontractor accesses enclave resources from a device that is neither owned nor managed by the prime organization. Unless the device meets enclave endpoint requirements, this is an unmanaged in-scope endpoint.</li>
+            <li><strong>Mobile device access without containerization.</strong> A user receives enclave email on a personal phone with no MDM or app containerization. Email containing CUI now resides on an unmanaged mobile device.</li>
+            <li><strong>Federation back to the commercial directory.</strong> The enclave authenticates against the corporate Active Directory or commercial Entra tenant, meaning a compromise of the commercial directory grants access to the enclave. This may be technically permissible but requires careful documentation and additional controls.</li>
+          </ol>
+        </div>
+
+        <p>Each of these failures has the same root cause: a control gap at the boundary between in-scope and out-of-scope systems. The boundary must be enforced by technical controls (data loss prevention, conditional access, MDM, endpoint configuration), not by user training alone. Training that says "don't put CUI in personal email" is not a control — it is a request.</p>
+
+        <h2 id="decision">Choosing a Pattern</h2>
+        <p>The right enclave pattern is rarely obvious. Work through these questions in order:</p>
+
+        <div class="decision-flow">
+          <ol>
+            <li><strong>How much CUI do you actually handle?</strong> If it's primarily correspondence and small documents from a prime, an encrypted overlay (PreVeil) or productivity enclave (GCC High) is sufficient. If you have engineering CAD files, simulation data, or large datasets, you'll need a productivity enclave or a custom-built cloud environment.</li>
+            <li><strong>How many users need access?</strong> Under 10 users with narrow CUI exposure: encrypted overlay is the cheapest viable path. 10–100 users with diverse workflows: productivity enclave (GCC High) is typically the best fit. Over 100 users, or unusual workloads: consider VDI or a custom-built environment.</li>
+            <li><strong>What is your existing tech stack?</strong> Already on Microsoft 365 commercial? GCC High is a difficult migration but the closest functional analog. Already on Google Workspace? You will need to migrate to a Microsoft or AWS enclave — Google does not offer a CUI-eligible workspace. Heavy use of specialized engineering tools (CAD, PLM, simulation)? VDI or a custom environment may be required to host them.</li>
+            <li><strong>Do you have a sponsor letter for GCC High?</strong> If you do not yet have a DoD contract or a letter of intent from a prime, Microsoft will not provision a GCC High tenant. PreVeil and Kiteworks have lower onboarding barriers.</li>
+            <li><strong>Can you actually enforce the boundary?</strong> Whatever pattern you choose, walk through the bridging failures above and confirm you can enforce against each one. If you cannot — particularly around BYOD, personal email, and copy-paste — the enclave model is the wrong choice and whole-org compliance is the more honest path.</li>
+          </ol>
+        </div>
+
+        <h2 id="ssp-impact">Documenting the Enclave in Your SSP</h2>
+        <p>An enclave architecture must be reflected in your SSP — particularly in the boundary, environment, and inheritance sections. See the <a href="ssp-guide.html#s2">System Boundary section</a> and the <a href="ssp-guide.html#s7">Inheritance &amp; Shared Responsibility section</a> of the SSP guide for the documentation requirements. Specifically:</p>
+        <ul>
+          <li>The boundary statement must name the enclave and explicitly enumerate what is out of scope</li>
+          <li>Network architecture diagrams must show the enclave perimeter, the data entry and exit points, and the controls enforcing each boundary crossing</li>
+          <li>The inherited control list must reference the cloud provider's CRM by document name and version</li>
+          <li>Bridging controls (DLP policies, conditional access rules, MDM configurations, endpoint restrictions) must be documented as the technical enforcement of the boundary, not assumed</li>
+          <li>The user roster of authorized enclave users must be maintained and reviewed regularly — the enclave is only as defensible as the authorization decisions feeding it</li>
+        </ul>
+        <p>For subcontractors who handle CUI received through your enclave, see the guide on <a href="dfars-flow-down.html">DFARS 252.204-7012(m) Flow-Down Obligations</a> — the CMMC requirements you carry must be flowed down to any sub that handles your covered defense information.</p>
+
+        <h2 id="references">Authoritative References</h2>
+        <div class="ref-grid">
+          <a href="https://marketplace.fedramp.gov/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">FedRAMP Marketplace</div>
+            <div class="ref-card-desc">Authoritative directory of FedRAMP-authorized cloud services — verify any CSP holding CUI here</div>
+          </a>
+          <a href="https://dodcio.defense.gov/Portals/0/Documents/Library/FEDRAMP-EquivalencyCloudServiceProviders.pdf" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DoD CIO FedRAMP Equivalency Memo (Dec 21, 2023)</div>
+            <div class="ref-card-desc">The governing memorandum defining what "FedRAMP Moderate equivalent" requires for CUI hosting — 100% of baseline controls, zero findings, no open POA&amp;Ms, full Body of Evidence, no self-attestation</div>
+          </a>
+          <a href="https://learn.microsoft.com/en-us/microsoft-365/compliance/" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">Microsoft Service Trust Portal</div>
+            <div class="ref-card-desc">Source for the M365 GCC High customer responsibility matrix and FedRAMP package documentation</div>
+          </a>
+          <a href="https://csrc.nist.gov/publications/detail/sp/800-171/rev-2/final" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NIST SP 800-171 Rev 2</div>
+            <div class="ref-card-desc">The 110 requirements every enclave must implement — by inheritance, by sharing, or by direct customer implementation</div>
+          </a>
+          <a href="https://www.acquisition.gov/dfars/252.204-7012-safeguarding-covered-defense-information-and-cyber-incident-reporting" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">DFARS 252.204-7012</div>
+            <div class="ref-card-desc">The contract clause requiring safeguarding of covered defense information — the legal basis for the FedRAMP-equivalence requirement on cloud services</div>
+          </a>
+          <a href="https://www.archives.gov/cui/registry/category-list" target="_blank" rel="noopener noreferrer" class="ref-card">
+            <div class="ref-card-label">NARA CUI Registry</div>
+            <div class="ref-card-desc">Official list of CUI categories — use this to inventory what CUI types your enclave actually handles</div>
+          </a>
+        </div>
+
+        <div class="callout green">
+          <p><strong>Related resources:</strong> Once you've chosen a pattern, walk through the documentation requirements in the <a href="ssp-guide.html" style="color:var(--blue);font-weight:600;">SSP writing guide</a>, then map your enclave's CRM against the <a href="controls.html" style="color:var(--blue);font-weight:600;">110 control deep dives</a> to identify the customer-responsible portions. If you flow CUI to subcontractors, see <a href="dfars-flow-down.html" style="color:var(--blue);font-weight:600;">DFARS 252.204-7012(m) Flow-Down Obligations</a>.</p>
+        </div>
+
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+        <p>Technical resources for DIB contractors navigating CMMC 2.0 Level 2 compliance.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html">CMMC 2.0 Guide</a></li>
+          <li><a href="resources.html#controls">Control Family Guides</a></li>
+          <li><a href="resources.html#ssp">SSP &amp; POA&amp;M</a></li>
+          <li><a href="resources.html#oscal">Automation &amp; OSCAL</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Key Topics</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html#who-needs-it">Who Needs to Comply</a></li>
+          <li><a href="guide.html#c3pao">C3PAO vs. Self-Assessment</a></li>
+          <li><a href="guide.html#sprs">SPRS Scoring</a></li>
+          <li><a href="guide.html#nist">110 Controls Reference</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resources.html">All Resources</a></li>
+          <li><a href="guide.html">CMMC Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Methodical Security LLC. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
