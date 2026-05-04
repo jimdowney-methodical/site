@@ -20,9 +20,9 @@
     </a>
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="index.html#about">About</a></li>
       <li><a href="resources.html">Resources</a></li>
       <li><a href="guide.html">CMMC Guide</a></li>
+      <li><a href="#about">About</a></li>
     </ul>
     <div></div>
     <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -32,14 +32,10 @@
 <!-- Hero -->
 <section class="hero">
   <div class="container">
-    <div class="hero-inner" style="max-width:860px;">
+    <div class="hero-inner" style="max-width:780px;">
       <span class="eyebrow">Resources for DIB Contractors</span>
-      <h1>Navigating CMMC&nbsp;2.0 <span>Level&nbsp;2</span></h1>
-      <p class="hero-lead">Clear, technical resources for Defense Industrial Base contractors processing Controlled Unclassified Information. If your organization handles CUI — as a prime or subcontractor — compliance is a current requirement for contract award.</p>
-      <div class="hero-cta">
-        <a href="guide.html" class="btn btn-primary">Read the CMMC Guide</a>
-        <a href="resources.html" class="btn btn-outline-light">Browse Resources</a>
-      </div>
+      <h1>Navigating CMMC 2.0 Level 2</h1>
+      <p style="font-size:1.1rem;">Clear, technical resources for Defense Industrial Base contractors processing Controlled Unclassified Information. If your organization handles CUI — as a prime or subcontractor — compliance is a current requirement for contract award.</p>
     </div>
   </div>
 </section>
@@ -53,7 +49,7 @@
       <p>A common misconception is that most contractors will qualify for a Level 2 annual self-assessment. In practice, the CMMC Third-Party Assessor Organization (C3PAO) path is the default for any contract involving CUI; self-assessment is reserved for the narrow set of contracts where the contracting officer specifically designates it.</p>
     </div>
 
-    <div class="rc-split fade-up" style="grid-template-columns:1fr;max-width:680px;">
+    <div class="rc-split fade-up" style="grid-template-columns:1fr;max-width:640px;margin-left:0;">
 
       <div class="rc-card rc-card-c3pao">
         <div class="rc-pct">~80,000</div>
@@ -197,37 +193,26 @@
   </div>
 </section>
 
-<!-- About -->
-<section class="section" id="about" style="background:var(--surface);">
+<!-- About / Mission -->
+<section class="section" id="about" style="padding:88px 0;">
   <div class="container">
-    <div class="section-head fade-up" style="max-width:780px;">
+    <div class="section-head fade-up">
       <span class="eyebrow">About Methodical Security</span>
       <h2>Our Mission</h2>
-      <p>Methodical Security exists to help Defense Industrial Base organizations reduce the cost and time of CMMC assessment preparation while strengthening their underlying security posture. We pair clear technical content with agentic tooling so a complex regulatory program becomes a tractable project.</p>
+      <p>To help Defense Industrial Base organizations reduce the cost and time of CMMC assessments while measurably improving their security posture — through plain-language guidance today and agentic tooling soon.</p>
     </div>
-
-    <div class="grid-2 fade-up" style="margin-top:40px;gap:24px;">
-
-      <div class="res-card">
-        <div class="res-card-icon" style="background:#eff6ff;color:#2463eb;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        </div>
-        <div class="res-card-body">
-          <h3>Open Technical Content</h3>
-          <p>Plain-language deep dives on the 110 NIST SP 800-171 Rev 2 requirements, SSP and POA&amp;M architecture, DFARS flow-down, FedRAMP equivalency, and the rest of the CMMC program — written for the engineers and operations leaders who actually have to implement it. Free, no account required.</p>
-        </div>
+    <div class="grid-2 fade-up" style="margin-top:48px;">
+      <div style="padding:28px;border:1px solid var(--border);border-radius:var(--radius-lg);background:#fff;">
+        <h3 style="color:var(--navy);margin-bottom:10px;">Open Content</h3>
+        <p style="font-size:.92rem;">Free, technical resources covering the 110 NIST SP 800-171 controls, SSP and POA&amp;M architecture, scoping decisions, C3PAO selection, and the assessment lifecycle — written for practitioners, not auditors.</p>
       </div>
-
-      <div class="res-card">
-        <div class="res-card-icon" style="background:#f5f3ff;color:#7c3aed;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <div style="padding:28px;border:1px solid var(--border);border-radius:var(--radius-lg);background:#fff;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+          <h3 style="color:var(--navy);margin:0;">Agentic Tooling</h3>
+          <span style="background:#fff7ed;color:#c2410c;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;">Coming Soon</span>
         </div>
-        <div class="res-card-body">
-          <h3>Agentic Tooling for Assessment Prep <span style="display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#fef3c7;color:#92400e;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle;">Coming Soon</span></h3>
-          <p>Software agents that draft, score, and maintain the artifacts a CMMC assessor will demand — System Security Plans, POA&amp;Ms, evidence catalogs, and SPRS scoring — grounded in your actual environment instead of generic templates. The goal is shorter assessment timelines and stronger security, not paperwork-for-paperwork's-sake.</p>
-        </div>
+        <p style="font-size:.92rem;">AI agents that draft your SSP from real environment evidence, score gaps against SPRS, and keep your POA&amp;M current as your environment changes — built to compress months of manual assessment work into days.</p>
       </div>
-
     </div>
   </div>
 </section>
@@ -285,8 +270,9 @@
         <h4>Site</h4>
         <ul class="footer-links">
           <li><a href="index.html">Home</a></li>
-          <li><a href="index.html#about">About</a></li>
           <li><a href="resources.html">All Resources</a></li>
+          <li><a href="guide.html">CMMC Guide</a></li>
+          <li><a href="index.html#about">About</a></li>
         </ul>
       </div>
     </div>
