@@ -33,17 +33,6 @@ if (hamburger && navLinks) {
   });
 }
 
-// Hero search → resources page
-const heroSearch = document.querySelector('.hero-search');
-if (heroSearch) {
-  heroSearch.addEventListener('submit', e => {
-    e.preventDefault();
-    const q = heroSearch.querySelector('input').value.trim();
-    if (q) window.location.href = `resources.html?q=${encodeURIComponent(q)}`;
-  });
-  heroSearch.querySelector('button')?.addEventListener('click', () => heroSearch.dispatchEvent(new Event('submit')));
-}
-
 // Resource filter buttons
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -54,20 +43,6 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
       card.closest('.resource-wrap').style.display =
         (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
     });
-  });
-});
-
-// Email signup demo
-document.querySelectorAll('.waitlist-form, .newsletter-form, .ea-signup-form, #eaForm').forEach(form => {
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const btn = form.querySelector('button[type="submit"], button');
-    const orig = btn.textContent;
-    btn.textContent = '✓ You\'re on the list!';
-    btn.style.background = '#16a34a';
-    btn.disabled = true;
-    form.querySelector('input[type="email"]').value = '';
-    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.disabled = false; }, 4000);
   });
 });
 
