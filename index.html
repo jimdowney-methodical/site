@@ -29,13 +29,23 @@
   </div>
 </nav>
 
+<!-- Regulatory Update Banner -->
+<div class="update-banner" style="background:#fffbeb;border-bottom:1px solid #fcd34d;">
+  <div class="container" style="display:flex;gap:14px;align-items:flex-start;padding:14px 0;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="2.5" style="flex-shrink:0;margin-top:2px;"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <div style="font-size:.9rem;line-height:1.5;color:#7c2d12;">
+      <strong style="color:#9a3412;">Regulatory update — July 13, 2026:</strong> The DoD has <strong>suspended CMMC Phase 2</strong>, pausing the mandatory third-party (C3PAO) certification milestone pending a 60-day reform review. <strong>Your obligations have not gone away:</strong> NIST SP 800-171, DFARS 252.204-7012 safeguarding, Level 2 self-assessment, and SPRS scoring all remain in force. <a href="cmmc-phase2-suspension.html" style="color:#9a3412;text-decoration:underline;font-weight:600;white-space:nowrap;">What this means for you →</a>
+    </div>
+  </div>
+</div>
+
 <!-- Hero -->
 <section class="hero">
   <div class="container">
     <div class="hero-inner" style="max-width:780px;">
       <span class="eyebrow">Resources for DIB Contractors</span>
       <h1>Navigating CMMC 2.0 Level 2</h1>
-      <p style="font-size:1.1rem;">Clear, technical resources for Defense Industrial Base contractors processing Controlled Unclassified Information. If your organization handles CUI — as a prime or subcontractor — compliance is a current requirement for contract award.</p>
+      <p style="font-size:1.1rem;">Clear, technical resources for Defense Industrial Base contractors processing Controlled Unclassified Information. If your organization handles CUI — as a prime or subcontractor — safeguarding obligations under DFARS 252.204-7012 and NIST SP 800-171 remain a current requirement, even with third-party CMMC certification now paused.</p>
     </div>
   </div>
 </section>
@@ -46,7 +56,7 @@
     <div class="rc-header fade-up">
       <span class="eyebrow" style="color:var(--amber);">Reality Check</span>
       <h2>Who Needs a Third-Party Audit?</h2>
-      <p>A common misconception is that most contractors will qualify for a Level 2 annual self-assessment. In practice, the CMMC Third-Party Assessor Organization (C3PAO) path is the default for any contract involving CUI; self-assessment is reserved for the narrow set of contracts where the contracting officer specifically designates it.</p>
+      <p><strong style="color:var(--amber);">Updated July 2026:</strong> With Phase 2 suspended, Level 2 <em>self-assessment</em> is the operative path right now — no C3PAO certification is currently required for contract award. That said, the program as designed makes third-party assessment the default for any contract involving CUI, and it may return following the DoD's 60-day review. Building your architecture and documentation toward that standard remains the safe assumption.</p>
     </div>
 
     <div class="rc-split fade-up" style="grid-template-columns:1fr;max-width:640px;margin-left:0;">
@@ -66,7 +76,7 @@
 
     <div class="rc-takeaway fade-up">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <p><strong>You cannot choose your assessment path.</strong> Prepare your architecture and documentation with the assumption that a third-party auditor will be reviewing it.</p>
+      <p><strong>Don't stand down — the certification is suspended, the standard is not.</strong> Keep preparing your architecture and documentation to the full 800-171 bar: it keeps you eligible for award today and ready if third-party certification returns after the review.</p>
     </div>
   </div>
 </section>
@@ -97,18 +107,18 @@
         </div>
       </div>
 
-      <div class="phase-item phase-critical">
+      <div class="phase-item">
         <div class="phase-marker">
           <div class="phase-dot"></div>
           <div class="phase-line"></div>
         </div>
         <div class="phase-body">
           <div class="phase-meta">
-            <span class="phase-badge phase-badge-critical">Critical Deadline</span>
-            <span class="phase-date">November 10, 2026</span>
+            <span class="phase-badge phase-badge-upcoming" style="background:#fffbeb;color:#c2410c;">Suspended</span>
+            <span class="phase-date">Paused July 13, 2026</span>
           </div>
-          <h3>Phase 2 — C3PAO Certification Mandatory</h3>
-          <p>Starting this November, the DoD will begin mandating Level 2 C3PAO certification as a strict condition of contract award for prioritized CUI. Organizations that have not completed a C3PAO audit by this date will be unable to compete for new contracts involving prioritized CUI. Find accredited C3PAOs in the <a href="https://cybermarq.cyber-ab.org" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.85);text-decoration:underline;">Cyber AB Marketplace</a>.</p>
+          <h3>Phase 2 — C3PAO Certification (Suspended)</h3>
+          <p>The mandatory Level 2 third-party (C3PAO) certification milestone — originally set for November 10, 2026 — was <strong>suspended on July 13, 2026</strong> pending a 60-day DoD reform review, citing compliance cost and assessor-capacity concerns. Third-party certification is not currently a condition of contract award. The underlying NIST SP 800-171 standard and your self-assessment obligations are unchanged, so continuing to prepare your SSP and SPRS score is the prudent hedge while the review is underway. Accredited assessors remain listed in the <a href="https://cybermarq.cyber-ab.org" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.85);text-decoration:underline;">Cyber AB Marketplace</a>.</p>
         </div>
       </div>
 
@@ -234,8 +244,8 @@
         <div class="qref-label">DIB contractors estimated<br>to require Level 2 (C3PAO)</div>
       </div>
       <div class="qref-item">
-        <div class="qref-num">Nov&nbsp;'26</div>
-        <div class="qref-label">Phase 2 deadline for<br>C3PAO certification</div>
+        <div class="qref-num">Paused</div>
+        <div class="qref-label">Phase 2 C3PAO mandate<br>suspended (60-day review)</div>
       </div>
     </div>
   </div>
