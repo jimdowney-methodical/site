@@ -325,10 +325,10 @@
   // in this page, so scrapers can't harvest it. Only the opaque form ID below
   // appears in the HTML.
   //
-  // SETUP (one time): create a form at https://formspree.io that delivers to
-  // the owner's inbox, then replace YOUR_FORM_ID below with the form's ID
-  // (the part after /f/ in its endpoint).
-  const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+  // Configured: the Formspree form below delivers to the owner's inbox. To
+  // change the destination, edit the form's settings in Formspree — not this
+  // file (the address must never be hard-coded here).
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xzdnebbq";
 
   (function () {
     var form    = document.getElementById("certaloDemoForm");
