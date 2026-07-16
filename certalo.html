@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certalo — AI-Powered CMMC Self-Assessment | Methodical Security</title>
+  <meta name="description" content="Certalo is the AI CMMC assistant from Methodical Security. It drafts your SSP from real evidence, scores SPRS in real time, generates your POA&amp;M, and prepares the policy and procedure documentation an assessor expects. Request a demo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    /* Certalo product name lockup in the hero */
+    .certalo-wordmark { font-weight: 800; letter-spacing: -.02em; }
+    .certalo-by { font-size: .82rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-top: 14px; }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 4px; }
+
+    /* Feature cards reuse .res-grid/.res-card; these are non-link variants */
+    .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 900px) { .feat-grid { grid-template-columns: 1fr; } }
+
+    /* Benefits */
+    .benefit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; margin-top: 44px; }
+    @media (max-width: 760px) { .benefit-grid { grid-template-columns: 1fr; } }
+    .benefit { display: flex; gap: 14px; align-items: flex-start; }
+    .benefit-check { flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; background: #ecfdf5; color: var(--green); display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+    .benefit h3 { color: var(--navy); font-size: 1rem; margin-bottom: 4px; }
+    .benefit p { font-size: .9rem; margin: 0; }
+
+    /* Demo form */
+    .demo-wrap { max-width: 640px; margin: 0 auto; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow); }
+    .demo-form .field { margin-bottom: 18px; }
+    .demo-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    @media (max-width: 560px) { .demo-form .row { grid-template-columns: 1fr; } }
+    .demo-form label { display: block; font-size: .82rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+    .demo-form label .opt { color: var(--muted); font-weight: 500; }
+    .demo-form input, .demo-form textarea, .demo-form select {
+      width: 100%; font: inherit; font-size: .95rem; color: var(--text);
+      padding: 11px 13px; border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--surface); transition: border-color .15s, box-shadow .15s;
+    }
+    .demo-form input:focus, .demo-form textarea:focus, .demo-form select:focus {
+      outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(36,99,235,.15); background: #fff;
+    }
+    .demo-form textarea { resize: vertical; min-height: 92px; }
+    /* Honeypot — hidden from humans, catches bots */
+    .demo-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .demo-submit { width: 100%; margin-top: 4px; }
+    .demo-note { font-size: .78rem; color: var(--muted); margin-top: 14px; text-align: center; }
+    .demo-status { display: none; border-radius: var(--radius); padding: 14px 16px; font-size: .9rem; margin-bottom: 20px; }
+    .demo-status.err { display: block; background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; }
+    .demo-success { display: none; text-align: center; padding: 20px 0; }
+    .demo-success .check-lg { width: 56px; height: 56px; border-radius: 50%; background: #ecfdf5; color: var(--green); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .demo-success h3 { color: var(--navy); font-size: 1.2rem; margin-bottom: 8px; }
+    .demo-success p { color: var(--muted); font-size: .95rem; max-width: 380px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">M</div>
+      Methodical Security
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="certalo.html">Certalo</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="guide.html">CMMC Guide</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <div></div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner" style="max-width:820px;">
+      <span class="eyebrow">Introducing Certalo</span>
+      <h1><span class="certalo-wordmark">Certalo</span> — CMMC self-assessment, <span>compressed from months into days</span></h1>
+      <p>Certalo is the AI CMMC assistant built for the Defense Industrial Base. It reads your real environment evidence, drafts your System Security Plan, scores SPRS as you go, and prepares the policy and procedure documentation an assessor expects — so a self-assessment that used to take months of manual spreadsheet work takes days.</p>
+      <div class="hero-cta">
+        <a href="#demo" class="btn btn-primary">Request a demo</a>
+        <a href="#features" class="btn btn-outline-light">See what it does</a>
+      </div>
+      <div class="certalo-by">Certalo &middot; by Methodical Security</div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="eyebrow">What Certalo Does</span>
+      <h2>Your CMMC assessment, guided end to end</h2>
+      <p>Certalo covers the full NIST SP 800-171 Rev 2 self-assessment lifecycle — from evidence to SSP to a posted SPRS score — with an AI assistant doing the heavy documentation work alongside you.</p>
+    </div>
+
+    <div class="feat-grid fade-up">
+
+      <div class="res-card">
+        <div class="res-card-icon" style="background:#fff7ed;color:#c2410c;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="res-card-body">
+          <h3>AI-drafted System Security Plan</h3>
+          <p>Certalo turns your real environment evidence into an SSP mapped to all 110 controls — no blank-page spreadsheets. You review and refine; it writes the first draft.</p>
+        </div>
+      </div>
+
+      <div class="res-card">
+        <div class="res-card-icon" style="background:#eff6ff;color:#2463eb;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+        </div>
+        <div class="res-card-body">
+          <h3>Live SPRS scoring</h3>
+          <p>Your SPRS score updates in real time as you assess. See exactly which unmet requirements cost you 5, 3, or 1 points — and which fixes move the number most.</p>
+        </div>
+      </div>
+
+      <div class="res-card">
+        <div class="res-card-icon" style="background:#f5f3ff;color:#7c3aed;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <div class="res-card-body">
+          <h3>Guided 800-171A walkthrough</h3>
+          <p>Work every determination statement across the 14 families and 320 assessment objectives, record findings with linked evidence, and flag POA&amp;M-eligible gaps.</p>
+        </div>
+      </div>
+
+      <div class="res-card">
+        <div class="res-card-icon" style="background:#ecfdf5;color:#059669;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="res-card-body">
+          <h3>POA&amp;M that stays current</h3>
+          <p>Generate a Plan of Action &amp; Milestones from your open gaps — owners, milestones, target dates — and keep it live as your environment and evidence change.</p>
+        </div>
+      </div>
+
+      <div class="res-card">
+        <div class="res-card-icon" style="background:#fef2f2;color:#dc2626;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+        </div>
+        <div class="res-card-body">
+          <h3>Policy &amp; procedure drafting</h3>
+          <p>An AI assistant that analyzes your environment and prepares the policy and procedure documentation assessors expect — tailored to how your organization actually operates.</p>
+        </div>
+      </div>
+
+      <div class="res-card">
+        <div class="res-card-icon" style="background:#eff6ff;color:#0284c7;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="res-card-body">
+          <h3>One-click SPRS submission package</h3>
+          <p>Certalo assembles the exact record you enter at SPRS — score, SSP, POA&amp;M, and assessment report — so you post a defensible, frozen-in-time submission without re-keying.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Benefits -->
+<section class="section" style="background:var(--surface);">
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="eyebrow">Why Certalo</span>
+      <h2>Assessor-ready, not just organized</h2>
+      <p>Certalo is built around how CMMC assessments are actually scored and reviewed — so the output holds up when it matters.</p>
+    </div>
+
+    <div class="benefit-grid fade-up">
+      <div class="benefit">
+        <div class="benefit-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div><h3>Months into days</h3><p>Compress the manual assessment grind — evidence gathering, SSP writing, gap analysis — into a fraction of the time.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div><h3>Defensible by design</h3><p>Findings map to NIST SP 800-171A objectives, and citations pin to the exact evidence version examined — the trail a C3PAO expects.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div><h3>Always current</h3><p>As your environment changes, Certalo keeps your SSP, gaps, and POA&amp;M in sync — so your posture never drifts from your documentation.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div><h3>Lower cost than consultant-led</h3><p>Do more of the work in-house with AI assistance, and spend outside dollars only where you truly need them.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div><h3>Built for the DIB</h3><p>CUI-enclave aware, CAGE- and SPRS-native, and grounded in the real DFARS 252.204-7012 / CMMC Level 2 requirements you're held to.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div><h3>Your data stays yours</h3><p>Multi-tenant isolation, role-based access, and evidence you control — a security posture that reflects the standard we help you meet.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats strip -->
+<section class="section" style="background:var(--navy);padding:64px 0;">
+  <div class="container">
+    <div class="qref-grid fade-up">
+      <div class="qref-item"><div class="qref-num">110</div><div class="qref-label">NIST SP 800-171 Rev 2<br>controls assessed</div></div>
+      <div class="qref-item"><div class="qref-num">320</div><div class="qref-label">Assessment objectives<br>walked with evidence</div></div>
+      <div class="qref-item"><div class="qref-num">14</div><div class="qref-label">Control families<br>covered end to end</div></div>
+      <div class="qref-item"><div class="qref-num">Days</div><div class="qref-label">Not months, to a<br>posted SPRS score</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Demo request -->
+<section class="section" id="demo">
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="eyebrow">Request a Demo</span>
+      <h2>See Certalo on your environment</h2>
+      <p>Tell us a bit about your organization and we'll set up a walkthrough — typically within one business day.</p>
+    </div>
+
+    <div class="demo-wrap fade-up">
+      <div class="demo-status" id="demoError" role="alert" aria-live="assertive"></div>
+
+      <div class="demo-success" id="demoSuccess" aria-live="polite">
+        <div class="check-lg"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h3>Thanks — your request is in.</h3>
+        <p>We'll reach out to schedule your Certalo walkthrough, usually within one business day.</p>
+      </div>
+
+      <form class="demo-form" id="certaloDemoForm" novalidate>
+        <div class="row">
+          <div class="field">
+            <label for="cf-name">Full name</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">Work email</label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="cf-company">Company</label>
+            <input type="text" id="cf-company" name="company" autocomplete="organization" required>
+          </div>
+          <div class="field">
+            <label for="cf-cage">CAGE code <span class="opt">(optional)</span></label>
+            <input type="text" id="cf-cage" name="cage_code" maxlength="10" autocomplete="off">
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="cf-phone">Phone <span class="opt">(optional)</span></label>
+            <input type="tel" id="cf-phone" name="phone" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="cf-size">Organization size <span class="opt">(optional)</span></label>
+            <select id="cf-size" name="org_size">
+              <option value="">Select…</option>
+              <option>1–25 employees</option>
+              <option>26–100 employees</option>
+              <option>101–500 employees</option>
+              <option>500+ employees</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="cf-msg">What would you like to see? <span class="opt">(optional)</span></label>
+          <textarea id="cf-msg" name="message" placeholder="e.g. where we are in our CMMC journey, current SPRS score, timelines…"></textarea>
+        </div>
+
+        <!-- Honeypot: bots fill this; humans never see it. Submissions with it set are dropped. -->
+        <div class="hp" aria-hidden="true">
+          <label for="cf-website">Leave this field empty</label>
+          <input type="text" id="cf-website" name="_gotcha" tabindex="-1" autocomplete="off">
+        </div>
+        <!-- Subject line for the notification email (destination address is configured in the form backend, never in this page). -->
+        <input type="hidden" name="_subject" value="New Certalo demo request">
+
+        <button type="submit" class="btn btn-primary demo-submit" id="demoSubmit">Request a demo</button>
+        <p class="demo-note">We use your details only to schedule your demo. No spam, ever.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-mark">M</div>Methodical Security</a>
+        <p>Technical resources for DIB contractors navigating CMMC 2.0 Level 2 compliance.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Certalo</h4>
+        <ul class="footer-links">
+          <li><a href="certalo.html#features">Features</a></li>
+          <li><a href="certalo.html#demo">Request a Demo</a></li>
+          <li><a href="index.html#about">About the Product</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="guide.html">CMMC 2.0 Guide</a></li>
+          <li><a href="resources.html#controls">Control Family Guides</a></li>
+          <li><a href="resources.html#ssp">SSP &amp; POA&amp;M</a></li>
+          <li><a href="resources.html#oscal">Automation &amp; OSCAL</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resources.html">All Resources</a></li>
+          <li><a href="guide.html">CMMC Guide</a></li>
+          <li><a href="index.html#about">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Methodical Security LLC. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // === Certalo demo form ===================================================
+  // Submissions POST to a form-backend service (Formspree). The destination
+  // email is configured inside the Formspree form itself — it is NEVER present
+  // in this page, so scrapers can't harvest it. Only the opaque form ID below
+  // appears in the HTML.
+  //
+  // SETUP (one time): create a form at https://formspree.io that delivers to
+  // the owner's inbox, then replace YOUR_FORM_ID below with the form's ID
+  // (the part after /f/ in its endpoint).
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
+  (function () {
+    var form    = document.getElementById("certaloDemoForm");
+    var btn     = document.getElementById("demoSubmit");
+    var errBox  = document.getElementById("demoError");
+    var okBox   = document.getElementById("demoSuccess");
+    if (!form) return;
+
+    function showError(msg) {
+      errBox.textContent = msg;
+      errBox.classList.add("err");
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      errBox.classList.remove("err");
+      errBox.textContent = "";
+
+      // Honeypot tripped → silently pretend success (don't tip off the bot).
+      if (form.querySelector('[name="_gotcha"]').value) {
+        form.style.display = "none";
+        okBox.style.display = "block";
+        return;
+      }
+
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      if (FORMSPREE_ENDPOINT.indexOf("YOUR_FORM_ID") !== -1) {
+        showError("Demo requests aren't connected yet. (Set the Formspree form ID in certalo.html.)");
+        return;
+      }
+
+      var origLabel = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+
+      fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { "Accept": "application/json" }
+      })
+      .then(function (res) {
+        if (res.ok) {
+          form.style.display = "none";
+          okBox.style.display = "block";
+          okBox.scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          return res.json().then(function (data) {
+            var msg = (data && data.errors && data.errors.map(function (x) { return x.message; }).join(", "))
+                      || "Something went wrong. Please email us directly or try again.";
+            showError(msg);
+            btn.disabled = false;
+            btn.textContent = origLabel;
+          });
+        }
+      })
+      .catch(function () {
+        showError("Network error — please check your connection and try again.");
+        btn.disabled = false;
+        btn.textContent = origLabel;
+      });
+    });
+  })();
+</script>
+</body>
+</html>
